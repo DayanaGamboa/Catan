@@ -1,0 +1,26 @@
+﻿  GameArea.cpp
+  GamePiece.cpp
+C:\Users\monge\source\repos\sfmlCatan1\sfmlCatan1\GamePiece.h(6,6): warning C4200: nonstandard extension used: zero-sized array in struct/union
+C:\Users\monge\source\repos\sfmlCatan1\sfmlCatan1\GamePiece.h(6,6): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Land.cpp
+C:\Users\monge\source\repos\sfmlCatan1\sfmlCatan1\GamePiece.h(6,6): warning C4200: nonstandard extension used: zero-sized array in struct/union
+C:\Users\monge\source\repos\sfmlCatan1\sfmlCatan1\GamePiece.h(6,6): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
+  sfmlCatan1.cpp
+  StartWindow.cpp
+C:\Users\monge\source\repos\sfmlCatan1\sfmlCatan1\StartWindow.cpp(13,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\monge\source\repos\sfmlCatan1\sfmlCatan1\StartWindow.cpp(72,72): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\monge\source\repos\sfmlCatan1\sfmlCatan1\StartWindow.cpp(72,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+  Generating code
+  82 of 83 functions (98.8%) were compiled, the rest were copied from previous compilation.
+    73 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  sfmlCatan1.vcxproj -> C:\Users\monge\source\repos\sfmlCatan1\x64\Release\sfmlCatan1.exe
