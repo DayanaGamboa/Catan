@@ -1,1 +1,2 @@
 Ajustes Catan
+Readme
