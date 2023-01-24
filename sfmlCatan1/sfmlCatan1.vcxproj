@@ -139,17 +139,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameArea.cpp" />
-    <ClCompile Include="GamePiece.cpp" />
+    <ClCompile Include="Bank.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="City.cpp" />
+    <ClCompile Include="Deck.cpp" />
+    <ClCompile Include="DevelopmentCard.cpp" />
+    <ClCompile Include="Dice.cpp" />
+    <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Land.cpp" />
+    <ClCompile Include="Number.cpp" />
+    <ClCompile Include="Partida.cpp" />
+    <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ResourceCard.cpp" />
     <ClCompile Include="sfmlCatan1.cpp" />
+    <ClCompile Include="SpecialCard.cpp" />
     <ClCompile Include="StartWindow.cpp" />
+    <ClCompile Include="Street.cpp" />
+    <ClCompile Include="Thief.cpp" />
+    <ClCompile Include="Town.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameArea.h" />
-    <ClInclude Include="GamePiece.h" />
+    <ClInclude Include="Bank.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="City.h" />
+    <ClInclude Include="Deck.h" />
+    <ClInclude Include="DevelopmentCard.h" />
+    <ClInclude Include="Dice.h" />
+    <ClInclude Include="Figure.h" />
     <ClInclude Include="Land.h" />
+    <ClInclude Include="Number.h" />
+    <ClInclude Include="Partida.h" />
+    <ClInclude Include="Piece.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="ResourceCard.h" />
+    <ClInclude Include="SpecialCard.h" />
     <ClInclude Include="StartWindow.h" />
+    <ClInclude Include="Street.h" />
+    <ClInclude Include="Thief.h" />
+    <ClInclude Include="Town.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
