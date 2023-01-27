@@ -211,7 +211,7 @@ void StartWindow::ventanaAbout()
     Event event;
     aBackground.setSize(Vector2f(X, Y));
     Texture aboutWindowImage;
-    aboutWindowImage.loadFromFile("resouceImages/About.jpg");
+    aboutWindowImage.loadFromFile("resouceImages/About.png");
     aBackground.setTexture(&aboutWindowImage);
 
     RenderWindow About(VideoMode(X, Y), "About");
