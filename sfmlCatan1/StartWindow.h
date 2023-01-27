@@ -20,17 +20,17 @@ public:
 	void moveUp();
 	void moveDown();
 
-	void ventanaPrincipal();
-	void ventanaGo();
-	void ventanaAbout();
+	void mainWindow();
+	void goWindow();
+	void aboutWindow();
 
 
-	void pintaMateriasPrimas(RenderWindow*, int);
-	void pintaDados(RenderWindow*);
-	void pintaMazosContrincantes(RenderWindow*, int);
-	void pintaCartasEspeciales(RenderWindow*);
+	void paintResource(RenderWindow*, int);
+	void paintDice(RenderWindow*);
+	void paintOpponentDeck(RenderWindow*, int);
+	void paintSpecialCards(RenderWindow*);
 
-	void pintaTerrenos(RenderWindow*);
+	void paintLand(RenderWindow*);
 
 
 	int StartWindowPressed() {
@@ -41,18 +41,15 @@ public:
 private:
 	Event event;
 
-	RectangleShape rtsDado1;
-	Texture txtrRtsDado1;
-	RectangleShape rtsDado2;
-	Texture txtrRtsDado2;
+	RectangleShape rtsDice1;
+	Texture txtrRtsDice1;
+	RectangleShape rtsDice2;
+	Texture txtrRtsDice2;
 
-
-	RectangleShape rtsTerrenos;
-	Texture txtrTerrenos;
+	RectangleShape rtsLands;
+	Texture txtrLands;
 
 	int StartWindowSelected;
 	Font font;
 	Text startMenu[optionMenu];
-
 };
-

@@ -8,7 +8,7 @@
 int main()
 {
 
-    StartWindow star(X, Y);
-    star.ventanaPrincipal();
+    StartWindow start(X, Y);
+    start.mainWindow();
 
 }
