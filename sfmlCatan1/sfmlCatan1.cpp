@@ -9,7 +9,6 @@ int main()
 {
 
     StartWindow start(X, Y);
-
     start.mainWindow();
 
 }
