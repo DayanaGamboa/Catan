@@ -40,6 +40,9 @@ public:
 	void paintLand(RenderWindow*);
 
 
+	void exitButton(RenderWindow*);
+
+
 
 	int StartWindowPressed() {
 		return StartWindowSelected;
@@ -47,7 +50,10 @@ public:
 	~StartWindow();
 
 private:
+
+	
 	Event event;
+	Mouse mouse;
 
 	RectangleShape rtsDice1;
 	Texture txtrRtsDice1;

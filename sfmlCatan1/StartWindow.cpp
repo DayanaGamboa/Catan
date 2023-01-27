@@ -29,6 +29,7 @@ StartWindow::StartWindow(float widht, float height) {
 
 }
 
+
 StartWindow::~StartWindow() {}
 
 //Draw Window
@@ -151,11 +152,17 @@ void StartWindow::goWindow()
     textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");
     rtsBtnDice.setTexture(&textureRtsBtnDice);
 
+    //Boton salir
+    RectangleShape rtsBtnExit;
+    rtsBtnExit.setPosition(Vector2f(1250, 10));
+    rtsBtnExit.setSize(Vector2f(50, 30));
+    Texture textureRtsBtnExit;
+    textureRtsBtnExit.loadFromFile("resouceImages/exitButton.jpg");
+    rtsBtnExit.setTexture(&textureRtsBtnExit);
+
     int numero = 0;
     
 
-    Mouse mouse;
-    Event event;
 
     RectangleShape vectorTerrenosRTS[19], rts;
     for (int i = 0; i < 19; i++) {
@@ -224,7 +231,7 @@ void StartWindow::goWindow()
     Vector2i v2i = mouse.getPosition(Go);
 
     while (Go.isOpen()) {
-
+       
         while (Go.pollEvent(event)) {
             if (event.type == Event::Closed) {
                 Go.close();
@@ -248,6 +255,16 @@ void StartWindow::goWindow()
                     /* pintaTerrenos(&Go); */
 
                 }
+                
+                if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(v2i))) {
+
+                    exitButton(&Go);
+
+                    // Go.close();
+
+                    // mainWindow();
+                } 
+                
             }
 
         }
@@ -257,6 +274,9 @@ void StartWindow::goWindow()
         Go.draw(rtsDice2);
         Go.draw(rtsLand);
         Go.draw(rtsBtnDice);
+        Go.draw(rtsBtnExit);
+        
+
         //TERRENOS
         for (int i = 0; i < 19; i++) {
             Go.draw(vectorTerrenosRTS[i]);
@@ -271,6 +291,7 @@ void StartWindow::goWindow()
         paintOpponentDeck(&Go, 320);
         paintOpponentDeck(&Go, 470);
         paintSpecialCards(&Go);
+        
 
 
         Go.display();
@@ -405,6 +426,73 @@ void StartWindow::paintSpecialCards(RenderWindow* Go)
         Go->draw(rts);
         pos += 170;
     }
+}
+
+void StartWindow::exitButton(RenderWindow* Go){
+   
+    RenderWindow windowExit(VideoMode(200, 130), "Salir?");
+    //set background
+    RectangleShape backExit;
+    backExit.setSize(Vector2f(200, 130));
+    backExit.setFillColor(Color::White);
+
+    Text text("Seguro que deseas salir?",font,15);
+    text.setFillColor(Color::Black);
+    text.setPosition(Vector2f(0,20));
+    
+
+    //Yes
+    CircleShape rtsBtnYes;
+    rtsBtnYes.setPosition(Vector2f(30, 65));
+    rtsBtnYes.setRadius(20);
+    Texture textureRtsBtnYes;
+    textureRtsBtnYes.loadFromFile("resouceImages/btnYes.png");
+    rtsBtnYes.setTexture(&textureRtsBtnYes);
+    //No
+    CircleShape rtsBtnNo;
+    rtsBtnNo.setPosition(Vector2f(130, 65));
+    rtsBtnNo.setRadius(20);
+    Texture textureRtsBtnNo;
+    textureRtsBtnNo.loadFromFile("resouceImages/btnNo.png");
+    rtsBtnNo.setTexture(&textureRtsBtnNo);
+
+
+
+    while (windowExit.isOpen()) {
+
+        while (windowExit.pollEvent(event)) {
+            if (event.type == Event::Closed) {
+                windowExit.close();
+            }
+            if (event.type == Event::KeyPressed) {
+                if (event.key.code == Keyboard::Escape) {
+                    windowExit.close();
+                    
+                }
+            }
+            if (event.type == Event::MouseButtonPressed) {
+
+                Vector2i v2i = mouse.getPosition(windowExit);
+
+                if (rtsBtnYes.getGlobalBounds().contains(Vector2<float>(v2i))) {
+                    windowExit.close();
+                    Go->close();
+                    mainWindow();
+                } 
+                windowExit.close();
+               
+            }
+        }
+        windowExit.clear();
+        windowExit.draw(backExit);
+        windowExit.draw(rtsBtnYes);
+        windowExit.draw(rtsBtnNo);
+        windowExit.draw(text);
+    
+        windowExit.display();
+    }
+
+
 }
 
 //void StartWindow::paintLand(RenderWindow* Go)
