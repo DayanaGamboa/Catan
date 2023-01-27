@@ -1,6 +1,9 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include <iostream>
+#include<ctime>
+#include<time.h> 
+#include<windows.h> 
 
 using namespace std;
 using namespace sf;
@@ -30,7 +33,8 @@ public:
 	void pintaMazosContrincantes(RenderWindow*, int);
 	void pintaCartasEspeciales(RenderWindow*);
 
-	void pintaTerrenos(RenderWindow*);
+	void pintaTerrenos(RenderWindow*, RectangleShape&, Texture&, int, int);
+	void pintaTerrenos2(RenderWindow*);
 
 
 	int StartWindowPressed() {
@@ -47,8 +51,7 @@ private:
 	Texture txtrRtsDado2;
 
 
-	RectangleShape rtsTerrenos;
-	Texture txtrTerrenos;
+	
 
 	int StartWindowSelected;
 	Font font;

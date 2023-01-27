@@ -1,5 +1,5 @@
 #include "StartWindow.h"
-
+#include "windows.h"
 
 StartWindow::StartWindow(float widht, float height) {
     if (!font.loadFromFile("Fonts/GethoFont.ttf")) {
@@ -151,11 +151,77 @@ void StartWindow::ventanaGo()
     textureRtsBtnDados.loadFromFile("resouceImages/btnTirarDados.png");
     rtsBtnDados.setTexture(&textureRtsBtnDados);
 
+    int numero = 0;
+    
+
     Mouse mouse;
     Event event;
 
-    Vector2i v2i = mouse.getPosition(Go);
+    RectangleShape vectorTerrenosRTS[19], rts;
+    for (int i = 0; i < 19; i++) {
+        vectorTerrenosRTS[i] = rts;
+    }
+    Texture vectorTerrenosTXT[19], txtr;
+    for (int i = 0; i < 19; i++) {
 
+        vectorTerrenosTXT[i] = txtr;
+    }
+    int posX[19] = { 608,673,737,580,641,703,765,549,610,673,735,798,580,642,705,767,610,674,735 };
+    int posY[19] = { 234,234,234,278,278,278,278,325,325,325,325,325,370,370,370,370,415,415,415 };
+    string ruta = "";
+    srand(time(NULL));
+    for (int i = 0; i < 19; i++) {
+        vectorTerrenosRTS[i].setPosition(Vector2f(posX[i], posY[i]));
+        vectorTerrenosRTS[i].setSize(Vector2f(55, 55));
+
+        numero = 0 + rand() % 5;
+        
+        ruta = "resouceImages/T";
+        ruta += to_string(numero);
+        ruta += ".png";
+        vectorTerrenosTXT[i].loadFromFile(ruta);
+       
+        Texture* txt;
+        txt = &vectorTerrenosTXT[i];
+        vectorTerrenosRTS[i].setTexture(txt);
+       
+        Go.draw(vectorTerrenosRTS[i]);
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    string letra;
+    RectangleShape vectorTerrenosRTS2[19];
+    for (int i = 0; i < 19; i++) {
+        RectangleShape rts;
+        vectorTerrenosRTS2[i] = rts;
+    }
+    Texture vectorTerrenosTXT2[19];
+    for (int i = 0; i < 19; i++) {
+        Texture txtr;
+        vectorTerrenosTXT2[i] = txtr;
+    }
+    
+    srand(time(NULL));
+    for (int i = 0; i < 19; i++) {
+        vectorTerrenosRTS2[i].setPosition(Vector2f(posX[i]+8, posY[i]+8));
+        vectorTerrenosRTS2[i].setSize(Vector2f(40, 40));
+
+        /*letra = "A" + rand() ;
+
+        ruta = "resouceImages/";
+        ruta += to_string(numero);
+        ruta += ".png";*/
+
+        vectorTerrenosTXT2[i].loadFromFile("resouceImages/A.png");
+
+        Texture* txt;
+        txt = &vectorTerrenosTXT2[i];
+        vectorTerrenosRTS2[i].setTexture(txt);
+
+        Go.draw(vectorTerrenosRTS2[i]);
+    }
+
+    Vector2i v2i = mouse.getPosition(Go);
 
     while (Go.isOpen()) {
 
@@ -177,21 +243,27 @@ void StartWindow::ventanaGo()
                 Vector2i v2i = mouse.getPosition(Go);
 
                 if (rtsBtnDados.getGlobalBounds().contains(Vector2<float>(v2i))) {
-
+                    
                     pintaDados(&Go);
-                    /* pintaTerrenos(&Go); */
 
                 }
             }
 
         }
+        
         Go.draw(rtsMar);
         Go.draw(rtsTerreno);
-        Go.draw(rtsDado1);
-        Go.draw(rtsDado2);
-        Go.draw(rtsTerrenos);
         Go.draw(rtsBtnDados);
-
+        Go.draw(rtsDado1);
+        Go.draw(rtsDado2);  
+        //TERRENOS
+        for (int i = 0; i < 19; i++) {
+            Go.draw(vectorTerrenosRTS[i]);             
+        }
+        //este para fichas A,B,C,D
+        for (int i = 0; i < 19; i++) {
+            Go.draw(vectorTerrenosRTS2[i]);
+        }
         pintaMateriasPrimas(&Go, 660);
         pintaMateriasPrimas(&Go, 10);
         pintaMazosContrincantes(&Go, 170);
@@ -204,6 +276,7 @@ void StartWindow::ventanaGo()
 
     }
 }
+
 
 void StartWindow::ventanaAbout()
 {
@@ -288,6 +361,7 @@ void StartWindow::pintaDados(RenderWindow* Go)
     sumaDados += numRandom;
     cout << "SUMA: " << sumaDados << endl;
 
+    Go->draw(rtsDado1);
     Go->draw(rtsDado2);
 }
 
@@ -297,8 +371,6 @@ void StartWindow::pintaMazosContrincantes(RenderWindow* Go, int posY)
     RectangleShape rts1, rts2;
     Texture txtr1, txtr2;
     string ruta1 = "resouceImages/MP6.png", ruta2 = "resouceImages/MP7.png";
-
-
 
     rts1.setPosition(Vector2f(10, posY));
     rts1.setSize(Vector2f(40, 70));
@@ -312,15 +384,6 @@ void StartWindow::pintaMazosContrincantes(RenderWindow* Go, int posY)
     txtr2.loadFromFile(ruta2);
     rts2.setTexture(&txtr2);
     Go->draw(rts2);
-
-
-
-
-
-
-
-
-
 
 }
 
@@ -345,45 +408,28 @@ void StartWindow::pintaCartasEspeciales(RenderWindow* Go)
     }
 }
 
-void StartWindow::pintaTerrenos(RenderWindow* Go)
+void StartWindow::pintaTerrenos(RenderWindow* Go, RectangleShape& rtsTerrenos, Texture& txtrTerrenos, int pos, int numero)
 {
     int terrenos[6] = { 4,4,4,3,3,1 };
-    int posX[19] = { 0,0,623,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
-    int posY[19] = { 0,0,295,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+    int posX[19] = { 608,673,737,580,641,703,765,549,610,673,735,798,580,642,705,767,610,674,735, };
+    int posY[19] = { 234,234,234,278,278,278,278,325,325,325,325,325,370,370,370,370,415,415,415 };
     string ruta = "";
+  
 
-    int numero = 0 + rand() % 5;
-
-
-
-
-
-
-
-    int cont = 0;
-    while (cont <= 19) {
-        srand(time(NULL));
-        int numero = 0 + rand() % 5;
-
-
-        if (terrenos[numero] > 0) {
-            terrenos[numero] --;
-
-            rtsTerrenos.setPosition(Vector2f(posX[cont], posY[cont]));
-            rtsTerrenos.setSize(Vector2f(60, 60));
+       /* for (int i = 0; i < 19; i++) {*/
+            
+            cout << "Terreno: " << numero << endl;
+            
+            rtsTerrenos.setPosition(Vector2f(posX[pos], posY[pos]));
+            rtsTerrenos.setSize(Vector2f(55, 55));
             ruta = "resouceImages/T";
             ruta += to_string(numero);
             ruta += ".png";
             txtrTerrenos.loadFromFile(ruta);
             rtsTerrenos.setTexture(&txtrTerrenos);
             Go->draw(rtsTerrenos);
-
-
-
-            cont++;
-        }
-
-
-    }
+           
+        /*}*/
+       
 }
 
