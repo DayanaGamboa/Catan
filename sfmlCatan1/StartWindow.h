@@ -8,7 +8,7 @@
 using namespace std;
 using namespace sf;
 
-#define optionMenu 3
+#define optionMenu 4
 #define X 1330 
 #define Y 790
 
@@ -41,6 +41,8 @@ public:
 
 
 	void exitButton(RenderWindow*);
+	void saveGameButton(RenderWindow*);
+	void loadGameButton(RenderWindow*);
 
 
 
