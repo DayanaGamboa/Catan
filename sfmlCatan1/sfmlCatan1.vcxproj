@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClCompile Include="Bank.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CircularList.cpp" />
     <ClCompile Include="City.cpp" />
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DevelopmentCard.cpp" />
     <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Land.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="Partida.cpp" />
     <ClCompile Include="Piece.cpp" />
@@ -162,12 +164,14 @@
   <ItemGroup>
     <ClInclude Include="Bank.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CircularList.h" />
     <ClInclude Include="City.h" />
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DevelopmentCard.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Land.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Partida.h" />
     <ClInclude Include="Piece.h" />
