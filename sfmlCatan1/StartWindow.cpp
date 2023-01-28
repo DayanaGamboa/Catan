@@ -6,7 +6,7 @@ StartWindow::StartWindow(float widht, float height) {
         cout << "¡¡No Font!!";
     }
     int num = 200;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 4; i++) {
         //Start Game
         startMenu[i].setFont(font);
         startMenu[i].setFillColor(Color::White);
@@ -19,7 +19,8 @@ StartWindow::StartWindow(float widht, float height) {
     startMenu[0].setFillColor(Color::Cyan);
 
     startMenu[1].setString("About");
-    startMenu[2].setString("Exit");
+    startMenu[2].setString("Load");
+    startMenu[3].setString("Exit");
 
     StartWindowSelected = 0;
 
@@ -48,7 +49,7 @@ void StartWindow::moveUp() {
         startMenu[StartWindowSelected].setFillColor(Color::White);
 
         if (StartWindowSelected == 0) {
-            StartWindowSelected = 3;
+            StartWindowSelected = 4;
         }
         StartWindowSelected--;
 
@@ -63,7 +64,7 @@ void StartWindow::moveDown() {
     {
         startMenu[StartWindowSelected].setFillColor(Color::White);
         StartWindowSelected++;
-        if (StartWindowSelected == 3) {
+        if (StartWindowSelected == 4) {
             StartWindowSelected = 0;
         }
         startMenu[StartWindowSelected].setFillColor(Color::Cyan);
@@ -82,6 +83,7 @@ void StartWindow::mainWindow()
     Texture startWindowImage;
     startWindowImage.loadFromFile("resouceImages/startMenu.jpg");
     background.setTexture(&startWindowImage);
+
 
     while (windowMENU.isOpen()) {
 
@@ -111,6 +113,11 @@ void StartWindow::mainWindow()
                         aboutWindow();
                     }
                     if (pos == 2) {
+
+                        windowMENU.close();
+                        break;
+                    }
+                    if (pos == 3) {
 
                         windowMENU.close();
                         break;
@@ -155,10 +162,20 @@ void StartWindow::goWindow()
     //Boton salir
     RectangleShape rtsBtnExit;
     rtsBtnExit.setPosition(Vector2f(1250, 10));
-    rtsBtnExit.setSize(Vector2f(50, 30));
+    rtsBtnExit.setSize(Vector2f(57, 30));
     Texture textureRtsBtnExit;
-    textureRtsBtnExit.loadFromFile("resouceImages/exitButton.jpg");
+    textureRtsBtnExit.loadFromFile("resouceImages/exitButton.png");
     rtsBtnExit.setTexture(&textureRtsBtnExit);
+    
+    //Boton guardar
+    RectangleShape rtsBtnSave;
+    rtsBtnSave.setPosition(Vector2f(1255, 40));
+    rtsBtnSave.setSize(Vector2f(50, 30));
+    Texture textureRtsBtnSave;
+    textureRtsBtnSave.loadFromFile("resouceImages/btnSave.png");
+    rtsBtnSave.setTexture(&textureRtsBtnSave);
+    
+    
 
     int numero = 0;
     
@@ -275,6 +292,7 @@ void StartWindow::goWindow()
         Go.draw(rtsLand);
         Go.draw(rtsBtnDice);
         Go.draw(rtsBtnExit);
+        Go.draw(rtsBtnSave);
         
 
         //TERRENOS
@@ -493,6 +511,15 @@ void StartWindow::exitButton(RenderWindow* Go){
     }
 
 
+}
+
+void StartWindow::saveGameButton(RenderWindow*)
+{
+
+}
+
+void StartWindow::loadGameButton(RenderWindow*)
+{
 }
 
 //void StartWindow::paintLand(RenderWindow* Go)
