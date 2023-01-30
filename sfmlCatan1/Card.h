@@ -6,8 +6,8 @@ class Card
 public:
 	Card();
 	~Card();
-	void changeFaceCard(); // VA SOLO EN DEVELOPMENT?
-	int power();
+	//void changeFaceCard(); // VA SOLO EN DEVELOPMENT?
+	virtual int power();
 
 private:
 	string cardName;
