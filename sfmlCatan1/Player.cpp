@@ -2,9 +2,9 @@
 #include<sstream>
 
 
-Player::Player(int idP)
+Player::Player(int id)
 {
-	id = idP;
+	this->id = id;
 }
 
 Player::~Player()
@@ -15,9 +15,45 @@ int Player::getId() {
 	return id;
 }
 
-void Player::setId(int idP) {
+void Player::setId(int id) {
 
-	id = idP;
+	this->id = id;
+}
+
+string Player::getName() {
+	return name;
+}
+
+void Player::setName(string name) {
+
+	this->name = name;
+}
+
+int Player::getAge() {
+	return age;
+}
+
+void Player::setAge(int age) {
+
+	this->age = age;
+}
+
+int Player::getVictoryPoint() {
+	return victoryPoint;
+}
+
+void Player::setVictoryPoint(int victoryPoint) {
+
+	this->victoryPoint = victoryPoint;
+}
+
+int Player::getColor() {
+	return color;
+}
+
+void Player::setColor(int color) {
+
+	this->color = color;
 }
 
 void Player::throwsDice()
@@ -50,4 +86,8 @@ string Player::toString() {
 	return s.str();
 }
 
-
+void Player::insertResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
+{
+	ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
+	//listCard->inserNode(info);
+}

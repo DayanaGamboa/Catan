@@ -10,7 +10,6 @@ public:
 
 	int countResourceCards();
 	void shuffleCards();
-	void insertResourceCard(string , int , int , int , int);
 
 private:
 	int id;
