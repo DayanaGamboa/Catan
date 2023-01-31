@@ -2,17 +2,37 @@
 
 Card::Card()
 {
+    cardName = "";
+    powerCard = 0;
+    positionX = 0;
+    positionY = 0;
 }
 
 Card::~Card()
 {
 }
 
-void Card::changeFaceCard()
-{
+string Card::getCardName() {
+    return cardName;
 }
-
-int Card::power()
-{
-    return 0;
+void Card::setCardName(string cardNameP) {
+    cardName = cardNameP;
+}
+int Card::getPowerCard() {
+    return powerCard;
+}
+void Card::setPowerCard(int powerCardP) {
+    powerCard = powerCardP;
+}
+int  Card::getPositionX() {
+    return positionX;
+}
+void Card::setPositionX(int positionXP) {
+    positionX = positionXP;
+}
+int  Card::getPositionY() {
+    return positionY;
+}
+void Card::setPositionY(int positionYP) {
+    positionY = positionYP;
 }

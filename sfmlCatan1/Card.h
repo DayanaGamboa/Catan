@@ -8,7 +8,7 @@ public:
 	~Card();
 	//void changeFaceCard(); // VA SOLO EN DEVELOPMENT?
 	virtual int power();
-	string getCardNme();
+	string getCardName();
 	void setCardName(string);
 	int getPowerCard();
 	void setPowerCard(int);
