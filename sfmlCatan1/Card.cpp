@@ -1,11 +1,11 @@
 #include "Card.h"
 
-Card::Card()
+Card::Card(std::string cardNameP, int powerCardP, int positionXP, int positionYP)
 {
-    cardName = "";
-    powerCard = 0;
-    positionX = 0;
-    positionY = 0;
+    cardName = cardNameP;
+    powerCard = powerCardP;
+    positionX = positionXP;
+    positionY = positionYP;
 }
 
 Card::~Card()
