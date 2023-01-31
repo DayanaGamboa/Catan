@@ -18,6 +18,9 @@ public:
 	string toString();
 	int getId();
 	void setId(int);
+
+
+	
 private:
 	int id;
 	int victoryPoint;

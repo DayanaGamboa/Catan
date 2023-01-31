@@ -1,6 +1,7 @@
 #pragma once
 #include <string.h>
 #include <iostream>
+#include <fstream>
 #include "Node.h"
 using namespace::std;
 
@@ -17,6 +18,8 @@ public:
 	void inserNode(T*);
 	void findNode(string);
 	void desplegarLista();
+	void saveFile(string);
+	void loadFromFile(const string&);
 
 };
 template<class T>
@@ -70,6 +73,27 @@ void CircularList<T>::desplegarLista() {
 	}
 
 }
+template <class T>
+void CircularList<T>::saveFile(string filename) {
+	
+	ofstream file(filename);
+	if (file) {
+		Node<T>* node = first;
+		do {
+			file << node->getData()->toString() << endl;
+			node = node->getNextNode();
+		} while (node != first);
+		
+		file.close();
+	}
+
+
+}
+template <class T>
+void CircularList<T>::loadFromFile(const string& filename) {
+	
+}
+
 template<class T>
 CircularList<T> ::~CircularList() {
 	CircularList<T>* p;

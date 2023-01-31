@@ -22,6 +22,6 @@ int main()
     list->inserNode(player3);
     list->inserNode(player4);
 
-    list->desplegarLista();
+    list->saveFile("Players.txt");
     
 }
