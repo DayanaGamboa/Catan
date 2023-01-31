@@ -1,5 +1,6 @@
 #include "StartWindow.h"
 #include "windows.h"
+#include "Player.h"
 
 StartWindow::StartWindow(float widht, float height) {
     if (!font.loadFromFile("Fonts/GethoFont.ttf")) {
@@ -515,7 +516,7 @@ void StartWindow::exitButton(RenderWindow* Go){
 
 void StartWindow::saveGameButton(RenderWindow*)
 {
-
+    
 }
 
 void StartWindow::loadGameButton(RenderWindow*)

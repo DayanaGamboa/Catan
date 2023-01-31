@@ -1,6 +1,66 @@
 ﻿  CircularList.cpp
   Partida.cpp
   Player.cpp
+  StartWindow.cpp
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(15,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(79,72): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(79,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(197,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(199,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(199,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(229,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(231,70): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(231,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(362,50): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(362,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(377,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(414,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(421,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(439,34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   sfmlCatan1.cpp
-  Generando código...
-  sfmlCatan1.vcxproj -> C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\x64\Debug\sfmlCatan1.exe
+  Generating Code...
+  sfmlCatan1.vcxproj -> C:\Users\monge\source\repos\Catan\x64\Debug\sfmlCatan1.exe

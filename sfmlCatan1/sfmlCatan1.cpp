@@ -9,9 +9,9 @@
 
 int main()
 {
-    StartWindow start(X, Y);
-    start.mainWindow();
-    /*CircularList<Player>* list = new CircularList<Player>;
+    //StartWindow start(X, Y);
+    //start.mainWindow();
+    CircularList<Player>* list = new CircularList<Player>;
     Player *player1 = new Player(1);
     Player *player2 = new Player(2);
     Player *player3 = new Player(3);
@@ -22,6 +22,6 @@ int main()
     list->inserNode(player3);
     list->inserNode(player4);
 
-    list->desplegarLista();
-    */
+    list->saveFile("Players.txt");
+    
 }
