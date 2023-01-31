@@ -19,7 +19,7 @@ void ResourceCard::setQuantity(int quantityP) {
 }
 
 int ResourceCard::power() {
-
+	return 0;
 }
 
 string ResourceCard::toString() {
