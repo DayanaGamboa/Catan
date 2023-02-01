@@ -159,7 +159,12 @@ void StartWindow::goWindow() {
 
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(v2i))) {
                     dice1.pintaDados = false;
-                   /* dice1.diceFinalAmount(&Go);*/
+                    //dice1.diceFinalAmount(&Go);
+
+                }
+                if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(v2i))) {
+                    exitButton(&Go);
+                    Go.close();
 
                 }
             }
@@ -169,9 +174,9 @@ void StartWindow::goWindow() {
         generateGameArea(&Go);
         paintLands(&Go);
         paintNumberPieces(&Go);
-        /*dice1.diceFinalAmount(&Go);*/
+        //dice1.diceFinalAmount(&Go);
 
-
+       
 
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
@@ -390,6 +395,24 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");
     rtsBtnDice.setTexture(&textureRtsBtnDice);
     Go->draw(rtsBtnDice);
+
+    //btnExit
+    
+    rtsBtnExit.setPosition(Vector2f(1250, 10));
+    rtsBtnExit.setSize(Vector2f(57, 30));
+    Texture textureRtsBtnExit;
+    textureRtsBtnExit.loadFromFile("resouceImages/exitButton.png");
+    rtsBtnExit.setTexture(&textureRtsBtnExit);
+    Go->draw(rtsBtnExit);
+    
+    //btnSave
+    
+    rtsBtnSave.setPosition(Vector2f(1255, 40));
+    rtsBtnSave.setSize(Vector2f(50, 30));
+    Texture textureRtsBtnSave;
+    textureRtsBtnSave.loadFromFile("resouceImages/btnSave.png");
+    rtsBtnSave.setTexture(&textureRtsBtnSave);
+    Go->draw(rtsBtnSave);
 }
 void StartWindow::paintLands(RenderWindow* Go) {
 

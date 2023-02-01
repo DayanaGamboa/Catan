@@ -8,12 +8,9 @@ Dice::~Dice()
 {
 }
 
-//int Dice::diceFinalAmount(int, int)
-//{
-//	return 0;
-//}
+//int Dice::diceFinalAmount(RenderWindow * Go) {
+//
+//       
+//
+//    }
 
-//int Dice::diceFinalAmount(int, int)
-//{
-//    return 0;
-//}

@@ -52,6 +52,8 @@ public:
 	Texture vectorTerrenosTXT[19];
 
 	RectangleShape rtsBtnDice;
+	RectangleShape rtsBtnExit;
+	RectangleShape rtsBtnSave;
 	int posXTerrenoDesierto = 0;
 	int posYTerrenoDesierto = 0;
 
