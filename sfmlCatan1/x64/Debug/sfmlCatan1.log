@@ -1,4 +1,6 @@
-﻿  StartWindow.cpp
+﻿  Dice.cpp
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Dice.cpp(18,23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  StartWindow.cpp
 C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(17,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(81,72): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
@@ -66,4 +68,5 @@ C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(501,66): warning C4
           [
               T=float
           ]
+  Generating Code...
   sfmlCatan1.vcxproj -> C:\Users\monge\source\repos\Catan\x64\Debug\sfmlCatan1.exe
