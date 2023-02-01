@@ -48,6 +48,15 @@ public:
 	}
 	~StartWindow();
 
+	RectangleShape vectorTerrenosRTS[19];
+	Texture vectorTerrenosTXT[19];
+
+	RectangleShape rtsBtnDice;
+	int posXTerrenoDesierto = 0;
+	int posYTerrenoDesierto = 0;
+
+	bool terrenos = false;
+	bool fichasNumeradas = false;
 private:
 
 	
@@ -68,10 +77,4 @@ private:
 	Font font;
 	Text startMenu[optionMenu];
 
-	RectangleShape rtsBtnDice;
-	int posXTerrenoDesierto = 0;
-	int posYTerrenoDesierto = 0;
-
-	bool terrenos = false;
-	bool fichasNumeradas = false;
 };

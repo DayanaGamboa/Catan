@@ -2,6 +2,7 @@
 #include "windows.h"
 #include "Player.h"
 #include "Dice.h"
+#include "Thief.h"
 
 StartWindow::StartWindow(float widht, float height) {
     if (!font.loadFromFile("Fonts/GethoFont.ttf")) {
@@ -78,14 +79,12 @@ void StartWindow::mainWindow()
 {
     RenderWindow windowMENU(VideoMode(X, Y), "Start Game Window", Style::Default);
     StartWindow  startMenu(windowMENU.getSize().x, windowMENU.getSize().y);
-    Event event;
-    //set background
+
     RectangleShape background;
     background.setSize(Vector2f(X, Y));
     Texture startWindowImage;
     startWindowImage.loadFromFile("resouceImages/startMenu.jpg");
     background.setTexture(&startWindowImage);
-
 
     while (windowMENU.isOpen()) {
 
@@ -115,11 +114,6 @@ void StartWindow::mainWindow()
                         aboutWindow();
                     }
                     if (pos == 2) {
-
-                        windowMENU.close();
-                        break;
-                    }
-                    if (pos == 3) {
 
                         windowMENU.close();
                         break;
@@ -391,6 +385,63 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     Go->draw(rtsBtnDice);
 }
 void StartWindow::paintLands(RenderWindow* Go) {
+
+    int TerrenosPosX[19] = { 753,672,589,552,512,550,589,670,751,791,831,791,711,632,592,632,711,750,672 };
+    int TerrenosPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
+    string ruta = "";
+    Thief thief;
+    //Terrenos
+    if (terrenos == false) {
+
+        RectangleShape rts;
+        Texture txtr;
+        for (int i = 0; i < 19; i++) {
+            vectorTerrenosRTS[i] = rts;
+            vectorTerrenosTXT[i] = txtr;
+        }
+
+
+        int vectorTerrenos[6] = { 4, 4, 4, 3, 3, 1 };//para saber cuantos terrenos de cada uno
+        int numero = 0, contTerrenos = 0;
+
+
+        srand(time(NULL));
+        while (contTerrenos <= 18) {
+            numero = 0 + rand() % 6;
+
+            if (vectorTerrenos[numero] != 0) {
+                if (numero == 5) {
+
+                   /* thief.positionX = TerrenosPosX[contTerrenos];
+                    thief.positionY = TerrenosPosY[contTerrenos];*/
+                    posXTerrenoDesierto = TerrenosPosX[contTerrenos];
+                    posYTerrenoDesierto = TerrenosPosY[contTerrenos];
+                }
+                vectorTerrenosRTS[contTerrenos].setPosition(Vector2f(TerrenosPosX[contTerrenos], TerrenosPosY[contTerrenos]));
+                vectorTerrenosRTS[contTerrenos].setSize(Vector2f(68.5, 68.5));
+
+                ruta = "resouceImages/T";
+                ruta += to_string(numero);
+                ruta += ".png";
+                vectorTerrenosTXT[contTerrenos].loadFromFile(ruta);
+
+                Texture* txt;
+                txt = &vectorTerrenosTXT[contTerrenos];
+                vectorTerrenosRTS[contTerrenos].setTexture(txt);
+
+                Go->draw(vectorTerrenosRTS[contTerrenos]);
+
+                vectorTerrenos[numero] = vectorTerrenos[numero] - 1;
+                contTerrenos++;
+            }
+
+        }
+        terrenos = true;
+    }
+
+    for (int i = 0; i < 19; i++) {
+        Go->draw(vectorTerrenosRTS[i]);
+    }
 
 }
 
