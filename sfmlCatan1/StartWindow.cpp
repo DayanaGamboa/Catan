@@ -115,6 +115,12 @@ void StartWindow::mainWindow()
                     }
                     if (pos == 2) {
 
+                        /*windowMENU.close();
+                        break;*/
+                    }
+
+                    if (pos == 3) {
+
                         windowMENU.close();
                         break;
                     }
@@ -162,6 +168,7 @@ void StartWindow::goWindow() {
 
         generateGameArea(&Go);
         paintLands(&Go);
+        paintNumberPieces(&Go);
         /*dice1.diceFinalAmount(&Go);*/
 
 
@@ -386,8 +393,7 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
 }
 void StartWindow::paintLands(RenderWindow* Go) {
 
-    int TerrenosPosX[19] = { 753,672,589,552,512,550,589,670,751,791,831,791,711,632,592,632,711,750,672 };
-    int TerrenosPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
+    
     string ruta = "";
     Thief thief;
     //Terrenos
@@ -443,5 +449,50 @@ void StartWindow::paintLands(RenderWindow* Go) {
         Go->draw(vectorTerrenosRTS[i]);
     }
 
+}
+void StartWindow::paintNumberPieces(RenderWindow* Go) {
+
+    RectangleShape fichasNumeradasRts[19], fichaNumeradaRts;
+    Texture fichasNumeradasTxtr[19], fichaNumerasaTxtr;
+    Texture* txt;
+    string ruta = "";
+
+    for (int i = 0; i < 19; i++) {
+
+        fichasNumeradasRts[i] = fichaNumeradaRts;
+        fichasNumeradasTxtr[i] = fichaNumerasaTxtr;
+    }
+
+    int numeroFichaNumerada[18] = { 5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11 };
+    int posnumeroFichaNumerada = 0;
+    for (int i = 0; i < 19; i++) {
+        if ((TerrenosPosX[i] == posXTerrenoDesierto) && (TerrenosPosY[i] == posYTerrenoDesierto)) { //poner las del ladron
+            fichasNumeradasRts[i].setPosition(Vector2f(posXTerrenoDesierto, posYTerrenoDesierto));  //poner las del ladron
+            fichasNumeradasRts[i].setSize(Vector2f(70, 70));
+            fichasNumeradasTxtr[i].loadFromFile("resouceImages/Ladron.png");
+            txt = &fichasNumeradasTxtr[i];
+            fichasNumeradasRts[i].setTexture(txt);
+            Go->draw(fichasNumeradasRts[i]);
+            i++;
+        }
+        fichasNumeradasRts[i].setPosition(Vector2f(TerrenosPosX[i], TerrenosPosY[i]));
+        fichasNumeradasRts[i].setSize(Vector2f(70, 70));
+
+        ruta = "resouceImages/N";
+        ruta += to_string(numeroFichaNumerada[posnumeroFichaNumerada]);
+        ruta += ".png";
+
+        fichasNumeradasTxtr[i].loadFromFile(ruta);
+
+        txt = &fichasNumeradasTxtr[i];
+        fichasNumeradasRts[i].setTexture(txt);
+        Go->draw(fichasNumeradasRts[i]);
+        posnumeroFichaNumerada++;
+
+    }
+
+    for (int i = 0; i < 19; i++) {
+        Go->draw(fichasNumeradasRts[i]);
+    }
 }
 
