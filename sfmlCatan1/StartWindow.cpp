@@ -263,20 +263,20 @@ void StartWindow::paintSpecialCards(RenderWindow* Go)
 {
     RectangleShape rts;
     Texture txtr;
-    int pos = 615;
+    int pos = 550;
     string ruta = "";
 
     for (int i = 1; i < 4; i++) {
         ruta = "resouceImages/E";
 
-        rts.setPosition(Vector2f(pos, 590));
-        rts.setSize(Vector2f(150, 180));
+        rts.setPosition(Vector2f(pos, 640));
+        rts.setSize(Vector2f(110, 130));
         ruta += to_string(i);
         ruta += ".png";
         txtr.loadFromFile(ruta);
         rts.setTexture(&txtr);
         Go->draw(rts);
-        pos += 170;
+        pos += 130;
     }
 }
 
