@@ -1,2 +1,38 @@
-﻿  Player.cpp
-  sfmlCatan1.vcxproj -> C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\x64\Debug\sfmlCatan1.exe
+﻿  StartWindow.cpp
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(16,40): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(80,72): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(80,48): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(227,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(227,45): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(247,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(254,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(272,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+  sfmlCatan1.vcxproj -> C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\x64\Debug\sfmlCatan1.exe

@@ -1,6 +1,7 @@
 #include "StartWindow.h"
 #include "windows.h"
 #include "Player.h"
+#include "Dice.h"
 
 StartWindow::StartWindow(float widht, float height) {
     if (!font.loadFromFile("Fonts/GethoFont.ttf")) {
@@ -133,127 +134,16 @@ void StartWindow::mainWindow()
     }
 }
 
-void StartWindow::goWindow()
-{
+void StartWindow::goWindow() {
     RenderWindow Go(VideoMode(X, Y), "Area de juego");
 
-    //MAR
-    RectangleShape rtsSea;
-    rtsSea.setSize(Vector2f(X, Y));
-    Texture textureRtsSea;
-    textureRtsSea.loadFromFile("resouceImages/goGame.jpg");
-    rtsSea.setTexture(&textureRtsSea);
-
-    //Hexagono para los terrenos
-    RectangleShape rtsLand;
-    rtsLand.setPosition(Vector2f(500, 150));
-    rtsLand.setSize(Vector2f(400, 400));
-    Texture textureRtsLand;
-    textureRtsLand.loadFromFile("resouceImages/AreaJuego.png");
-    rtsLand.setTexture(&textureRtsLand);
-
-    //Boton dados
-    RectangleShape rtsBtnDice;
-    rtsBtnDice.setPosition(Vector2f(615, 10));
-    rtsBtnDice.setSize(Vector2f(200, 110));
-    Texture textureRtsBtnDice;
-    textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");
-    rtsBtnDice.setTexture(&textureRtsBtnDice);
-
-    //Boton salir
-    RectangleShape rtsBtnExit;
-    rtsBtnExit.setPosition(Vector2f(1250, 10));
-    rtsBtnExit.setSize(Vector2f(57, 30));
-    Texture textureRtsBtnExit;
-    textureRtsBtnExit.loadFromFile("resouceImages/exitButton.png");
-    rtsBtnExit.setTexture(&textureRtsBtnExit);
-    
-    //Boton guardar
-    RectangleShape rtsBtnSave;
-    rtsBtnSave.setPosition(Vector2f(1255, 40));
-    rtsBtnSave.setSize(Vector2f(50, 30));
-    Texture textureRtsBtnSave;
-    textureRtsBtnSave.loadFromFile("resouceImages/btnSave.png");
-    rtsBtnSave.setTexture(&textureRtsBtnSave);
-    
-    
-
-    int numero = 0;
-    
-
-
-    RectangleShape vectorTerrenosRTS[19], rts;
-    for (int i = 0; i < 19; i++) {
-        vectorTerrenosRTS[i] = rts;
-    }
-    Texture vectorTerrenosTXT[19], txtr;
-    for (int i = 0; i < 19; i++) {
-
-        vectorTerrenosTXT[i] = txtr;
-    }
-    int posX[19] = { 608,673,737,580,641,703,765,549,610,673,735,798,580,642,705,767,610,674,735 };
-    int posY[19] = { 234,234,234,278,278,278,278,325,325,325,325,325,370,370,370,370,415,415,415 };
-    string ruta = "";
-    srand(time(NULL));
-    for (int i = 0; i < 19; i++) {
-        vectorTerrenosRTS[i].setPosition(Vector2f(posX[i], posY[i]));
-        vectorTerrenosRTS[i].setSize(Vector2f(55, 55));
-
-        numero = 0 + rand() % 5;
-        
-        ruta = "resouceImages/T";
-        ruta += to_string(numero);
-        ruta += ".png";
-        vectorTerrenosTXT[i].loadFromFile(ruta);
-       
-        Texture* txt;
-        txt = &vectorTerrenosTXT[i];
-        vectorTerrenosRTS[i].setTexture(txt);
-       
-        Go.draw(vectorTerrenosRTS[i]);
-    }
-
-    //----------------------------------------------------------------------------------------------------
-    string letra;
-    RectangleShape vectorTerrenosRTS2[19];
-    for (int i = 0; i < 19; i++) {
-        RectangleShape rts;
-        vectorTerrenosRTS2[i] = rts;
-    }
-    Texture vectorTerrenosTXT2[19];
-    for (int i = 0; i < 19; i++) {
-        Texture txtr;
-        vectorTerrenosTXT2[i] = txtr;
-    }
-    
-    srand(time(NULL));
-    for (int i = 0; i < 19; i++) {
-        vectorTerrenosRTS2[i].setPosition(Vector2f(posX[i]+8, posY[i]+8));
-        vectorTerrenosRTS2[i].setSize(Vector2f(40, 40));
-
-        /*letra = "A" + rand() ;
-
-        ruta = "resouceImages/";
-        ruta += to_string(numero);
-        ruta += ".png";*/
-
-        vectorTerrenosTXT2[i].loadFromFile("resouceImages/A.png");
-
-        Texture* txt;
-        txt = &vectorTerrenosTXT2[i];
-        vectorTerrenosRTS2[i].setTexture(txt);
-
-        Go.draw(vectorTerrenosRTS2[i]);
-    }
-
-    Vector2i v2i = mouse.getPosition(Go);
+    Dice dice1;
 
     while (Go.isOpen()) {
-       
+
         while (Go.pollEvent(event)) {
             if (event.type == Event::Closed) {
                 Go.close();
-
                 mainWindow();
             }
             if (event.type == Event::KeyPressed) {
@@ -268,53 +158,28 @@ void StartWindow::goWindow()
                 Vector2i v2i = mouse.getPosition(Go);
 
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(v2i))) {
-
-                    paintDice(&Go);
-                    /* pintaTerrenos(&Go); */
+                    dice1.pintaDados = false;
+                   /* dice1.diceFinalAmount(&Go);*/
 
                 }
-                
-                if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(v2i))) {
-
-                    exitButton(&Go);
-
-                    // Go.close();
-
-                    // mainWindow();
-                } 
-                
             }
 
         }
-        Go.draw(rtsSea);
-        Go.draw(rtsLand);
-        Go.draw(rtsDice1);
-        Go.draw(rtsDice2);
-        Go.draw(rtsLand);
-        Go.draw(rtsBtnDice);
-        Go.draw(rtsBtnExit);
-        Go.draw(rtsBtnSave);
-        
 
-        //TERRENOS
-        for (int i = 0; i < 19; i++) {
-            Go.draw(vectorTerrenosRTS[i]);
-        }
-        //este para fichas A,B,C,D
-        for (int i = 0; i < 19; i++) {
-            Go.draw(vectorTerrenosRTS2[i]);
-        }
-        paintResource(&Go, 660);
-        paintResource(&Go, 10);
+        generateGameArea(&Go);
+        paintLands(&Go);
+        /*dice1.diceFinalAmount(&Go);*/
+
+
+
+        paintResource(&Go, 10, 10);
+        paintResource(&Go, 10, 670);
         paintOpponentDeck(&Go, 170);
         paintOpponentDeck(&Go, 320);
         paintOpponentDeck(&Go, 470);
         paintSpecialCards(&Go);
-        
-
 
         Go.display();
-
     }
 }
 
@@ -350,59 +215,27 @@ void StartWindow::aboutWindow()
     }
 }
 
-void StartWindow::paintResource(RenderWindow* Go, int y)
+void StartWindow::paintResource(RenderWindow* Go, int x, int y)
 {
-    int pos = 10;
+
     string ruta = "";
     RectangleShape rectangleShape;
     Texture texture1;
     for (int i = 0; i < 6; i++) {
         ruta = "resouceImages/MP";
 
-        rectangleShape.setPosition(Vector2f(pos, y));
-        rectangleShape.setSize(Vector2f(80, 110));
+        rectangleShape.setPosition(Vector2f(x, y));
+        rectangleShape.setSize(Vector2f(70, 100));
         ruta += to_string(i + 1);
         ruta += ".png";
         texture1.loadFromFile(ruta);
         rectangleShape.setTexture(&texture1);
         Go->draw(rectangleShape);
-        pos += 100;
+        x += 90;
 
     }
 }
 
-void StartWindow::paintDice(RenderWindow* Go)
-{
-    int numRandom = 0, sumaDados = 0;
-    srand(time(NULL));
-    numRandom = 1 + rand() % 6;
-    string ruta;
-    ruta = "resouceImages/D";
-    ruta += to_string(numRandom);
-    ruta += ".png";
-    rtsDice1.setPosition(Vector2f(850, 10));
-    rtsDice1.setSize(Vector2f(110, 110));
-
-    txtrRtsDice1.loadFromFile(ruta);
-    rtsDice1.setTexture(&txtrRtsDice1);
-
-    sumaDados += numRandom;
-
-    numRandom = 1 + rand() % 6;
-
-    ruta = "resouceImages/D";
-    ruta += to_string(numRandom);
-    ruta += ".png";
-    rtsDice2.setPosition(Vector2f(1000, 10));
-    rtsDice2.setSize(Vector2f(110, 110));
-
-    txtrRtsDice2.loadFromFile(ruta);
-    rtsDice2.setTexture(&txtrRtsDice2);
-    sumaDados += numRandom;
-    cout << "SUMA: " << sumaDados << endl;
-
-    Go->draw(rtsDice2);
-}
 
 void StartWindow::paintOpponentDeck(RenderWindow* Go, int posY)
 {
@@ -523,33 +356,42 @@ void StartWindow::loadGameButton(RenderWindow*)
 {
 }
 
-//void StartWindow::paintLand(RenderWindow* Go)
-//{
-//    int terrenos[6] = { 4,4,4,3,3,1 };
-//    int posX[19] = { 608,673,737,580,641,703,765,549,610,673,735,798,580,642,705,767,610,674,735, };
-//    int posY[19] = { 234,234,234,278,278,278,278,325,325,325,325,325,370,370,370,370,415,415,415 };
-//    string ruta = "";
-//  
-//
-//
-//        if (terrenos[numero] > 0) {
-//            terrenos[numero] --;
-//
-//            rtsLands.setPosition(Vector2f(posX[cont], posY[cont]));
-//            rtsLands.setSize(Vector2f(60, 60));
-//            ruta = "resouceImages/T";
-//            ruta += to_string(numero);
-//            ruta += ".png";
-//            txtrLands.loadFromFile(ruta);
-//            rtsLands.setTexture(&txtrLands);
-//            Go->draw(rtsLands);
-//
-//
-//
-//            cont++;
-//        }
-//
-//
-//    }
-//}
+void StartWindow::generateGameArea(RenderWindow* Go) {
+    //MAR
+    RectangleShape rtsSea;
+    rtsSea.setSize(Vector2f(X, Y));
+    Texture textureRtsSea;
+    textureRtsSea.loadFromFile("resouceImages/goGame.jpg");
+    rtsSea.setTexture(&textureRtsSea);
+    Go->draw(rtsSea);
+
+    //Hexagono para los terrenos
+    RectangleShape rtsLand;
+    rtsLand.setPosition(Vector2f(450, 120));
+    rtsLand.setSize(Vector2f(510, 510));
+    Texture textureRtsLand;
+    textureRtsLand.loadFromFile("resouceImages/AreaJuego.png");
+    rtsLand.setTexture(&textureRtsLand);
+    Go->draw(rtsLand);
+
+    //Bank
+    RectangleShape rtsBank;
+    rtsBank.setPosition(Vector2f(550, 30));
+    rtsBank.setSize(Vector2f(64, 64));
+    Texture textureRtsBank;
+    textureRtsBank.loadFromFile("resouceImages/banco.png");
+    rtsBank.setTexture(&textureRtsBank);
+    Go->draw(rtsBank);
+
+    //btnDice
+    rtsBtnDice.setPosition(Vector2f(700, 10));
+    rtsBtnDice.setSize(Vector2f(180, 100));
+    Texture textureRtsBtnDice;
+    textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");
+    rtsBtnDice.setTexture(&textureRtsBtnDice);
+    Go->draw(rtsBtnDice);
+}
+void StartWindow::paintLands(RenderWindow* Go) {
+
+}
 

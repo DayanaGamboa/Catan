@@ -28,22 +28,19 @@ public:
 	void aboutWindow();
 
 
-	void paintResource(RenderWindow*, int);
-	void paintDice(RenderWindow*);
+	
+	
 	void paintOpponentDeck(RenderWindow*, int);
 	void paintSpecialCards(RenderWindow*);
+	void generateGameArea(RenderWindow*);
+	void paintResource(RenderWindow* Go, int x, int y);
 
-
-	void pintaTerrenos(RenderWindow*, RectangleShape&, Texture&, int, int);
-	void pintaTerrenos2(RenderWindow*);
-
-	void paintLand(RenderWindow*);
 
 
 	void exitButton(RenderWindow*);
 	void saveGameButton(RenderWindow*);
 	void loadGameButton(RenderWindow*);
-
+	void paintLands(RenderWindow*);
 
 
 	int StartWindowPressed() {
@@ -58,10 +55,10 @@ private:
 	Event event;
 	Mouse mouse;
 
-	RectangleShape rtsDice1;
-	Texture txtrRtsDice1;
-	RectangleShape rtsDice2;
-	Texture txtrRtsDice2;
+	//RectangleShape rtsDice1;
+	//Texture txtrRtsDice1;
+	//RectangleShape rtsDice2;
+	//Texture txtrRtsDice2;
 
 	RectangleShape rtsLands;
 	Texture txtrLands;
@@ -70,4 +67,11 @@ private:
 	int StartWindowSelected;
 	Font font;
 	Text startMenu[optionMenu];
+
+	RectangleShape rtsBtnDice;
+	int posXTerrenoDesierto = 0;
+	int posYTerrenoDesierto = 0;
+
+	bool terrenos = false;
+	bool fichasNumeradas = false;
 };
