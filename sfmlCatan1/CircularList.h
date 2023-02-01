@@ -18,8 +18,10 @@ public:
 	void inserNode(T*);
 	void findNode(string);
 	void desplegarLista();
+	/*void showCards();*/
 	void saveFile(string);
 	void loadFromFile(const string&);
+	/*void PlayerInformation();*/
 
 };
 template<class T>
@@ -103,4 +105,21 @@ CircularList<T> ::~CircularList() {
 		delete p;
 	}
 }
+
+//template<class T>
+//void CircularList<T>::showCards() {
+//
+//	if (first) {
+//		Node<T>* node = first;
+//		do {
+//			cout << node->getData()->showCard() << endl;
+//			node = node->getNextNode();
+//		} while (node != first);
+//	}
+//	else {
+//		cout << "Lista vacia...!" << endl;
+//	}
+//
+//}
+
 

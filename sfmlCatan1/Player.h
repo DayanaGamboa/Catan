@@ -3,10 +3,13 @@
 #include "Deck.h"
 #include "CircularList.h"
 #include "Node.h"
+#include "ResourceCard.h"
+#include "SpecialCard.h"
+#include "DevelopmentCard.h"
 class Player
 {
 public:
-	Player(int);
+	Player(int,string,int,int,int);
 	~Player();
 
 	void throwsDice();
@@ -18,15 +21,30 @@ public:
 	string toString();
 	int getId();
 	void setId(int);
-
+	string getName();
+	void setName(string);
+	int getAge();
+	void setAge(int);
+	int getVictoryPoint();
+	void setVictoryPoint(int);
+	int getColor();
+	void setColor(int);
+	void insertResourceCard(string, int, int, int, int);
+	void showCard();
+	
+	
+	CircularList<ResourceCard>* resourceCardsList;
+	CircularList<DevelopmentCard>* developmentCardList;
+	CircularList<SpecialCard>* specialCardList;
+	CircularList<Figure>* figurelist;
 
 	
 private:
 	int id;
+	string name;
+	int age;
 	int victoryPoint;
 	int color;
-	CircularList<Figure>* list;
-
 	//Deck deck[]; // Debería de ser una lista?
 
 };
