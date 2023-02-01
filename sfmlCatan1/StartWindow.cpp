@@ -245,14 +245,13 @@ void StartWindow::paintOpponentDeck(RenderWindow* Go, int posY)
     string ruta1 = "resouceImages/MP6.png", ruta2 = "resouceImages/MP7.png";
 
     rts1.setPosition(Vector2f(10, posY));
-    rts1.setSize(Vector2f(40, 70));
+    rts1.setSize(Vector2f(70, 100));
     txtr1.loadFromFile(ruta1);
     rts1.setTexture(&txtr1);
     Go->draw(rts1);
 
-    //posY += 100;
-    rts2.setPosition(Vector2f(60, posY));
-    rts2.setSize(Vector2f(40, 70));
+    rts2.setPosition(Vector2f(90, posY));
+    rts2.setSize(Vector2f(70, 100));
     txtr2.loadFromFile(ruta2);
     rts2.setTexture(&txtr2);
     Go->draw(rts2);

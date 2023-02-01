@@ -25,12 +25,12 @@ C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cp
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(254,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(253,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(272,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\DAYANA ESTESI\Catan\sfmlCatan1\StartWindow.cpp(271,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
