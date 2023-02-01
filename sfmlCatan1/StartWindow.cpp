@@ -164,7 +164,6 @@ void StartWindow::goWindow() {
                 }
                 if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(v2i))) {
                     exitButton(&Go);
-                    Go.close();
 
                 }
             }
