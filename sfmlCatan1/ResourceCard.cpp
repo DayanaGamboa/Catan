@@ -24,6 +24,7 @@ int ResourceCard::power() {
 
 string ResourceCard::toString() {
 	stringstream s;
-	s << "Infromacion Carta: " << getCardName() << getPowerCard() << getPositionX() << getPositionY() << getQuantity() << endl;
+	s << "Infromacion Carta: " << getCardName()<< " " << getPowerCard() << " " << getPositionX() 
+		<< " " << getPositionY() << " " << getQuantity() << endl;
 	return s.str();
 }

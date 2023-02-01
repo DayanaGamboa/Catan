@@ -9,7 +9,7 @@
 class Player
 {
 public:
-	Player(int);
+	Player(int,string,int,int,int);
 	~Player();
 
 	void throwsDice();
@@ -30,6 +30,9 @@ public:
 	int getColor();
 	void setColor(int);
 	void insertResourceCard(string, int, int, int, int);
+	void showCard();
+	
+	
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;
 	CircularList<SpecialCard>* specialCardList;
