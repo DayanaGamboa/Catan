@@ -106,7 +106,7 @@ string Player::toString() {
 void Player::insertResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
 {
 	if (resourceCardsList->existenceOfCard(cardNameP) == true) {
-
+		//resourceCardsList->
 	}
 	ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
 	resourceCardsList->inserNode(info);

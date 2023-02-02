@@ -22,6 +22,7 @@ public:
 	void saveFile(string);
 	void loadFromFile(const string&);
 	bool existenceOfCard(string);
+	void increaseQuantity(string, int);
 	/*void PlayerInformation();*/
 
 };
@@ -120,6 +121,23 @@ bool CircularList<T>::existenceOfCard(string name) {
 		return false;
 	}
 
+}
+
+template<class T>
+void CircularList<T>::increaseQuantity(string name, int quantity) {
+
+	if (first) {
+		Node<T>* node = first;
+		do {
+			if (node->getData()->getCardName() == name) {
+				node->getData()->setQuantity(quantity + 1);
+				node = nullptr;
+			}
+			else {
+				node = node->getNextNode();
+			}
+		} while (node != nullptr);
+	}
 }
 
 //template<class T>
