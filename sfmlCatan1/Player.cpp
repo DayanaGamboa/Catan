@@ -106,20 +106,14 @@ string Player::toString() {
 void Player::insertResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
 {
 	if (resourceCardsList->existenceOfCard(cardNameP) == true) {
-		//resourceCardsList->
+		resourceCardsList->increaseQuantity(cardNameP, quantityP);
 	}
-	ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
-	resourceCardsList->inserNode(info);
+	else {
+		ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
+		resourceCardsList->inserNode(info);
+	}
 }
 
-//void Player::showCard(){
-//	cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
-//	resourceCardsList->showCards();
-//	cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
-//	//developmentCardList->desplegarLista();
-//	cout << "Informaccion de cartas speciales que posee el jugador: " << endl << endl;
-//	cout << "Informaccion de figuras que posee el jugador: " << endl << endl;
-//}
 
 
 

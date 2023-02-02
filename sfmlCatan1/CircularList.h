@@ -128,9 +128,11 @@ void CircularList<T>::increaseQuantity(string name, int quantity) {
 
 	if (first) {
 		Node<T>* node = first;
+		int increase = 0;
 		do {
 			if (node->getData()->getCardName() == name) {
-				node->getData()->setQuantity(quantity + 1);
+				increase = node->getData()->getQuantity();
+				node->getData()->setQuantity(increase + quantity);
 				node = nullptr;
 			}
 			else {
