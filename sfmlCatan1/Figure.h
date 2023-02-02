@@ -1,8 +1,11 @@
 #pragma once
+#include <string>
+using namespace std;
+
 class Figure
 {
 public:
-	Figure();
+	Figure(string, int, int);
 	~Figure();
 	virtual string toString() = 0;
 	string getCardName();
@@ -13,6 +16,7 @@ public:
 	void setPositionY(int);
 
 private:
+	string cardName;
 	int quantity;
 	int positionX;
 	int positionY;

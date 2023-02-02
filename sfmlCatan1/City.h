@@ -1,8 +1,12 @@
 #pragma once
-class City
+#include "Figure.h"
+#include<sstream>
+
+class City : Figure
 {
 public:
-	City();
+	City(string, int, int);
 	~City();
+	string toString();
 };
 

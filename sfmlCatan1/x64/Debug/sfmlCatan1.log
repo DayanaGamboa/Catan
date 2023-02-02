@@ -1,5 +1,6 @@
-﻿  Deck.cpp
-  DevelopmentCard.cpp
+﻿  Card.cpp
+  City.cpp
+  Figure.cpp
   Partida.cpp
   Player.cpp
   StartWindow.cpp
