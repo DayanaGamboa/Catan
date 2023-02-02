@@ -1,23 +1,7 @@
-﻿  Bank.cpp
-  Card.cpp
-  CircularList.cpp
-  City.cpp
+﻿  CircularList.cpp
   Deck.cpp
-  DevelopmentCard.cpp
-  Dice.cpp
-C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\Dice.cpp(18,23): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  Figure.cpp
-  Land.cpp
-  Node.cpp
-  Number.cpp
   Partida.cpp
-  Piece.cpp
-C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\Piece.h(10,6): warning C4200: se ha utilizado una extensión no estándar: matriz de tamaño cero en struct/union
-C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\Piece.h(10,6): message : Un constructor con valor predeterminado o un operador de asignación de copia o movimiento ignorará a este miembro.
   Player.cpp
-  ResourceCard.cpp
-  sfmlCatan1.cpp
-  SpecialCard.cpp
   StartWindow.cpp
 C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(17,40): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(81,72): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
@@ -86,10 +70,6 @@ C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Cat
           [
               T=float
           ]
-  Street.cpp
-  Thief.cpp
-  Generando código...
-  Compilando...
-  Town.cpp
+  sfmlCatan1.cpp
   Generando código...
   sfmlCatan1.vcxproj -> C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\x64\Debug\sfmlCatan1.exe

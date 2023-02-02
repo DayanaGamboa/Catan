@@ -21,6 +21,7 @@ public:
 	/*void showCards();*/
 	void saveFile(string);
 	void loadFromFile(const string&);
+	bool existenceOfCard(string);
 	/*void PlayerInformation();*/
 
 };
@@ -104,6 +105,21 @@ CircularList<T> ::~CircularList() {
 		first = first->getNextNode();
 		delete p;
 	}
+}
+
+template<class T>
+bool CircularList<T>::existenceOfCard(string name) {
+
+	if (first) {
+		Node<T>* node = first;
+		if (node->getData()->getCardName() == name) { return true; }
+		else { return false; }
+		node = node->getNextNode();
+	}
+	else {
+		return false;
+	}
+
 }
 
 //template<class T>
