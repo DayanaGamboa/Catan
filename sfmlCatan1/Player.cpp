@@ -114,6 +114,17 @@ void Player::insertResourceCard(string cardNameP, int powerCardP, int positionXP
 	}
 }
 
+void Player::insertDevelopmentCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
+{
+	if (developmentCardList->existenceOfCard(cardNameP) == true) {
+		developmentCardList->increaseQuantity(cardNameP, quantityP);
+	}
+	else {
+		DevelopmentCard* info = new DevelopmentCard(cardNameP, powerCardP, positionXP, positionYP, quantityP,false);
+		developmentCardList->inserNode(info);
+	}
+}
+
 
 
 

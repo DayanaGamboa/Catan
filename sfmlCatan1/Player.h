@@ -30,6 +30,8 @@ public:
 	int getColor();
 	void setColor(int);
 	void insertResourceCard(string, int, int, int, int);
+	void insertDevelopmentCard(string, int, int, int, int);
+	void insertSpecialCard(string, int, int, int);
 	void showCard();
 	
 	

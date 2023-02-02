@@ -1,7 +1,5 @@
-﻿  CircularList.cpp
-  Deck.cpp
-  Partida.cpp
-  Player.cpp
+﻿  Player.cpp
+  sfmlCatan1.cpp
   StartWindow.cpp
 C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(17,40): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(81,72): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
@@ -70,6 +68,5 @@ C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Cat
           [
               T=float
           ]
-  sfmlCatan1.cpp
   Generando código...
   sfmlCatan1.vcxproj -> C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\x64\Debug\sfmlCatan1.exe
