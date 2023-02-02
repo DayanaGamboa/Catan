@@ -2,6 +2,8 @@
 
 Bank::Bank()
 {
+	resourceCardsList = new CircularList<ResourceCard>;
+	developmentCardList = new CircularList<DevelopmentCard>;
 }
 
 Bank::~Bank()
