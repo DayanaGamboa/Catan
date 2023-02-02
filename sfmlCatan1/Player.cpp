@@ -94,26 +94,43 @@ string Player::toString() {
 	s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " " 
 		<< getColor() << endl;
 	cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
-	resourceCardsList->desplegarLista();
+	resourceCardsList->dropDownList();
 	cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
-	resourceCardsList->desplegarLista();
+	developmentCardList->dropDownList();
+	cout << "Informaccion de cartas especiales que posee el jugador: " << endl << endl;
+	specialCardList->dropDownList();
+
 	return s.str();
 }
 
 void Player::insertResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
 {
-	ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
-	resourceCardsList->inserNode(info);
+	if (resourceCardsList->existenceOfCard(cardNameP) == true) {
+		resourceCardsList->increaseQuantity(cardNameP, quantityP);
+	}
+	else {
+		ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
+		resourceCardsList->inserNode(info);
+	}
 }
 
-//void Player::showCard(){
-//	cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
-//	resourceCardsList->showCards();
-//	cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
-//	//developmentCardList->desplegarLista();
-//	cout << "Informaccion de cartas speciales que posee el jugador: " << endl << endl;
-//	cout << "Informaccion de figuras que posee el jugador: " << endl << endl;
-//}
+void Player::insertDevelopmentCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
+{
+	if (developmentCardList->existenceOfCard(cardNameP) == true) {
+		developmentCardList->increaseQuantity(cardNameP, quantityP);
+	}
+	else {
+		DevelopmentCard* info = new DevelopmentCard(cardNameP, powerCardP, positionXP, positionYP, quantityP,false);
+		developmentCardList->inserNode(info);
+	}
+}
+
+void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP, int positionYP)
+{
+	SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP);
+	specialCardList->inserNode(info);
+}
+
 
 
 

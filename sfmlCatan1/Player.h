@@ -6,6 +6,9 @@
 #include "ResourceCard.h"
 #include "SpecialCard.h"
 #include "DevelopmentCard.h"
+#include "City.h"
+#include "Street.h"
+#include "Town.h"
 class Player
 {
 public:
@@ -30,13 +33,17 @@ public:
 	int getColor();
 	void setColor(int);
 	void insertResourceCard(string, int, int, int, int);
+	void insertDevelopmentCard(string, int, int, int, int);
+	void insertSpecialCard(string, int, int, int);
 	void showCard();
 	
 	
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;
 	CircularList<SpecialCard>* specialCardList;
-	CircularList<Figure>* figurelist;
+	CircularList<City>* cityList;
+	CircularList<Street>* streetList;
+	CircularList<Town>* townList;
 
 	
 private:

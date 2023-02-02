@@ -1,9 +1,15 @@
 #pragma once
-class SpecialCard
+#include <string.h>
+#include <iostream>
+#include "Card.h"
+
+class SpecialCard : public Card
 {
 
 public:
-	SpecialCard();
+	SpecialCard(string, int, int, int);
 	~SpecialCard();
+	int power();
+	string toString();
 };
 

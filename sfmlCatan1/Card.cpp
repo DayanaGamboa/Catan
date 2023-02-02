@@ -1,11 +1,11 @@
 #include "Card.h"
 
-Card::Card(std::string cardNameP, int powerCardP, int positionXP, int positionYP)
+Card::Card(string cardName, int powerCard, int positionX, int positionY)
 {
-    cardName = cardNameP;
-    powerCard = powerCardP;
-    positionX = positionXP;
-    positionY = positionYP;
+    this->cardName = cardName;
+    this->powerCard = powerCard;
+    this->positionX = positionX;
+    this->positionY = positionY;
 }
 
 Card::~Card()
@@ -15,24 +15,24 @@ Card::~Card()
 string Card::getCardName() {
     return cardName;
 }
-void Card::setCardName(string cardNameP) {
-    cardName = cardNameP;
+void Card::setCardName(string cardName) {
+    this->cardName = cardName;
 }
 int Card::getPowerCard() {
     return powerCard;
 }
-void Card::setPowerCard(int powerCardP) {
-    powerCard = powerCardP;
+void Card::setPowerCard(int powerCard) {
+    this->powerCard = powerCard;
 }
 int  Card::getPositionX() {
     return positionX;
 }
-void Card::setPositionX(int positionXP) {
-    positionX = positionXP;
+void Card::setPositionX(int positionX) {
+    this->positionX = positionX;
 }
 int  Card::getPositionY() {
     return positionY;
 }
-void Card::setPositionY(int positionYP) {
-    positionY = positionYP;
+void Card::setPositionY(int positionY) {
+    this->positionY = positionY;
 }
