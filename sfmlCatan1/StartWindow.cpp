@@ -5,7 +5,7 @@
 #include "Thief.h"
 
 StartWindow::StartWindow(float widht, float height) {
-    if (!font.loadFromFile("Fonts/GethoFont.ttf")) {
+    if (!font.loadFromFile("Fonts/Wintertime.ttf")) {
         cout << "¡¡No Font!!";
     }
     int num = 200;

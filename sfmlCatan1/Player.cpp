@@ -13,7 +13,7 @@ Player::Player(int id, string name, int age, int victoryPoint, int color)
 	resourceCardsList = new CircularList<ResourceCard>;
 	developmentCardList = new CircularList<DevelopmentCard>;
 	specialCardList = new CircularList<SpecialCard>;
-	figurelist = new CircularList<Figure>;
+	//figurelist = new CircularList<Figure>;
 }
 
 Player::~Player()
