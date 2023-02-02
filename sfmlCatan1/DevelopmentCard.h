@@ -13,7 +13,7 @@ public:
 	int getQuantity();
 	void setQuantity(int);
 	bool getFaceCrad();
-	void setFaceCard();
+	void setFaceCard(bool);
 
 private:
 	int quantity;

@@ -16,8 +16,16 @@ int DevelopmentCard::getQuantity() {
 	return quantity;
 }
 
-void DevelopmentCard::setQuantity(int quantityP) {
-	quantity = quantityP;
+void DevelopmentCard::setQuantity(int quantity) {
+	this->quantity = quantity;
+}
+
+bool DevelopmentCard::getFaceCrad() {
+	return faceCard;
+}
+
+void DevelopmentCard::setFaceCard(bool faceCard) {
+	this->faceCard = faceCard;
 }
 
 int DevelopmentCard::power() {

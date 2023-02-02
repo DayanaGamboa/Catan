@@ -97,7 +97,7 @@ string Player::toString() {
 	resourceCardsList->dropDownList();
 	cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
 	developmentCardList->dropDownList();
-	cout << "Informaccion de cartas speciales que posee el jugador: " << endl << endl;
+	cout << "Informaccion de cartas especiales que posee el jugador: " << endl << endl;
 	specialCardList->dropDownList();
 
 	return s.str();

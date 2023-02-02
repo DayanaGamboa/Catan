@@ -19,7 +19,10 @@ int main()
     /*Player *player2 = new Player(2,"Dayana", 20,20,2);
     Player *player3 = new Player(3, "Arianna", 20, 50,3);
     Player *player4 = new Player(4, "Kira", 25, 70,4);*/
-    player1->insertResourceCard("madera", 1, 2, 3, 4);
+    player1->insertResourceCard("madera", 1, 2, 7, 4);
+    player1->insertResourceCard("Piedra", 1, 2, 7, 4);
+    player1->insertDevelopmentCard("Caballero", 2, 7, 1, 2);
+    player1->insertSpecialCard("Mayor Ruta", 2, 5, 7);
 
     list->inserNode(player1);
     /*list->inserNode(player2);
