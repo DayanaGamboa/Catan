@@ -1,8 +1,12 @@
 #pragma once
-class Street
+#include "Figure.h"
+#include<sstream>
+
+class Street : Figure
 {
 public:
-	Street();
+	Street(string, int, int);
 	~Street();
+	string toString();
 };
 
