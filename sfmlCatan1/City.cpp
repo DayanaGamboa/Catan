@@ -12,7 +12,7 @@ City::~City()
 
 string City::toString() {
 	stringstream s;
-	s << "Infromacion Carta: " << getCardName() <<  " " << getPositionX()
+	s << "Infromacion Figura: " << getFigureName() <<  " " << getPositionX()
 		<< " " << getPositionY() << endl;
 	return s.str();
 }

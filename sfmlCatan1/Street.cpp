@@ -10,7 +10,7 @@ Street::~Street()
 
 string Street::toString() {
 	stringstream s;
-	s << "Infromacion Figura: " << getCardName() << " " << getPositionX()
+	s << "Infromacion Figura: " << getFigureName() << " " << getPositionX()
 		<< " " << getPositionY() <<  endl;
 	return s.str();
 }

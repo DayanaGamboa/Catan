@@ -1,8 +1,8 @@
 #include "Figure.h"
 
-Figure::Figure(string cardName, int positionX, int positionY)
+Figure::Figure(string figureName, int positionX, int positionY)
 {
-    this->cardName = cardName;
+    this->figureName = figureName;
     this->positionX = positionX;
     this->positionY = positionY;
 }
@@ -11,11 +11,11 @@ Figure::~Figure()
 {
 }
 
-string Figure::getCardName() {
-    return cardName;
+string Figure::getFigureName() {
+    return figureName;
 }
-void Figure::setCardName(string cardName) {
-    this->cardName = cardName;
+void Figure::setFigureName(string figureName) {
+    this->figureName = figureName;
 }
 
 int  Figure::getPositionX() {

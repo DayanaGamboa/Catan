@@ -8,15 +8,15 @@ public:
 	Figure(string, int, int);
 	~Figure();
 	virtual string toString() = 0;
-	string getCardName();
-	void setCardName(string);
+	string getFigureName();
+	void setFigureName(string);
 	int  getPositionX();
 	void setPositionX(int);
 	int  getPositionY();
 	void setPositionY(int);
 
 private:
-	string cardName;
+	string figureName;
 	int quantity;
 	int positionX;
 	int positionY;
