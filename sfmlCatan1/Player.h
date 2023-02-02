@@ -35,6 +35,7 @@ public:
 	void insertResourceCard(string, int, int, int, int);
 	void insertDevelopmentCard(string, int, int, int, int);
 	void insertSpecialCard(string, int, int, int);
+	void insertFigures(string, int, int);
 	void showCard();
 	
 	

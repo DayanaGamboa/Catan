@@ -13,7 +13,9 @@ Player::Player(int id, string name, int age, int victoryPoint, int color)
 	resourceCardsList = new CircularList<ResourceCard>;
 	developmentCardList = new CircularList<DevelopmentCard>;
 	specialCardList = new CircularList<SpecialCard>;
-	//figurelist = new CircularList<Figure>;
+	cityList = new CircularList<City>;
+	streetList = new CircularList<Street>;
+	townList = new CircularList<Town>;
 }
 
 Player::~Player()
@@ -131,6 +133,18 @@ void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP,
 	specialCardList->inserNode(info);
 }
 
-
-
-
+void Player::insertFigures(string figureName, int positionX, int positionY)
+{
+	if (figureName == "city") {
+		City* info = new City(figureName, positionX, positionY);
+		cityList->inserNode(info);
+	}
+	else if (figureName == "street") {
+		Street* info = new Street(figureName, positionX, positionY);
+		streetList->inserNode(info);
+	}
+	else if (figureName == "town") {
+		Town* info = new Town(figureName, positionX, positionY);
+		townList->inserNode(info);
+	}
+}
