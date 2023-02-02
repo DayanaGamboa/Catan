@@ -14,10 +14,10 @@ public:
 	CircularList();
 	~CircularList();
 
-	Node<T>* crearNode(T*);
+	Node<T>* createNode(T*);
 	void inserNode(T*);
 	void findNode(string);
-	void desplegarLista();
+	void dropDownList();
 	/*void showCards();*/
 	void saveFile(string);
 	void loadFromFile(const string&);
@@ -29,7 +29,7 @@ CircularList<T> ::CircularList() {
 
 }
 template<class T>
-Node<T>* CircularList<T>::crearNode(T* obj) {
+Node<T>* CircularList<T>::createNode(T* obj) {
 	Node<T>* node = (Node<T>*)malloc(sizeof(Node<T>));
 	node->setData(obj);
 	node->setNextNoden(nullptr);
@@ -39,7 +39,7 @@ Node<T>* CircularList<T>::crearNode(T* obj) {
 }
 template<class T>
 void CircularList<T>::inserNode(T* obj) {
-	Node<T>* node = crearNode(obj);
+	Node<T>* node = createNode(obj);
 
 	if (!first) {
 		first = node;
@@ -61,7 +61,7 @@ void CircularList<T>::findNode(string ide) {
 
 }
 template<class T>
-void CircularList<T>::desplegarLista() {
+void CircularList<T>::dropDownList() {
 
 	if (first) {
 		Node<T>* node = first;

@@ -25,6 +25,6 @@ int main()
     list->inserNode(player2);
     list->inserNode(player3);
     list->inserNode(player4);
-    list->desplegarLista();
+    list->dropDownList();
     
 }

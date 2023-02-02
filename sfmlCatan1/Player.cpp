@@ -94,9 +94,12 @@ string Player::toString() {
 	s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " " 
 		<< getColor() << endl;
 	cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
-	resourceCardsList->desplegarLista();
+	resourceCardsList->dropDownList();
 	cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
-	resourceCardsList->desplegarLista();
+	developmentCardList->dropDownList();
+	cout << "Informaccion de cartas speciales que posee el jugador: " << endl << endl;
+	specialCardList->dropDownList();
+
 	return s.str();
 }
 
