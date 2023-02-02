@@ -6,6 +6,9 @@
 #include "ResourceCard.h"
 #include "SpecialCard.h"
 #include "DevelopmentCard.h"
+#include "City.h"
+#include "Street.h"
+#include "Town.h"
 class Player
 {
 public:
@@ -38,7 +41,9 @@ public:
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;
 	CircularList<SpecialCard>* specialCardList;
-	CircularList<Figure>* figurelist;
+	CircularList<City>* cityList;
+	CircularList<Street>* streetList;
+	CircularList<Town>* townList;
 
 	
 private:
