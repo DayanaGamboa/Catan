@@ -125,6 +125,12 @@ void Player::insertDevelopmentCard(string cardNameP, int powerCardP, int positio
 	}
 }
 
+void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP, int positionYP)
+{
+	SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP);
+	specialCardList->inserNode(info);
+}
+
 
 
 
