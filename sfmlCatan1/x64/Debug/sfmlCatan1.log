@@ -1,2 +1,75 @@
-﻿  sfmlCatan1.cpp
+﻿  Deck.cpp
+  DevelopmentCard.cpp
+  Partida.cpp
+  Player.cpp
+  StartWindow.cpp
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(17,40): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(81,72): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(81,48): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(232,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(232,45): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(252,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(258,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(276,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(436,19): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(448,123): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(448,95): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(492,77): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(492,56): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(500,83): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\sfmlCatan1\StartWindow.cpp(500,66): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+  sfmlCatan1.cpp
+  Generando código...
   sfmlCatan1.vcxproj -> C:\Users\Usuario\OneDrive\Escritorio\Una\Estructura de datos\Verano\Proyecto\Catan\x64\Debug\sfmlCatan1.exe
