@@ -6,7 +6,7 @@
 #include <string>
 
 StartWindow::StartWindow(float widht, float height) {
-    if (!font.loadFromFile("Fonts/Wintertime.ttf")) {
+    if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
         cout << "¡¡No Font!!";
     }
     int num = 200;

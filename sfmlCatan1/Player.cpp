@@ -13,7 +13,7 @@ Player::Player(int id, string name, int age, int victoryPoint, int color)
 	developmentCardList = new CircularList<DevelopmentCard>;
 	specialCardList = new CircularList<SpecialCard>;
 	//figurelist = new CircularList<Figure>;
-    if (!font.loadFromFile("Fonts/Wintertime.ttf")) {
+    if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
         cout << "¡¡No Font!!";
     }
 }
@@ -164,12 +164,12 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     // Caja de texto ID   
     rtsID.setSize(Vector2f(200, 50));
     rtsID.setFillColor(Color(187, 208, 216));
-    rtsID.setPosition(250, 230);
+    rtsID.setPosition(270, 230);
 
     //Texto para la caja ID    
     txtID.setFont(font);    
     txtID.setFillColor(Color::Black);
-    txtID.setPosition(250, 230);
+    txtID.setPosition(270, 230);
 
     //titulo nombre   
     tituloNombre.setFont(font);
@@ -180,12 +180,12 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     //Caja de texto nombre  
     rtsNombre.setSize(Vector2f(200, 50));
     rtsNombre.setFillColor(Color(187, 208, 216));
-    rtsNombre.setPosition(250, 300);
+    rtsNombre.setPosition(270, 300);
 
     //Texto para la caja nombre    
     txtNombre.setFont(font);  
     txtNombre.setFillColor(Color::Black);
-    txtNombre.setPosition(250, 300);
+    txtNombre.setPosition(270, 300);
 
     //titulo edad    
     tituloEdad.setFont(font);
@@ -196,12 +196,12 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     //Caja de texto Edad    
     rtsEdad.setSize(Vector2f(200, 50));
     rtsEdad.setFillColor(Color(187, 208, 216));
-    rtsEdad.setPosition(250, 370);
+    rtsEdad.setPosition(270, 370);
 
     //Texto para la caja Edad  
     txtEdad.setFont(font);   
     txtEdad.setFillColor(Color::Black);
-    txtEdad.setPosition(250, 370);
+    txtEdad.setPosition(270, 370);
 
     //titulo color  
     tituloColor.setFont(font);
@@ -211,7 +211,7 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
 
     //Caja de texto Color  
     rtsColor.setSize(Vector2f(200, 50));   
-    rtsColor.setPosition(250, 450);
+    rtsColor.setPosition(270, 450);
 
     //Text para campos requeridos   
     txtCamposRequeridos.setFont(font);   
