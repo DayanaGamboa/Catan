@@ -1,21 +1,21 @@
 #include "Player.h"
-#include<sstream>
 
 
 Player::Player(int id, string name, int age, int victoryPoint, int color)
 {
-	this->id = id;
-	this->name = name;
-	this->age = age;
-	this->victoryPoint = victoryPoint;
-	this->color = color;
+    this->id = id;
+    this->name = name;
+    this->age = age;
+    this->victoryPoint = victoryPoint;
+    this->color = color;
 
-	resourceCardsList = new CircularList<ResourceCard>;
-	developmentCardList = new CircularList<DevelopmentCard>;
-	specialCardList = new CircularList<SpecialCard>;
-	cityList = new CircularList<City>;
-	streetList = new CircularList<Street>;
-	townList = new CircularList<Town>;
+    resourceCardsList = new CircularList<ResourceCard>;
+    developmentCardList = new CircularList<DevelopmentCard>;
+    specialCardList = new CircularList<SpecialCard>;
+    //figurelist = new CircularList<Figure>;
+    if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
+        cout << "¡¡No Font!!";
+    }
 }
 
 Player::~Player()
@@ -23,48 +23,48 @@ Player::~Player()
 }
 
 int Player::getId() {
-	return id;
+    return id;
 }
 
 void Player::setId(int id) {
 
-	this->id = id;
+    this->id = id;
 }
 
 string Player::getName() {
-	return name;
+    return name;
 }
 
 void Player::setName(string name) {
 
-	this->name = name;
+    this->name = name;
 }
 
 int Player::getAge() {
-	return age;
+    return age;
 }
 
 void Player::setAge(int age) {
 
-	this->age = age;
+    this->age = age;
 }
 
 int Player::getVictoryPoint() {
-	return victoryPoint;
+    return victoryPoint;
 }
 
 void Player::setVictoryPoint(int victoryPoint) {
 
-	this->victoryPoint = victoryPoint;
+    this->victoryPoint = victoryPoint;
 }
 
 int Player::getColor() {
-	return color;
+    return color;
 }
 
 void Player::setColor(int color) {
 
-	this->color = color;
+    this->color = color;
 }
 
 void Player::throwsDice()
@@ -92,59 +92,293 @@ void Player::endTurn()
 }
 
 string Player::toString() {
-	stringstream s;
-	s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " " 
-		<< getColor() << endl;
-	cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
-	resourceCardsList->dropDownList();
-	cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
-	developmentCardList->dropDownList();
-	cout << "Informaccion de cartas especiales que posee el jugador: " << endl << endl;
-	specialCardList->dropDownList();
+    stringstream s;
+    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " "
+        << getColor() << endl;
+    cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
+    resourceCardsList->dropDownList();
+    cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
+    developmentCardList->dropDownList();
+    cout << "Informaccion de cartas especiales que posee el jugador: " << endl << endl;
+    specialCardList->dropDownList();
 
-	return s.str();
+    return s.str();
 }
 
 void Player::insertResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
 {
-	if (resourceCardsList->existenceOfCard(cardNameP) == true) {
-		resourceCardsList->increaseQuantity(cardNameP, quantityP);
-	}
-	else {
-		ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
-		resourceCardsList->inserNode(info);
-	}
+    if (resourceCardsList->existenceOfCard(cardNameP) == true) {
+        resourceCardsList->increaseQuantity(cardNameP, quantityP);
+    }
+    else {
+        ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
+        resourceCardsList->inserNode(info);
+    }
 }
 
 void Player::insertDevelopmentCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
 {
-	if (developmentCardList->existenceOfCard(cardNameP) == true) {
-		developmentCardList->increaseQuantity(cardNameP, quantityP);
-	}
-	else {
-		DevelopmentCard* info = new DevelopmentCard(cardNameP, powerCardP, positionXP, positionYP, quantityP,false);
-		developmentCardList->inserNode(info);
-	}
+    if (developmentCardList->existenceOfCard(cardNameP) == true) {
+        developmentCardList->increaseQuantity(cardNameP, quantityP);
+    }
+    else {
+        DevelopmentCard* info = new DevelopmentCard(cardNameP, powerCardP, positionXP, positionYP, quantityP, false);
+        developmentCardList->inserNode(info);
+    }
 }
 
 void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP, int positionYP)
 {
-	SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP);
-	specialCardList->inserNode(info);
+    SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP);
+    specialCardList->inserNode(info);
 }
+void Player::paintPlayerRegister(RenderWindow* playerData) {
 
-void Player::insertFigures(string figureName, int positionX, int positionY)
-{
-	if (figureName == "city") {
-		City* info = new City(figureName, positionX, positionY);
-		cityList->inserNode(info);
-	}
-	else if (figureName == "street") {
-		Street* info = new Street(figureName, positionX, positionY);
-		streetList->inserNode(info);
-	}
-	else if (figureName == "town") {
-		Town* info = new Town(figureName, positionX, positionY);
-		townList->inserNode(info);
-	}
+    //MENU
+    fondo.setSize(Vector2f(700, 700));
+    fondo.setFillColor(Color(220, 245, 255));
+
+    titulo1.setFont(font);
+    titulo1.setString("Registro de jugadores: (3-4)");
+    titulo1.setFillColor(Color::Black);
+    titulo1.setPosition(200, 10);
+    titulo1.setCharacterSize(50);
+
+    //Boton de aceptar    
+    rtsBtnAceptar.setPosition(Vector2f(300, 600));
+    rtsBtnAceptar.setSize(Vector2f(120, 50));
+    txtrBtnAceptar.loadFromFile("resouceImages/btnSave.png");
+    rtsBtnAceptar.setTexture(&txtrBtnAceptar);
+
+    //JUGADOR 1    
+    tituloJugador.setFont(font);
+    tituloJugador.setFillColor(Color::Black);
+    tituloJugador.setPosition(300, 160);
+
+    //titulo ID    
+    tituloID.setFont(font);
+    tituloID.setString("ID ");
+    tituloID.setFillColor(Color::Black);
+    tituloID.setPosition(180, 230 + 10);
+
+    // Caja de texto ID   
+    rtsID.setSize(Vector2f(200, 50));
+    rtsID.setFillColor(Color(187, 208, 216));
+    rtsID.setPosition(270, 230);
+
+    //Texto para la caja ID    
+    txtID.setFont(font);
+    txtID.setFillColor(Color::Black);
+    txtID.setPosition(270, 230);
+
+    //titulo nombre   
+    tituloNombre.setFont(font);
+    tituloNombre.setString("Nombre ");
+    tituloNombre.setFillColor(Color::Black);
+    tituloNombre.setPosition(180, 310);
+
+    //Caja de texto nombre  
+    rtsNombre.setSize(Vector2f(200, 50));
+    rtsNombre.setFillColor(Color(187, 208, 216));
+    rtsNombre.setPosition(270, 300);
+
+    //Texto para la caja nombre    
+    txtNombre.setFont(font);
+    txtNombre.setFillColor(Color::Black);
+    txtNombre.setPosition(270, 300);
+
+    //titulo edad    
+    tituloEdad.setFont(font);
+    tituloEdad.setString("Edad ");
+    tituloEdad.setFillColor(Color::Black);
+    tituloEdad.setPosition(180, 380);
+
+    //Caja de texto Edad    
+    rtsEdad.setSize(Vector2f(200, 50));
+    rtsEdad.setFillColor(Color(187, 208, 216));
+    rtsEdad.setPosition(270, 370);
+
+    //Texto para la caja Edad  
+    txtEdad.setFont(font);
+    txtEdad.setFillColor(Color::Black);
+    txtEdad.setPosition(270, 370);
+
+    //titulo color  
+    tituloColor.setFont(font);
+    tituloColor.setString("Color");
+    tituloColor.setFillColor(Color::Black);
+    tituloColor.setPosition(180, 460);
+
+    //Caja de texto Color  
+    rtsColor.setSize(Vector2f(200, 50));
+    rtsColor.setPosition(270, 450);
+
+    //Text para campos requeridos   
+    txtCamposRequeridos.setFont(font);
+    txtCamposRequeridos.setFillColor(Color::Black);
+    txtCamposRequeridos.setPosition(250, 500);
+
+
+    playerData->draw(fondo);
+    playerData->draw(titulo1);
+    playerData->draw(rtsBtnAceptar);
+
+    playerData->draw(tituloJugador);
+
+    playerData->draw(tituloID);
+    playerData->draw(rtsID);
+    playerData->draw(txtID);
+
+    playerData->draw(tituloNombre);
+    playerData->draw(rtsNombre);
+    playerData->draw(txtNombre);
+
+    playerData->draw(tituloEdad);
+    playerData->draw(rtsEdad);
+    playerData->draw(txtEdad);
+
+    playerData->draw(tituloColor);
+    playerData->draw(rtsColor);
+
+    playerData->draw(txtCamposRequeridos);
+
+}
+void Player::playerRegister(RenderWindow*) {
+    StartWindow startWindow(X, Y);
+    tituloJugador.setString("Datos jugador 1");
+    RenderWindow playerData(VideoMode(700, 700), "Registro de jugadores");
+
+    tituloID.setString("");
+    tituloNombre.setString("");
+    tituloEdad.setString("");
+    rtsColor.setFillColor(Color::Blue);
+
+    string IDString = "", nombre = "", edadString = "";
+    Vector2i coordenadasMouse;
+    int cantidadJugadores = 0;
+    int color = 0;
+    int contadorJugadores = 0;
+
+    while (playerData.isOpen()) {
+        Event event;
+        while (playerData.pollEvent(event)) {
+
+            if (event.type == Event::Closed) {
+                playerData.close();
+                startWindow.mainWindow();
+            }
+            if (event.type == Event::KeyPressed) {
+                if (event.key.code == Keyboard::Escape) {
+                    playerData.close();
+                    startWindow.mainWindow();
+                }
+            }
+            if (event.type == Event::MouseButtonPressed) {
+
+                coordenadasMouse = mouse.getPosition(playerData);
+
+                if (rtsBtnAceptar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse)) && (contadorJugadores <= 4)) {
+
+                    if ((IDString == "") || (nombre == "") || (edadString == "")) {
+
+                        txtCamposRequeridos.setString("* Campos requeridos *");
+                    }
+
+                    else {
+                        int edad = 0, id = 0, puntosVictoria = 0;
+                        edad = stoi(edadString);
+                        id = stoi(IDString);
+                        contadorJugadores++;
+
+                        if (contadorJugadores == 1) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player1 = new Player(id, nombre, edad, puntosVictoria, 1);
+                            cout << "Jugador 1 guardado correctamente" << endl;
+                            rtsColor.setFillColor(Color::Red);
+                        }
+                        if (contadorJugadores == 2) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player2 = new Player(id, nombre, edad, puntosVictoria, 2);
+                            cout << "Jugador 2 guardado correctamente" << endl;
+                            rtsColor.setFillColor(Color::Yellow);
+                        }
+                        if (contadorJugadores == 3) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player3 = new Player(id, nombre, edad, puntosVictoria, 3);
+                            cout << "Jugador 3 guardado correctamente" << endl;
+                            rtsColor.setFillColor(Color::Green);
+                        }
+                        if (contadorJugadores == 4) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player4 = new Player(id, nombre, edad, puntosVictoria, 4);
+                            cout << "Jugador 4 guardado correctamente" << endl;
+                        }
+                        //Cuando guarda inicializa los valores 
+                        IDString = "";
+                        nombre = "";
+                        edadString = "";
+                        puntosVictoria = 0, color = 0;
+
+                        txtID.setString("");
+                        txtNombre.setString("");
+                        txtEdad.setString("");
+                        txtCamposRequeridos.setString("");
+
+                        if (contadorJugadores >= 4) {
+
+                            tituloJugador.setString("Datos jugador");
+                            txtCamposRequeridos.setString("* Cantidad de jugadores al limite *");
+
+                        }
+                        else {
+                            tituloJugador.setString("Datos jugador " + to_string(contadorJugadores + 1));
+                        }
+                    }
+                }
+            }
+            if (event.type == Event::TextEntered) {
+
+                if (rtsID.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                    if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtID.getString().getSize() <= 20))) {
+
+                        IDString += static_cast<char>(event.text.unicode);
+                        txtID.setString(IDString);
+                    }
+                    if (event.text.unicode == 8 && IDString.length() > 0) {
+
+                        IDString.pop_back();
+                        txtID.setString(IDString);
+                    }
+                }
+
+                if (rtsNombre.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+
+                    if ((event.text.unicode >= 32 && event.text.unicode <= 126) && ((txtNombre.getString().getSize() <= 20))) {
+                        nombre += static_cast<char>(event.text.unicode);
+                        txtNombre.setString(nombre);
+                    }
+                    if (event.text.unicode == 8 && nombre.length() > 0) {
+
+                        nombre.pop_back();
+                        txtNombre.setString(nombre);
+                    }
+                }
+                if (rtsEdad.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+
+                    if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtEdad.getString().getSize() <= 1))) {
+                        edadString += static_cast<char>(event.text.unicode);
+                        txtEdad.setString(edadString);
+                    }
+                    if (event.text.unicode == 8 && edadString.length() > 0) {
+
+                        edadString.pop_back();
+                        txtEdad.setString(edadString);
+                    }
+                }
+            }
+        }
+        playerData.clear();
+        paintPlayerRegister(&playerData);
+        playerData.display();
+    }
 }
