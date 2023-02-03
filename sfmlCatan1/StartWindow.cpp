@@ -3,34 +3,31 @@
 #include "Player.h"
 #include "Dice.h"
 #include "Thief.h"
+#include <string>
 
 StartWindow::StartWindow(float widht, float height) {
-    if (!font.loadFromFile("Fonts/Wintertime.ttf")) {
+    if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
         cout << "¡¡No Font!!";
     }
     int num = 200;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         //Start Game
         startMenu[i].setFont(font);
         startMenu[i].setFillColor(Color::White);
         startMenu[i].setCharacterSize(70);
-        startMenu[i].setPosition(1100, num);
+        startMenu[i].setPosition(800, num);
         num += 100;
     }
 
-    startMenu[0].setString("Go");
+    startMenu[0].setString("Registrar jugadores");
     startMenu[0].setFillColor(Color::Cyan);
 
-    startMenu[1].setString("About");
-    startMenu[2].setString("Load");
-    startMenu[3].setString("Exit");
+    startMenu[1].setString("Jugar");
+    startMenu[2].setString("Cargar partida");
+    startMenu[3].setString("Acerca de");
+    startMenu[4].setString("Salir");
 
     StartWindowSelected = 0;
-
-    //RenderWindow Go(VideoMode(X, Y), "SFML works!");
-// RenderWindow Go(VideoMode(X, Y), "CATAN");
-
-
 }
 
 
@@ -52,7 +49,7 @@ void StartWindow::moveUp() {
         startMenu[StartWindowSelected].setFillColor(Color::White);
 
         if (StartWindowSelected == 0) {
-            StartWindowSelected = 4;
+            StartWindowSelected = 5;
         }
         StartWindowSelected--;
 
@@ -63,11 +60,11 @@ void StartWindow::moveUp() {
 
 void StartWindow::moveDown() {
 
-    if (StartWindowSelected <= 2/*optionMenu*/)
+    if (StartWindowSelected <= 4)
     {
         startMenu[StartWindowSelected].setFillColor(Color::White);
         StartWindowSelected++;
-        if (StartWindowSelected == 4) {
+        if (StartWindowSelected == 5) {
             StartWindowSelected = 0;
         }
         startMenu[StartWindowSelected].setFillColor(Color::Cyan);
@@ -79,7 +76,7 @@ void StartWindow::mainWindow()
 {
     RenderWindow windowMENU(VideoMode(X, Y), "Start Game Window", Style::Default);
     StartWindow  startMenu(windowMENU.getSize().x, windowMENU.getSize().y);
-
+    Player player(0, "", 0,0,0);
     RectangleShape background;
     background.setSize(Vector2f(X, Y));
     Texture startWindowImage;
@@ -106,23 +103,33 @@ void StartWindow::mainWindow()
 
                     int pos = startMenu.StartWindowPressed();
                     if (pos == 0) {
+
                         windowMENU.close();
-                        goWindow();
+                        player.playerRegister(&windowMENU);
+
                     }
                     if (pos == 1) {
+
                         windowMENU.close();
-                        aboutWindow();
+                        goWindow();
+                       
                     }
                     if (pos == 2) {
 
-                        /*windowMENU.close();
-                        break;*/
+
                     }
 
                     if (pos == 3) {
 
                         windowMENU.close();
+                        aboutWindow();
+                      
+                    }
+                    if (pos == 4) {
+
+                        windowMENU.close();
                         break;
+                       
                     }
                 }
             }
