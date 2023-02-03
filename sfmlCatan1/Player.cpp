@@ -243,3 +243,142 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     playerData->draw(txtCamposRequeridos);
 
 }
+void Player::playerRegister(RenderWindow*) {
+    StartWindow startWindow(X,Y);
+    tituloJugador.setString("Datos jugador 1");
+    RenderWindow playerData(VideoMode(700, 700), "Registro de jugadores");
+    
+    tituloID.setString("");
+    tituloNombre.setString("");
+    tituloEdad.setString("");
+    rtsColor.setFillColor(Color::Blue); 
+   
+    string IDString = "", nombre = "", edadString = "";
+    Vector2i coordenadasMouse;
+    int cantidadJugadores = 0;
+    int color = 0;
+    int contadorJugadores = 0;
+
+    while (playerData.isOpen()) {
+        Event event;
+        while (playerData.pollEvent(event)) {
+
+            if (event.type == Event::Closed) {
+                playerData.close();
+                startWindow.mainWindow();
+            }
+            if (event.type == Event::KeyPressed) {
+                if (event.key.code == Keyboard::Escape) {
+                    playerData.close();
+                    startWindow.mainWindow();
+                }
+            }
+            if (event.type == Event::MouseButtonPressed) {
+
+                coordenadasMouse = mouse.getPosition(playerData);
+
+                if (rtsBtnAceptar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse)) && (contadorJugadores <= 4)) {
+
+                    if ((IDString == "") || (nombre == "") || (edadString == "")) {
+
+                        txtCamposRequeridos.setString("*** Campos requeridos ***");
+                    }
+
+                    else {
+                        int edad = 0, id = 0, puntosVictoria = 0;
+                        edad = stoi(edadString);
+                        id = stoi(IDString);
+                        contadorJugadores++;
+
+                        if (contadorJugadores == 1) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player1 = new Player(id, nombre, edad, puntosVictoria, 1);
+                            cout << "Jugador 1 guardado correctamente" << endl;
+                            rtsColor.setFillColor(Color::Red);
+                        }
+                        if (contadorJugadores == 2) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player2 = new Player(id, nombre, edad, puntosVictoria, 2);
+                            cout << "Jugador 2 guardado correctamente" << endl;
+                            rtsColor.setFillColor(Color::Yellow);
+                        }
+                        if (contadorJugadores == 3) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player3 = new Player(id, nombre, edad, puntosVictoria, 3);
+                            cout << "Jugador 3 guardado correctamente" << endl;
+                            rtsColor.setFillColor(Color::Green);
+                        }
+                        if (contadorJugadores == 4) {
+                            CircularList<Player>* list = new CircularList<Player>;
+                            Player* player4 = new Player(id, nombre, edad, puntosVictoria, 4);
+                            cout << "Jugador 4 guardado correctamente" << endl;
+                        }
+                        //Cuando guarda inicializa los valores 
+                        IDString = "";
+                        nombre = "";
+                        edadString = "";
+                        puntosVictoria = 0, color = 0;
+
+                        txtID.setString("");
+                        txtNombre.setString("");
+                        txtEdad.setString("");
+                        txtCamposRequeridos.setString("");
+
+                        if (contadorJugadores >= 4) {
+
+                            tituloJugador.setString("Datos jugador");
+                            txtCamposRequeridos.setString("*** Cantidad de jugadores al limite ***");
+
+                        }
+                        else {
+                            tituloJugador.setString("Datos jugador " + to_string(contadorJugadores + 1));
+                        }
+                    }
+                }
+            }
+            if (event.type == Event::TextEntered) {
+
+                if (rtsID.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                    if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtID.getString().getSize() <= 20))) {
+
+                        IDString += static_cast<char>(event.text.unicode);
+                        txtID.setString(IDString);
+                    }
+                    if (event.text.unicode == 8 && IDString.length() > 0) {
+
+                        IDString.pop_back();
+                        txtID.setString(IDString);
+                    }
+                }
+
+                if (rtsNombre.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+
+                    if ((event.text.unicode >= 32 && event.text.unicode <= 126) && ((txtNombre.getString().getSize() <= 20))) {
+                        nombre += static_cast<char>(event.text.unicode);
+                        txtNombre.setString(nombre);
+                    }
+                    if (event.text.unicode == 8 && nombre.length() > 0) {
+
+                        nombre.pop_back();
+                        txtNombre.setString(nombre);
+                    }
+                }
+                if (rtsEdad.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+
+                    if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtEdad.getString().getSize() <= 1))) {
+                        edadString += static_cast<char>(event.text.unicode);
+                        txtEdad.setString(edadString);
+                    }
+                    if (event.text.unicode == 8 && edadString.length() > 0) {
+
+                        edadString.pop_back();
+                        txtEdad.setString(edadString);
+                    }
+                }
+            }
+        }
+        playerData.clear();
+        paintPlayerRegister(&playerData);
+        playerData.display();
+    }
+}

@@ -43,7 +43,7 @@ public:
 	void insertSpecialCard(string, int, int, int);
 	void showCard();
 
-	
+	void playerRegister(RenderWindow*);
 	void paintPlayerRegister(RenderWindow*);
 	
 	
