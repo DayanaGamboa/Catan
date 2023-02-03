@@ -1,2 +1,98 @@
-﻿  Player.cpp
-  sfmlCatan1.vcxproj -> C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\x64\Debug\sfmlCatan1.exe
+﻿  Bank.cpp
+  Card.cpp
+  CircularList.cpp
+  City.cpp
+  Deck.cpp
+  DevelopmentCard.cpp
+  Dice.cpp
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Dice.cpp(18,23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  EdgeGraph.cpp
+  Figure.cpp
+  Graph.cpp
+  Land.cpp
+  Node.cpp
+  Number.cpp
+  Partida.cpp
+  Piece.cpp
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Piece.h(10,6): warning C4200: nonstandard extension used: zero-sized array in struct/union
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Piece.h(10,6): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Player.cpp
+  ResourceCard.cpp
+  sfmlCatan1.cpp
+  SpecialCard.cpp
+  StartWindow.cpp
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(18,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(78,72): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(78,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(239,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(239,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(259,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(265,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(283,34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(443,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(455,123): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(455,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(499,77): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(499,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(507,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(507,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
+  Compiling...
+  Street.cpp
+  Thief.cpp
+  Town.cpp
+  VertexGraph.cpp
+  Generating Code...
+  sfmlCatan1.vcxproj -> C:\Users\monge\source\repos\Catan\x64\Debug\sfmlCatan1.exe

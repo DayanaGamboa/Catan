@@ -146,7 +146,9 @@
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DevelopmentCard.cpp" />
     <ClCompile Include="Dice.cpp" />
+    <ClCompile Include="EdgeGraph.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Number.cpp" />
@@ -160,6 +162,7 @@
     <ClCompile Include="Street.cpp" />
     <ClCompile Include="Thief.cpp" />
     <ClCompile Include="Town.cpp" />
+    <ClCompile Include="VertexGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bank.h" />
@@ -169,7 +172,9 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DevelopmentCard.h" />
     <ClInclude Include="Dice.h" />
+    <ClInclude Include="EdgeGraph.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Land.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Number.h" />
@@ -182,6 +187,7 @@
     <ClInclude Include="Street.h" />
     <ClInclude Include="Thief.h" />
     <ClInclude Include="Town.h" />
+    <ClInclude Include="VertexGraph.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
