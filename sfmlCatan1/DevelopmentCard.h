@@ -10,12 +10,15 @@ public:
 	~DevelopmentCard();
 	int power();
 	string toString();
+	string getCardName();
+	void setCardName(string);
 	int getQuantity();
 	void setQuantity(int);
 	bool getFaceCrad();
 	void setFaceCard(bool);
 
 private:
+	string cardName;
 	int quantity;
 	bool faceCard;
 };

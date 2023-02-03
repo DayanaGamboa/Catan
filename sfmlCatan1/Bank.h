@@ -12,6 +12,7 @@ public:
 	int addUpCards();
 	int substtractCards();
 	int putCards(int, int);
+	void loadLists();
 
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;
