@@ -12,6 +12,14 @@ DevelopmentCard::~DevelopmentCard()
 {
 }
 
+string DevelopmentCard::getCardName() {
+	return cardName;
+}
+
+void DevelopmentCard::setCardName(string cardName) {
+	this->cardName = cardName;
+}
+
 int DevelopmentCard::getQuantity() {
 	return quantity;
 }
