@@ -8,7 +8,7 @@ Player::Player(int id, string name, int age, int victoryPoint, int color)
     this->age = age;
     this->victoryPoint = victoryPoint;
     this->color = color;
-
+    playerList = new CircularList<Player>;
     resourceCardsList = new CircularList<ResourceCard>;
     developmentCardList = new CircularList<DevelopmentCard>;
     specialCardList = new CircularList<SpecialCard>;
@@ -150,6 +150,12 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     txtrBtnAceptar.loadFromFile("resouceImages/btnSave.png");
     rtsBtnAceptar.setTexture(&txtrBtnAceptar);
 
+    ////Boton de atras    
+    //rtsBtnAtras.setPosition(Vector2f(300, 600));
+    //rtsBtnAtras.setSize(Vector2f(120, 50));
+    //rtsBtnAtras.loadFromFile("resouceImages/btnSave.png");
+    //rtsBtnAtras.setTexture(&txtrBtnAceptar);
+
     //JUGADOR 1    
     tituloJugador.setFont(font);
     tituloJugador.setFillColor(Color::Black);
@@ -290,27 +296,28 @@ void Player::playerRegister(RenderWindow*) {
                         id = stoi(IDString);
                         contadorJugadores++;
 
-                        if (contadorJugadores == 1) {
-                            CircularList<Player>* list = new CircularList<Player>;
+                        if (contadorJugadores == 1) {                           
                             Player* player1 = new Player(id, nombre, edad, puntosVictoria, 1);
+                            playerList->inserNode(player1);
                             cout << "Jugador 1 guardado correctamente" << endl;
                             rtsColor.setFillColor(Color::Red);
                         }
-                        if (contadorJugadores == 2) {
-                            CircularList<Player>* list = new CircularList<Player>;
+                        if (contadorJugadores == 2) {                         
                             Player* player2 = new Player(id, nombre, edad, puntosVictoria, 2);
+                            playerList->inserNode(player2);
                             cout << "Jugador 2 guardado correctamente" << endl;
                             rtsColor.setFillColor(Color::Yellow);
                         }
-                        if (contadorJugadores == 3) {
-                            CircularList<Player>* list = new CircularList<Player>;
+                        if (contadorJugadores == 3) {                         
                             Player* player3 = new Player(id, nombre, edad, puntosVictoria, 3);
+                            playerList->inserNode(player3);
+                            registroJugadores = true;
                             cout << "Jugador 3 guardado correctamente" << endl;
                             rtsColor.setFillColor(Color::Green);
                         }
-                        if (contadorJugadores == 4) {
-                            CircularList<Player>* list = new CircularList<Player>;
+                        if (contadorJugadores == 4) {                         
                             Player* player4 = new Player(id, nombre, edad, puntosVictoria, 4);
+                            playerList->inserNode(player4);
                             cout << "Jugador 4 guardado correctamente" << endl;
                         }
                         //Cuando guarda inicializa los valores 

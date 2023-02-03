@@ -54,8 +54,10 @@ public:
 	CircularList<City>* cityList;
 	CircularList<Street>* streetList;
 	CircularList<Town>* townList;
+	CircularList<Player>* playerList;
 	
 	RectangleShape rtsBtnAceptar;
+	RectangleShape rtsBtnAtras;
 	Text tituloJugador;
 	Text titulo1;
 	Text tituloID;
@@ -72,6 +74,8 @@ public:
 	Text txtCamposRequeridos;
 	RectangleShape fondo;
 	Texture txtrBtnAceptar;
+
+	bool registroJugadores = false;
 	
 	
 private:
