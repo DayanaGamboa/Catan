@@ -56,34 +56,18 @@ public:
 	CircularList<Town>* townList;
 	CircularList<Player>* playerList;
 	
-	RectangleShape rtsBtnAceptar;
-	RectangleShape rtsBtnAtras;
-	Text tituloJugador;
-	Text titulo1;
-	Text tituloID;
-	RectangleShape rtsID;
-	Text txtID;
-	Text tituloNombre;
-	RectangleShape rtsNombre;
-	Text txtNombre;
-	Text tituloEdad;
-	RectangleShape rtsEdad;
-	Text txtEdad;
-	Text tituloColor;
-	RectangleShape rtsColor;
-	Text txtCamposRequeridos;
-	RectangleShape fondo;
-	Texture txtrBtnAceptar;
+	RectangleShape rtsBtnGuardar, rtsBtnJugar, rtsBtnAtras, rtsID, rtsNombre, rtsEdad, rtsColor, fondo;
+	Texture txtrBtnGuardar, txtrBtnAtras, txtrBtnJugar;
+	Text tituloJugador, titulo1, tituloID, txtID, tituloNombre, txtNombre;
+	Text tituloEdad, txtEdad, tituloColor, txtCamposRequeridos;
 
 	bool registroJugadores = false;
-	
+	int contadorJugadores = 0;
+	int id = 0;
 	
 private:
-	int id;
+	int age, victoryPoint, color;
 	string name;
-	int age;
-	int victoryPoint;
-	int color;
 	Font font;
 	Event event;
 	Mouse mouse;

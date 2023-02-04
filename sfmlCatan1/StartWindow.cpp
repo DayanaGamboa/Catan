@@ -10,7 +10,7 @@ StartWindow::StartWindow(float widht, float height) {
         cout << "¡¡No Font!!";
     }
     int num = 200;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         //Start Game
         startMenu[i].setFont(font);
         startMenu[i].setFillColor(Color::White);
@@ -19,13 +19,13 @@ StartWindow::StartWindow(float widht, float height) {
         num += 100;
     }
 
-    startMenu[0].setString("Registrar jugadores");
+    startMenu[0].setString("Jugar");
     startMenu[0].setFillColor(Color::Cyan);
 
-    startMenu[1].setString("Jugar");
-    startMenu[2].setString("Cargar partida");
-    startMenu[3].setString("Acerca de");
-    startMenu[4].setString("Salir");
+
+    startMenu[1].setString("Cargar partida");
+    startMenu[2].setString("Acerca de");
+    startMenu[3].setString("Salir");
 
     StartWindowSelected = 0;
 }
@@ -49,7 +49,7 @@ void StartWindow::moveUp() {
         startMenu[StartWindowSelected].setFillColor(Color::White);
 
         if (StartWindowSelected == 0) {
-            StartWindowSelected = 5;
+            StartWindowSelected = 4;
         }
         StartWindowSelected--;
 
@@ -60,11 +60,11 @@ void StartWindow::moveUp() {
 
 void StartWindow::moveDown() {
 
-    if (StartWindowSelected <= 4)
+    if (StartWindowSelected <= 3)
     {
         startMenu[StartWindowSelected].setFillColor(Color::White);
         StartWindowSelected++;
-        if (StartWindowSelected == 5) {
+        if (StartWindowSelected == 4) {
             StartWindowSelected = 0;
         }
         startMenu[StartWindowSelected].setFillColor(Color::Cyan);
@@ -110,26 +110,20 @@ void StartWindow::mainWindow()
                     }
                     if (pos == 1) {
 
-                        windowMENU.close();
-                        goWindow();
-                       
+
+
                     }
                     if (pos == 2) {
 
+                        windowMENU.close();
+                        aboutWindow();
 
                     }
 
                     if (pos == 3) {
 
                         windowMENU.close();
-                        aboutWindow();
-                      
-                    }
-                    if (pos == 4) {
-
-                        windowMENU.close();
                         break;
-                       
                     }
                 }
             }
@@ -180,9 +174,7 @@ void StartWindow::goWindow() {
         generateGameArea(&Go);
         paintLands(&Go);
         paintNumberPieces(&Go);
-        dice1.diceFinalAmount(&Go);
-
-       
+        dice1.diceFinalAmount(&Go);     
 
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
@@ -204,8 +196,16 @@ void StartWindow::aboutWindow()
     aboutWindowImage.loadFromFile("resouceImages/About.png");
     aBackground.setTexture(&aboutWindowImage);
 
-    RenderWindow About(VideoMode(X, Y), "About");
+    //Boton de atras    
+    RectangleShape rtsBtnAtras;
+    rtsBtnAtras.setPosition(Vector2f(100, 720));
+    rtsBtnAtras.setSize(Vector2f(150, 80));
+    Texture txtrBtnAtras;
+    txtrBtnAtras.loadFromFile("resouceImages/btnAtras.png");
+    rtsBtnAtras.setTexture(&txtrBtnAtras);
 
+    RenderWindow About(VideoMode(X, Y), "About");
+    Vector2i coordenadasMouse;
 
     while (About.isOpen()) {
 
@@ -220,9 +220,18 @@ void StartWindow::aboutWindow()
                     mainWindow();
                 }
             }
+            if (event.type == Event::MouseButtonPressed) {
+
+                coordenadasMouse = mouse.getPosition(About);
+                if (rtsBtnAtras.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                    About.close();
+                    mainWindow();
+                }
+            }
         }
         About.clear();
         About.draw(aBackground);
+        About.draw(rtsBtnAtras);
         About.display();
     }
 }
@@ -402,21 +411,21 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     rtsBtnDice.setTexture(&textureRtsBtnDice);
     Go->draw(rtsBtnDice);
 
-    //btnExit
-    
-    rtsBtnExit.setPosition(Vector2f(1250, 10));
-    rtsBtnExit.setSize(Vector2f(57, 30));
+    //btnSalir
+
+    rtsBtnExit.setPosition(Vector2f(1250, 50));
+    rtsBtnExit.setSize(Vector2f(80, 50));
     Texture textureRtsBtnExit;
-    textureRtsBtnExit.loadFromFile("resouceImages/exitButton.png");
+    textureRtsBtnExit.loadFromFile("resouceImages/btnSalir.png");
     rtsBtnExit.setTexture(&textureRtsBtnExit);
     Go->draw(rtsBtnExit);
-    
-    //btnSave
-    
-    rtsBtnSave.setPosition(Vector2f(1255, 40));
-    rtsBtnSave.setSize(Vector2f(50, 30));
+
+    //btnGuardar
+
+    rtsBtnSave.setPosition(Vector2f(1250, 10));
+    rtsBtnSave.setSize(Vector2f(80, 50));
     Texture textureRtsBtnSave;
-    textureRtsBtnSave.loadFromFile("resouceImages/btnSave.png");
+    textureRtsBtnSave.loadFromFile("resouceImages/btnGuardar.png");
     rtsBtnSave.setTexture(&textureRtsBtnSave);
     Go->draw(rtsBtnSave);
 }

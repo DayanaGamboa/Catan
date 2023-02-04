@@ -145,21 +145,16 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     titulo1.setCharacterSize(50);
 
     //Boton de aceptar    
-    rtsBtnAceptar.setPosition(Vector2f(300, 600));
-    rtsBtnAceptar.setSize(Vector2f(120, 50));
-    txtrBtnAceptar.loadFromFile("resouceImages/btnSave.png");
-    rtsBtnAceptar.setTexture(&txtrBtnAceptar);
-
-    ////Boton de atras    
-    //rtsBtnAtras.setPosition(Vector2f(300, 600));
-    //rtsBtnAtras.setSize(Vector2f(120, 50));
-    //rtsBtnAtras.loadFromFile("resouceImages/btnSave.png");
-    //rtsBtnAtras.setTexture(&txtrBtnAceptar);
+    rtsBtnGuardar.setPosition(Vector2f(250, 580));
+    rtsBtnGuardar.setSize(Vector2f(150, 80));
+    txtrBtnGuardar.loadFromFile("resouceImages/btnGuardar.png");
+    rtsBtnGuardar.setTexture(&txtrBtnGuardar);
 
     //JUGADOR 1    
+    tituloJugador.setString("Datos del jugador");
     tituloJugador.setFont(font);
     tituloJugador.setFillColor(Color::Black);
-    tituloJugador.setPosition(300, 160);
+    tituloJugador.setPosition(280, 160);
 
     //titulo ID    
     tituloID.setFont(font);
@@ -174,6 +169,7 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
 
     //Texto para la caja ID    
     txtID.setFont(font);
+    txtID.setString(to_string(contadorJugadores + 1));
     txtID.setFillColor(Color::Black);
     txtID.setPosition(270, 230);
 
@@ -227,7 +223,7 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
 
     playerData->draw(fondo);
     playerData->draw(titulo1);
-    playerData->draw(rtsBtnAceptar);
+    playerData->draw(rtsBtnGuardar);
 
     playerData->draw(tituloJugador);
 
@@ -251,21 +247,16 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
 }
 void Player::playerRegister(RenderWindow*) {
     StartWindow startWindow(X, Y);
-    tituloJugador.setString("Datos jugador 1");
     RenderWindow playerData(VideoMode(700, 700), "Registro de jugadores");
 
-    tituloID.setString("");
-    tituloNombre.setString("");
-    tituloEdad.setString("");
     rtsColor.setFillColor(Color::Blue);
 
-    string IDString = "", nombre = "", edadString = "";
+    string nombre = "", edadString = "";
     Vector2i coordenadasMouse;
-    int cantidadJugadores = 0;
-    int color = 0;
-    int contadorJugadores = 0;
+    int color = 0, edad = 0, puntosVictoria = 0;
 
     while (playerData.isOpen()) {
+
         Event event;
         while (playerData.pollEvent(event)) {
 
@@ -274,6 +265,7 @@ void Player::playerRegister(RenderWindow*) {
                 startWindow.mainWindow();
             }
             if (event.type == Event::KeyPressed) {
+
                 if (event.key.code == Keyboard::Escape) {
                     playerData.close();
                     startWindow.mainWindow();
@@ -283,45 +275,47 @@ void Player::playerRegister(RenderWindow*) {
 
                 coordenadasMouse = mouse.getPosition(playerData);
 
-                if (rtsBtnAceptar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse)) && (contadorJugadores <= 4)) {
-
-                    if ((IDString == "") || (nombre == "") || (edadString == "")) {
-
-                        txtCamposRequeridos.setString("* Campos requeridos *");
+                if (rtsBtnGuardar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                    if (contadorJugadores >= 4) {
+                        txtID.setString("");
+                        txtCamposRequeridos.setString("**Jugadores al limite**");
+                    }
+                    else if ((nombre == "") || (edadString == "")) {
+                        txtCamposRequeridos.setString("**Campos requeridos**");
                     }
 
                     else {
-                        int edad = 0, id = 0, puntosVictoria = 0;
                         edad = stoi(edadString);
-                        id = stoi(IDString);
+                        id++;
                         contadorJugadores++;
 
-                        if (contadorJugadores == 1) {                           
+                        if (contadorJugadores == 1) {
                             Player* player1 = new Player(id, nombre, edad, puntosVictoria, 1);
                             playerList->inserNode(player1);
                             cout << "Jugador 1 guardado correctamente" << endl;
                             rtsColor.setFillColor(Color::Red);
                         }
-                        if (contadorJugadores == 2) {                         
+                        if (contadorJugadores == 2) {
                             Player* player2 = new Player(id, nombre, edad, puntosVictoria, 2);
                             playerList->inserNode(player2);
                             cout << "Jugador 2 guardado correctamente" << endl;
                             rtsColor.setFillColor(Color::Yellow);
                         }
-                        if (contadorJugadores == 3) {                         
+                        if (contadorJugadores == 3) {
                             Player* player3 = new Player(id, nombre, edad, puntosVictoria, 3);
                             playerList->inserNode(player3);
                             registroJugadores = true;
                             cout << "Jugador 3 guardado correctamente" << endl;
                             rtsColor.setFillColor(Color::Green);
                         }
-                        if (contadorJugadores == 4) {                         
+                        if (contadorJugadores == 4) {
                             Player* player4 = new Player(id, nombre, edad, puntosVictoria, 4);
                             playerList->inserNode(player4);
                             cout << "Jugador 4 guardado correctamente" << endl;
                         }
+
                         //Cuando guarda inicializa los valores 
-                        IDString = "";
+
                         nombre = "";
                         edadString = "";
                         puntosVictoria = 0, color = 0;
@@ -331,32 +325,19 @@ void Player::playerRegister(RenderWindow*) {
                         txtEdad.setString("");
                         txtCamposRequeridos.setString("");
 
-                        if (contadorJugadores >= 4) {
-
-                            tituloJugador.setString("Datos jugador");
-                            txtCamposRequeridos.setString("* Cantidad de jugadores al limite *");
-
-                        }
-                        else {
-                            tituloJugador.setString("Datos jugador " + to_string(contadorJugadores + 1));
-                        }
                     }
                 }
+                if (rtsBtnAtras.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                    playerData.close();
+                    startWindow.mainWindow();
+                }
+                if (rtsBtnJugar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                    playerData.close();
+                    startWindow.goWindow();
+                }
+
             }
             if (event.type == Event::TextEntered) {
-
-                if (rtsID.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
-                    if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtID.getString().getSize() <= 20))) {
-
-                        IDString += static_cast<char>(event.text.unicode);
-                        txtID.setString(IDString);
-                    }
-                    if (event.text.unicode == 8 && IDString.length() > 0) {
-
-                        IDString.pop_back();
-                        txtID.setString(IDString);
-                    }
-                }
 
                 if (rtsNombre.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
 
@@ -384,8 +365,20 @@ void Player::playerRegister(RenderWindow*) {
                 }
             }
         }
+
+
         playerData.clear();
+        playerData.draw(rtsBtnJugar);
         paintPlayerRegister(&playerData);
+        if ((contadorJugadores == 3) || (contadorJugadores == 4)) {
+            //Boton de atras    
+
+            rtsBtnJugar.setPosition(Vector2f(400, 580));
+            rtsBtnJugar.setSize(Vector2f(150, 80));
+            txtrBtnJugar.loadFromFile("resouceImages/btnJugar.png");
+            rtsBtnJugar.setTexture(&txtrBtnJugar);
+            playerData.draw(rtsBtnJugar);
+        }
         playerData.display();
     }
 }
