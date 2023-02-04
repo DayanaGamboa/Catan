@@ -113,4 +113,31 @@ public:
             cout << endl;
         }
     }
+    void reverseDijkstra(int src) {
+        vector<int> distance(vertices.size(), INT_MIN), pred(vertices.size(), -1);
+        vector<bool> visited(vertices.size(), false);
+        distance[src] = 0;
+        for (int count = 0; count < vertices.size() - 1; count++) {
+            int u = maxDistance(distance, visited);
+            visited[u] = true;
+            for (int v : matrizAdyacencia[u]) {
+                if (!visited[v] && distance[u] + 1 > distance[v]) {
+                    distance[v] = distance[u] + 1;
+                    pred[v] = u;
+                }
+            }
+        }
+    }
+    int maxDistance(vector<int>& distance, vector<bool>& visited) {
+        int max = INT_MIN, maxIndex=0;
+        for (int v = 0; v < vertices.size(); v++) {
+            if (!visited[v] && distance[v] > max) {
+                max = distance[v];
+                maxIndex = v;
+                cout << "La ruta mas larga: " + to_string(maxIndex)<<endl;
+            }
+        }
+        
+        return maxIndex;
+    }
 };
