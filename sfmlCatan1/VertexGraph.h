@@ -29,6 +29,7 @@ public:
 
     ~VertexGraph()
     {
+        //falta?
     }
     void setData(int data) {
         this->data = data;
