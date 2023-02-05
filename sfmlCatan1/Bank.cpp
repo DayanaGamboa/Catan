@@ -10,14 +10,22 @@ Bank::~Bank()
 {
 }
 
-int Bank::addUpCards()
+void Bank::addUpCards(string name, int quantity)
 {
-	return 0;
+	resourceCardsList->increaseQuantity(name, quantity);
+	resourceCardsList->dropDownList();
 }
 
-int Bank::substtractCards()
+void Bank::substtractCards(string name, int type, int quantity)
 {
-	return 0;
+	if (type == 1) {
+		resourceCardsList->decrementQuantity(name, quantity);
+		resourceCardsList->dropDownList();
+	}
+	if (type == 2) {
+		developmentCardList->decrementQuantity(name, quantity);
+		developmentCardList->dropDownList();
+	}	
 }
 
 int Bank::putCards(int, int)
