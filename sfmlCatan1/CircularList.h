@@ -24,6 +24,7 @@ public:
 	bool existenceOfCard(string);
 	void increaseQuantity(string, int);
 	void decrementQuantity(string, int);
+	void sortPlayerListDescending();
 	/*void PlayerInformation();*/
 
 };
@@ -160,6 +161,28 @@ void CircularList<T>::decrementQuantity(string name, int quantity) {
 			}
 		} while (node != nullptr);
 	}
+}
+
+template<class T>
+void CircularList<T>::sortPlayerListDescending() {
+	Node<T>* node = first;
+	Node<T>* next = nullptr;
+	T* tem = nullptr;
+
+	while (node->getNextNode() != first) {
+		next = node->getNextNode();
+		while (next != first) {
+			if (node->getData()->getAge() < next->getData()->getAge()){
+				tem = next->getData();
+				next->setData(node->getData());
+				node->setData(tem);
+			}
+			next = next->getNextNode();
+
+		}
+		node = node->getNextNode();
+		next = node->getNextNode();
+	} 
 }
 
 //template<class T>

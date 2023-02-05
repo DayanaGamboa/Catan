@@ -333,6 +333,7 @@ void Player::playerRegister(RenderWindow*) {
                 }
                 if (rtsBtnJugar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
                     playerData.close();
+                    playerList->sortPlayerListDescending();
                     startWindow.goWindow();
                 }
 
