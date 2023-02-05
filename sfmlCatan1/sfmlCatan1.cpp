@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "CircularList.h"
 #include "Graph.h"
+#include"Bank.h"
 
 
 
@@ -12,17 +13,17 @@ int main()
     /*StartWindow start(X, Y);
     start.mainWindow();*/
 
-    Graph graph(54);
+    //Graph graph(54);
 
-        // Imprime el grafo
-        cout << "Grafo:" << endl;
-    graph.imprimirGrafo();
+    //    // Imprime el grafo
+    //    cout << "Grafo:" << endl;
+    //graph.imprimirGrafo();
 
-     //Ejecuta el algoritmo de Dijkstra invertido
-    graph.reverseDijkstra(25);
-    // Verifica los resultados de la ejecución de Dijkstra
+    // //Ejecuta el algoritmo de Dijkstra invertido
+    //graph.reverseDijkstra(25);
+    //// Verifica los resultados de la ejecución de Dijkstra
 
-        return 0;
+    //    return 0;
 
     //CircularList<Player>* list = new CircularList<Player>;
     //Player* player1 = new Player(1, "maria", 20, 40, 1);
@@ -41,5 +42,8 @@ int main()
     //list->dropDownList();
     //player1->insertResourceCard("madera", 1, 2, 3, 4);
     //list->dropDownList();
+    Bank bank;
+    bank.loadLists();
+    bank.addUpCards("madera", 2);
     return 0;
 }

@@ -10,14 +10,15 @@ Bank::~Bank()
 {
 }
 
-int Bank::addUpCards()
+void Bank::addUpCards(string name, int quantity)
 {
-	return 0;
+	resourceCardsList->increaseQuantity(name, quantity);
+	resourceCardsList->dropDownList();
 }
 
-int Bank::substtractCards()
+void Bank::substtractCards()
 {
-	return 0;
+	
 }
 
 int Bank::putCards(int, int)

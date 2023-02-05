@@ -9,8 +9,8 @@ class Bank
 public:
 	Bank();
 	~Bank();
-	int addUpCards();
-	int substtractCards();
+	void addUpCards(string, int);
+	void substtractCards();
 	int putCards(int, int);
 	void loadLists();
 
