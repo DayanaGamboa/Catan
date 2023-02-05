@@ -324,59 +324,49 @@ void StartWindow::paintSpecialCards(RenderWindow* Go)
     }
 }
 
-void StartWindow::exitButton(RenderWindow* Go){
-   
-    RenderWindow windowExit(VideoMode(200, 130), "Salir?");
+void StartWindow::exitButton(RenderWindow* Go) {
+
+    RenderWindow windowExit(VideoMode(400, 300), "Salir");
     //set background
     RectangleShape backExit;
-    backExit.setSize(Vector2f(200, 130));
-    backExit.setFillColor(Color::White);
+    backExit.setSize(Vector2f(400, 300));
+    backExit.setFillColor(Color(220, 245, 255));
 
-    Text text("Seguro que deseas salir?",font,15);
+    Text text("¿Seguro que deseas salir?", font, 35);
     text.setFillColor(Color::Black);
-    text.setPosition(Vector2f(0,20));
-    
+    text.setPosition(Vector2f(40, 20));
 
-    //Yes
-    CircleShape rtsBtnYes;
-    rtsBtnYes.setPosition(Vector2f(30, 65));
-    rtsBtnYes.setRadius(20);
+    //Si
+    RectangleShape rtsBtnYes;
+    rtsBtnYes.setSize(Vector2f(150, 50));
+    rtsBtnYes.setPosition(Vector2f(50, 200));
     Texture textureRtsBtnYes;
-    textureRtsBtnYes.loadFromFile("resouceImages/btnYes.png");
+    textureRtsBtnYes.loadFromFile("resouceImages/btnSi.png");
     rtsBtnYes.setTexture(&textureRtsBtnYes);
     //No
-    CircleShape rtsBtnNo;
-    rtsBtnNo.setPosition(Vector2f(130, 65));
-    rtsBtnNo.setRadius(20);
+    RectangleShape rtsBtnNo;
+    rtsBtnNo.setSize(Vector2f(150, 50));
+    rtsBtnNo.setPosition(Vector2f(200, 200));
     Texture textureRtsBtnNo;
     textureRtsBtnNo.loadFromFile("resouceImages/btnNo.png");
     rtsBtnNo.setTexture(&textureRtsBtnNo);
 
-
-
     while (windowExit.isOpen()) {
 
         while (windowExit.pollEvent(event)) {
-            if (event.type == Event::Closed) {
-                windowExit.close();
-            }
-            if (event.type == Event::KeyPressed) {
-                if (event.key.code == Keyboard::Escape) {
-                    windowExit.close();
-                    
-                }
-            }
             if (event.type == Event::MouseButtonPressed) {
 
-                Vector2i v2i = mouse.getPosition(windowExit);
+                Vector2i coordinatesMouse = mouse.getPosition(windowExit);
 
-                if (rtsBtnYes.getGlobalBounds().contains(Vector2<float>(v2i))) {
+                if (rtsBtnYes.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     windowExit.close();
                     Go->close();
                     mainWindow();
-                } 
-                windowExit.close();
-               
+                }
+                if (rtsBtnNo.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    windowExit.close();
+                }
+
             }
         }
         windowExit.clear();
@@ -384,10 +374,9 @@ void StartWindow::exitButton(RenderWindow* Go){
         windowExit.draw(rtsBtnYes);
         windowExit.draw(rtsBtnNo);
         windowExit.draw(text);
-    
+
         windowExit.display();
     }
-
 
 }
 
