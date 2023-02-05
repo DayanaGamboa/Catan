@@ -9,25 +9,20 @@
 
 int main()
 {
-    StartWindow start(X, Y);
-    start.mainWindow();
+    /*StartWindow start(X, Y);
+    start.mainWindow();*/
 
-    //Graph graph(6, true);
+    Graph graph(54);
 
-    //graph.addEdge(0, 2, 9);
-    //graph.addEdge(0, 1, 7);
-    //graph.addEdge(0, 5, 14);
-    //graph.addEdge(1, 2, 10);
-    //graph.addEdge(1, 3, 15);
-    //graph.addEdge(2, 5, 2);
-    //graph.addEdge(2, 3, 11);
-    //graph.addEdge(4, 3, 6);
-    //graph.addEdge(5, 4, 9);
-    //graph.imprimir();
+        // Imprime el grafo
+        cout << "Grafo:" << endl;
+    graph.imprimirGrafo();
 
-    //graph.cargarMM(2);
-    //cout << "Dijkstra" << endl;
-    //graph.imprimirMM();
+     //Ejecuta el algoritmo de Dijkstra invertido
+    graph.reverseDijkstra(25);
+    // Verifica los resultados de la ejecución de Dijkstra
+
+        return 0;
 
     //CircularList<Player>* list = new CircularList<Player>;
     //Player* player1 = new Player(1, "maria", 20, 40, 1);
