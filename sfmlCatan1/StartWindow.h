@@ -38,7 +38,7 @@ public:
 	void saveGameButton(RenderWindow*);
 	void loadGameButton(RenderWindow*);
 	void paintLands(RenderWindow*);
-
+	void PlayerInTurn(RenderWindow*);
 
 	int StartWindowPressed() {
 		return StartWindowSelected;

@@ -10,58 +10,58 @@ C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(78,4
           [
               T=unsigned int
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(286,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(287,48): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(286,45): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(287,45): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(306,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(307,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(312,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(313,35): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(330,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(331,34): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(553,19): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(565,123): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(554,19): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(566,123): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(565,95): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(566,95): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(609,77): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(610,77): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(609,56): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(610,56): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(617,83): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(618,83): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(617,66): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
+C:\Users\Arian\OneDrive\Escritorio\Dayanna\Catan\sfmlCatan1\StartWindow.cpp(618,66): warning C4244: 'argumento': conversión de 'int' a 'T'; posible pérdida de datos
           with
           [
               T=float

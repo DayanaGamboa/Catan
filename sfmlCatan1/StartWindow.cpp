@@ -220,6 +220,7 @@ void StartWindow::goWindow() {
         paintOpponentDeck(&Go, 390);
         paintOpponentDeck(&Go, 500);
         paintSpecialCards(&Go);
+        PlayerInTurn(&Go);
 
         Go.display();
     }
@@ -633,5 +634,78 @@ void StartWindow::paintNumberPieces(RenderWindow* Go) {
     for (int i = 0; i < 19; i++) {
         Go->draw(fichasNumeradasRts[i]);
     }
+}
+void StartWindow::PlayerInTurn(RenderWindow* Go) {
+    RectangleShape rtsBackPlayer;
+    rtsBackPlayer.setPosition(950, 640);
+    rtsBackPlayer.setSize(Vector2f(350, 130));
+    rtsBackPlayer.setFillColor(Color(220, 245, 255));
+    Go->draw(rtsBackPlayer);
+
+    //Titulo  
+    Text description;
+    description.setString("Datos del jugador en turno");
+    description.setFont(font);
+    description.setFillColor(Color::Black);
+    description.setPosition(980, 635);
+    Go->draw(description);
+
+    //titulo ID  
+    Text ID;
+    ID.setFont(font);
+    ID.setString("ID:  ");
+    ID.setFillColor(Color::Black);
+    ID.setPosition(955, 670);
+    Go->draw(ID);
+
+    //titulo PV 
+    Text PV;
+    PV.setFont(font);
+    PV.setString("PV:  ");
+    PV.setFillColor(Color::Black);
+    PV.setPosition(1150, 670);
+    Go->draw(PV);
+
+    //titulo nombre   
+    Text name;
+    name.setFont(font);
+    name.setString("Nombre:  ");
+    name.setFillColor(Color::Black);
+    name.setPosition(955, 700);
+    Go->draw(name);
+
+    //titulo color  
+    Text color;
+    color.setFont(font);
+    color.setString("Color:  ");
+    color.setFillColor(Color::Black);
+    color.setPosition(955, 730);
+    Go->draw(color);
+
+    string playerID = "", playerName = "";
+    int playerColor = 0, puntosVictoria = 0;
+
+    ID.setString(ID.getString() + playerID);
+    name.setString(ID.getString() + playerID);
+    PV.setString(PV.getString() + to_string(puntosVictoria));
+
+    RectangleShape rtsPlayerColor;
+    rtsPlayerColor.setSize(Vector2f(50, 20));
+    rtsPlayerColor.setPosition(1050, 740);
+
+    /* rtsPlayerColor.setFillColor(Color::Blue);*/
+    if (playerColor == 1) {
+        rtsPlayerColor.setFillColor(Color::Blue);
+    }
+    if (playerColor == 2) {
+        rtsPlayerColor.setFillColor(Color::Red);
+    }
+    if (playerColor == 3) {
+        rtsPlayerColor.setFillColor(Color::Yellow);
+    }
+    if (playerColor == 4) {
+        rtsPlayerColor.setFillColor(Color::Green);
+    }
+    Go->draw(rtsPlayerColor);
 }
 
