@@ -163,32 +163,45 @@ void StartWindow::goWindow() {
 
         while (Go.pollEvent(event)) {
             if (event.type == Event::Closed) {
-                Go.close();
-                mainWindow();
+                exitButton(&Go);
             }
             if (event.type == Event::KeyPressed) {
                 if (event.key.code == Keyboard::Escape) {
 
-                    Go.close();
-                    mainWindow();
+                    exitButton(&Go);
                 }
             }
             if (event.type == Event::MouseButtonPressed) {
 
-                Vector2i v2i = mouse.getPosition(Go);
-                Vector2i mousePos = Mouse::getPosition(Go);
+                Vector2i coordinatesMouse = mouse.getPosition(Go);
 
-                cout << "Posición del cursor: (" << mousePos.x << ", " << mousePos.y << ")\n";
-
-
-                if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(v2i))) {
+                if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     dice1.pintaDados = false;
                     dice1.diceFinalAmount(&Go);
-
                 }
-                if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(v2i))) {
+                if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     exitButton(&Go);
-
+                }
+                if (rtsBtnSave.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Guardar" << endl;
+                }
+                if (rtsBtnStreet.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Carretera" << endl;
+                }
+                if (rtsBtnCity.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Ciudad" << endl;
+                }
+                if (rtsBtnTown.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Poblado" << endl;
+                }
+                if (rtsBtnDevelopment.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Desarrollo" << endl;
+                }
+                if (rtsBtnTrade.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Comerciar" << endl;
+                }
+                if (rtsBtnEndTurn.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Terminar turno" << endl;
                 }
             }
 
@@ -203,8 +216,9 @@ void StartWindow::goWindow() {
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
         paintOpponentDeck(&Go, 170);
-        paintOpponentDeck(&Go, 320);
-        paintOpponentDeck(&Go, 470);
+        paintOpponentDeck(&Go, 280);
+        paintOpponentDeck(&Go, 390);
+        paintOpponentDeck(&Go, 500);
         paintSpecialCards(&Go);
 
         Go.display();
@@ -424,23 +438,97 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     rtsBtnDice.setTexture(&textureRtsBtnDice);
     Go->draw(rtsBtnDice);
 
-    //btnSalir
+    //btnGuardar
+    rtsBtnSave.setPosition(Vector2f(1170, 10));
+    rtsBtnSave.setSize(Vector2f(150, 50));
+    Texture textureRtsBtnSave;
+    textureRtsBtnSave.loadFromFile("resouceImages/btnGuardar.png");
+    rtsBtnSave.setTexture(&textureRtsBtnSave);
+    Go->draw(rtsBtnSave);
 
-    rtsBtnExit.setPosition(Vector2f(1250, 50));
-    rtsBtnExit.setSize(Vector2f(80, 50));
+    //btnSalir
+    rtsBtnExit.setPosition(Vector2f(1170, 70));
+    rtsBtnExit.setSize(Vector2f(150, 50));
     Texture textureRtsBtnExit;
     textureRtsBtnExit.loadFromFile("resouceImages/btnSalir.png");
     rtsBtnExit.setTexture(&textureRtsBtnExit);
     Go->draw(rtsBtnExit);
 
-    //btnGuardar
+    //btnCarretera
+    rtsBtnStreet.setPosition(Vector2f(1170, 200));
+    rtsBtnStreet.setSize(Vector2f(150, 50));
+    Texture txtrBtnStreet;
+    txtrBtnStreet.loadFromFile("resouceImages/btnCarretera.png");
+    rtsBtnStreet.setTexture(&txtrBtnStreet);
+    Go->draw(rtsBtnStreet);
 
-    rtsBtnSave.setPosition(Vector2f(1250, 10));
-    rtsBtnSave.setSize(Vector2f(80, 50));
-    Texture textureRtsBtnSave;
-    textureRtsBtnSave.loadFromFile("resouceImages/btnGuardar.png");
-    rtsBtnSave.setTexture(&textureRtsBtnSave);
-    Go->draw(rtsBtnSave);
+    //btnCiudad
+    rtsBtnCity.setPosition(Vector2f(1170, 260));
+    rtsBtnCity.setSize(Vector2f(150, 50));
+    Texture txtrBtnCity;
+    txtrBtnCity.loadFromFile("resouceImages/btnCiudad.png");
+    rtsBtnCity.setTexture(&txtrBtnCity);
+    Go->draw(rtsBtnCity);
+
+    //btnPoblado
+    rtsBtnTown.setPosition(Vector2f(1170, 320));
+    rtsBtnTown.setSize(Vector2f(150, 50));
+    Texture txtrBtnTown;
+    txtrBtnTown.loadFromFile("resouceImages/btnPoblado.png");
+    rtsBtnTown.setTexture(&txtrBtnTown);
+    Go->draw(rtsBtnTown);
+
+    //btnDesarrollo
+    rtsBtnDevelopment.setPosition(Vector2f(1170, 380));
+    rtsBtnDevelopment.setSize(Vector2f(150, 50));
+    Texture txtrBtnDevelopment;
+    txtrBtnDevelopment.loadFromFile("resouceImages/btnDesarrollo.png");
+    rtsBtnDevelopment.setTexture(&txtrBtnDevelopment);
+    Go->draw(rtsBtnDevelopment);
+
+    //btnComerciar
+    rtsBtnTrade.setPosition(Vector2f(1170, 440));
+    rtsBtnTrade.setSize(Vector2f(150, 50));
+    Texture txtrBtnTrade;
+    txtrBtnTrade.loadFromFile("resouceImages/btnComerciar.png");
+    rtsBtnTrade.setTexture(&txtrBtnTrade);
+    Go->draw(rtsBtnTrade);
+
+    //btnTerminarTurno
+    rtsBtnEndTurn.setPosition(Vector2f(1170, 500));
+    rtsBtnEndTurn.setSize(Vector2f(150, 50));
+    Texture txtrBtnEndTurn;
+    txtrBtnEndTurn.loadFromFile("resouceImages/btnTerminarTurno.png");
+    rtsBtnEndTurn.setTexture(&txtrBtnEndTurn);
+    Go->draw(rtsBtnEndTurn);
+
+    //Jugador azul
+    rtsPlayerBlue.setPosition(Vector2f(180, 190));
+    rtsPlayerBlue.setSize(Vector2f(50, 50));
+    txtrPlayerBlue.loadFromFile("resouceImages/jugadorAzul.png");
+    rtsPlayerBlue.setTexture(&txtrPlayerBlue);
+    Go->draw(rtsPlayerBlue);
+
+    //Jugador rojo
+    rtsPlayerRed.setPosition(Vector2f(180, 300));
+    rtsPlayerRed.setSize(Vector2f(50, 50));
+    txtrPlayerRed.loadFromFile("resouceImages/jugadorRojo.png");
+    rtsPlayerRed.setTexture(&txtrPlayerRed);
+    Go->draw(rtsPlayerRed);
+
+    //Jugador amarillo
+    rtsPlayerYellow.setPosition(Vector2f(180, 410));
+    rtsPlayerYellow.setSize(Vector2f(50, 50));
+    txtrPlayerYellow.loadFromFile("resouceImages/jugadorAmarillo.png");
+    rtsPlayerYellow.setTexture(&txtrPlayerYellow);
+    Go->draw(rtsPlayerYellow);
+
+    //Jugador verde
+    rtsPlayerGreen.setPosition(Vector2f(180, 520));
+    rtsPlayerGreen.setSize(Vector2f(50, 50));
+    txtrPlayerGreen.loadFromFile("resouceImages/jugadorVerde.png");
+    rtsPlayerGreen.setTexture(&txtrPlayerGreen);
+    Go->draw(rtsPlayerGreen);
 }
 void StartWindow::paintLands(RenderWindow* Go) {
 

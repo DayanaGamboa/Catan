@@ -145,8 +145,8 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     titulo1.setCharacterSize(50);
 
     //Boton de aceptar    
-    rtsBtnGuardar.setPosition(Vector2f(250, 580));
-    rtsBtnGuardar.setSize(Vector2f(150, 80));
+    rtsBtnGuardar.setPosition(Vector2f(150, 580));
+    rtsBtnGuardar.setSize(Vector2f(150, 50));
     txtrBtnGuardar.loadFromFile("resouceImages/btnGuardar.png");
     rtsBtnGuardar.setTexture(&txtrBtnGuardar);
 
@@ -374,8 +374,8 @@ void Player::playerRegister(RenderWindow*) {
         if ((contadorJugadores == 3) || (contadorJugadores == 4)) {
             //Boton de atras    
 
-            rtsBtnJugar.setPosition(Vector2f(400, 580));
-            rtsBtnJugar.setSize(Vector2f(150, 80));
+            rtsBtnJugar.setPosition(Vector2f(300, 580));
+            rtsBtnJugar.setSize(Vector2f(150, 50));
             txtrBtnJugar.loadFromFile("resouceImages/btnJugar.png");
             rtsBtnJugar.setTexture(&txtrBtnJugar);
             playerData.draw(rtsBtnJugar);
