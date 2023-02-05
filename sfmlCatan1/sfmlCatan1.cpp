@@ -10,8 +10,8 @@
 
 int main()
 {
-    /*StartWindow start(X, Y);
-    start.mainWindow();*/
+    StartWindow start(X, Y);
+    start.mainWindow();
 
     //Graph graph(54);
 
@@ -32,7 +32,7 @@ int main()
     //Player *player4 = new Player(4, "Kira", 25, 70,4);*/
     //player1->insertResourceCard("madera", 1, 2, 7, 4);
     //player1->insertResourceCard("Piedra", 1, 2, 7, 4);
-    //player1->insertDevelopmentCard("Caballero", 2, 7, 1, 2);
+    //player1->insertDevelopmentCard("caballero", 2, 7, 1, 2);
     //player1->insertSpecialCard("Mayor Ruta", 2, 5, 7);
 
     //list->inserNode(player1);
@@ -42,8 +42,11 @@ int main()
     //list->dropDownList();
     //player1->insertResourceCard("madera", 1, 2, 3, 4);
     //list->dropDownList();
-    Bank bank;
-    bank.loadLists();
-    bank.addUpCards("madera", 2);
+    //Bank bank;
+    //bank.loadLists();
+    ////bank.addUpCards("madera", 2);
+    ////bank.substtractCards("caballero", 2, 2);
+    //bank.substtractCards("madera", 1, 2);
+    //bank.substtractCards("caballero", 2, 2);
     return 0;
 }
