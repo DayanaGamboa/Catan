@@ -10,8 +10,6 @@ public:
 	~DevelopmentCard();
 	int power();
 	string toString();
-	string getCardName();
-	void setCardName(string);
 	int getQuantity();
 	void setQuantity(int);
 	bool getFaceCrad();

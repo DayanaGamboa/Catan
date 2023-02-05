@@ -10,7 +10,7 @@ public:
 	Bank();
 	~Bank();
 	void addUpCards(string, int);
-	void substtractCards();
+	void substtractCards(string, int, int);
 	int putCards(int, int);
 	void loadLists();
 

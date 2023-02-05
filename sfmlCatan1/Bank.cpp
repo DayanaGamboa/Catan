@@ -16,9 +16,16 @@ void Bank::addUpCards(string name, int quantity)
 	resourceCardsList->dropDownList();
 }
 
-void Bank::substtractCards()
+void Bank::substtractCards(string name, int type, int quantity)
 {
-	
+	if (type == 1) {
+		resourceCardsList->decrementQuantity(name, quantity);
+		resourceCardsList->dropDownList();
+	}
+	if (type == 2) {
+		developmentCardList->decrementQuantity(name, quantity);
+		developmentCardList->dropDownList();
+	}	
 }
 
 int Bank::putCards(int, int)
