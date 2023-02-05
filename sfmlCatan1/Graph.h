@@ -1,7 +1,10 @@
 #pragma once
 #include <climits>
 #include <iostream>
+#include <vector>
+#include <list>
 #include "VertexGraph.h"
+#include <string>
 using namespace std;
 
 class Graph {
