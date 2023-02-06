@@ -5,12 +5,14 @@
 #include "Node.h"
 using namespace::std;
 
+class Player;
 template<class T>
 class CircularList {
 public:
 	Node<T>* first;
 	Node<T>* last;
-
+ 
+	
 	CircularList();
 	~CircularList();
 
@@ -25,6 +27,7 @@ public:
 	void increaseQuantity(string, int);
 	void decrementQuantity(string, int);
 	void sortPlayerListDescending();
+	/*void playerInformationInTurn();*/
 	/*void PlayerInformation();*/
 
 };
