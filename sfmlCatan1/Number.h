@@ -2,7 +2,6 @@
 class Number
 {
 public:
-
 	Number();
 
 	~Number(); //?

@@ -8,13 +8,8 @@ class Dice
 public:
 	Dice();
 	~Dice();
-
 	int diceFinalAmount(RenderWindow*);
-	bool pintaDados = false;
+	bool paintDices = false;
 	RectangleShape rtsDice1, rtsDice2;
 	Texture txtrRtsDice1, txtrRtsDice2;
-
-private:
-	int dice1;
-	int dice2;
 };

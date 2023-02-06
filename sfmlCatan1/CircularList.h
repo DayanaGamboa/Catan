@@ -30,7 +30,6 @@ public:
 	void sortPlayerListDescending();
 	/*void playerInformationInTurn();*/
 	/*void PlayerInformation();*/
-
 };
 template<class T>
 CircularList<T> ::CircularList() {
@@ -43,17 +42,16 @@ Node<T>* CircularList<T>::createNode(T* obj) {
 	node->setNextNoden(nullptr);
 
 	return node;
-
 }
 template<typename T>
 int CircularList<T>::getSize() {
 	int size = 0;
-	Node<T>* current = first;
+	Node<T>* node = first;
 	if (first) {
 		do {
 			size++;
-			current = current->getNextNode();
-		} while (current != first);
+			node = node->getNextNode();
+		} while (node != first);
 	}
 	return size;
 }
@@ -66,7 +64,6 @@ void CircularList<T>::inserNode(T* obj) {
 		first = node;
 		first->setNextNoden(first);
 		last = first;
-
 	}
 	else {
 		last->setNextNoden(node); 
@@ -109,8 +106,6 @@ void CircularList<T>::saveFile(string filename) {
 		
 		file.close();
 	}
-
-
 }
 template <class T>
 void CircularList<T>::loadFromFile(const string& filename) {
@@ -139,7 +134,6 @@ bool CircularList<T>::existenceOfCard(string name) {
 	else {
 		return false;
 	}
-
 }
 
 template<class T>

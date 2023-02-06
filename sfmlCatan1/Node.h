@@ -1,7 +1,6 @@
 #pragma once
 #include <sstream>
 
-
 template<class T>
 class Node{
 

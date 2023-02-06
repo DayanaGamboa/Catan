@@ -1,10 +1,4 @@
 #include "StartWindow.h"
-#include "windows.h"
-#include "Player.h"
-#include "Dice.h"
-#include "Thief.h"
-#include <string>
-#include "Graph.h"
 
 StartWindow::StartWindow(float widht, float height) {
     if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
@@ -104,25 +98,18 @@ void StartWindow::mainWindow()
 
                     int pos = startMenu.StartWindowPressed();
                     if (pos == 0) {
-
                         windowMENU.close();
                         playerRegister(&windowMENU);
-
                     }
                     if (pos == 1) {
 
 
-
                     }
                     if (pos == 2) {
-
                         windowMENU.close();
                         aboutWindow();
-
                     }
-
                     if (pos == 3) {
-
                         windowMENU.close();
                         break;
                     }
@@ -135,15 +122,10 @@ void StartWindow::mainWindow()
         windowMENU.display();
     }
 }
-
-
-
 void StartWindow::goWindow() {
     RenderWindow Go(VideoMode(X, Y), "Area de juego");    
     Graph graph;   
     Dice dice;
-    //Player player(0, "", 0, 0, 0);
-    cout << "hola" << endl;
     while (Go.isOpen()) {
 
         while (Go.pollEvent(event)) {
@@ -161,7 +143,7 @@ void StartWindow::goWindow() {
                 
 
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    dice.pintaDados = false;
+                    dice.paintDices = false;
                     dice.diceFinalAmount(&Go);
                 }
                 if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
@@ -192,15 +174,11 @@ void StartWindow::goWindow() {
                 for (int i = 0; i < graph.circlesV.size(); i++) {
 
                     if ((graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse))))
-                    {
-                       
+                    {                       
                         txtTown.loadFromFile("resouceImages/casa.png");
-                        
-                        
                         //vectorTown[i].setTexture(&txtTown);
                         vectorTown[i].setFillColor(Color::Black);
                         Go.draw(vectorTown[i]);
-                        //Go.display();
                         //player.buildTown(&Go, mouse.getPosition(Go).x, mouse.getPosition(Go).y);
 
                         cout << "pintado" << endl;
@@ -208,9 +186,7 @@ void StartWindow::goWindow() {
                     }
                 }
             }
-
-        }
-        
+        }        
         generateGameArea(&Go);
         paintLands(&Go);
         paintNumberPieces(&Go);
@@ -223,7 +199,6 @@ void StartWindow::goWindow() {
         paintOpponentDeck(&Go, playerList->getSize());;
         paintSpecialCards(&Go);
         PlayerInTurn(&Go);
-
         Go.display();
     }
 }
@@ -231,22 +206,21 @@ void StartWindow::goWindow() {
 void StartWindow::aboutWindow()
 {
     RectangleShape aBackground;
-    Event event;
     aBackground.setSize(Vector2f(X, Y));
     Texture aboutWindowImage;
     aboutWindowImage.loadFromFile("resouceImages/About.png");
     aBackground.setTexture(&aboutWindowImage);
 
     //Boton de atras    
-    RectangleShape rtsBtnAtras;
-    rtsBtnAtras.setPosition(Vector2f(100, 720));
-    rtsBtnAtras.setSize(Vector2f(150, 80));
+    
+    rtsBtnBack.setPosition(Vector2f(100, 720));
+    rtsBtnBack.setSize(Vector2f(150, 80));
     Texture txtrBtnAtras;
     txtrBtnAtras.loadFromFile("resouceImages/btnAtras.png");
-    rtsBtnAtras.setTexture(&txtrBtnAtras);
+    rtsBtnBack.setTexture(&txtrBtnAtras);
 
     RenderWindow About(VideoMode(X, Y), "About");
-    Vector2i coordenadasMouse;
+    Vector2i mouseCoordinates;
 
     while (About.isOpen()) {
 
@@ -262,9 +236,8 @@ void StartWindow::aboutWindow()
                 }
             }
             if (event.type == Event::MouseButtonPressed) {
-
-                coordenadasMouse = mouse.getPosition(About);
-                if (rtsBtnAtras.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                mouseCoordinates = mouse.getPosition(About);
+                if (rtsBtnBack.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {
                     About.close();
                     mainWindow();
                 }
@@ -272,25 +245,23 @@ void StartWindow::aboutWindow()
         }
         About.clear();
         About.draw(aBackground);
-        About.draw(rtsBtnAtras);
+        About.draw(rtsBtnBack);
         About.display();
     }
 }
 
 void StartWindow::paintResource(RenderWindow* Go, int x, int y)
 {
-
-    string ruta = "";
+    string path = "";
     RectangleShape rectangleShape;
     Texture texture1;
     for (int i = 0; i < 6; i++) {
-        ruta = "resouceImages/MP";
-
+        path = "resouceImages/MP";
         rectangleShape.setPosition(Vector2f(x, y));
         rectangleShape.setSize(Vector2f(70, 100));
-        ruta += to_string(i + 1);
-        ruta += ".png";
-        texture1.loadFromFile(ruta);
+        path += to_string(i + 1);
+        path += ".png";
+        texture1.loadFromFile(path);
         rectangleShape.setTexture(&texture1);
         Go->draw(rectangleShape);
         x += 90;
@@ -305,19 +276,19 @@ void StartWindow::paintOpponentDeck(RenderWindow* Go, int quantityDecks)
     string pathImagePlayer[4] = { "resouceImages/jugadorAzul.png", "resouceImages/jugadorRojo.png", "resouceImages/jugadorAmarillo.png", "resouceImages/jugadorVerde.png" };
     RectangleShape rtsResource, rtsDevelopment;
     Texture txtrResource, txtrDevelopment;
-    string routeResource = "resouceImages/MP6.png", routeDevelopment = "resouceImages/MP7.png";
+    string pathResource = "resouceImages/MP6.png", pathDevelopment = "resouceImages/MP7.png";
     int posXResource = 10, posXDevelopment = 90, posYCards = 170, posYImage = 190;
 
     for (int i = 0; i < quantityDecks; i++) {
         rtsResource.setPosition(Vector2f(posXResource, posYCards));
         rtsResource.setSize(Vector2f(70, 100));
-        txtrResource.loadFromFile(routeResource);
+        txtrResource.loadFromFile(pathResource);
         rtsResource.setTexture(&txtrResource);
         Go->draw(rtsResource);
 
         rtsDevelopment.setPosition(Vector2f(posXDevelopment, posYCards));
         rtsDevelopment.setSize(Vector2f(70, 100));
-        txtrDevelopment.loadFromFile(routeDevelopment);
+        txtrDevelopment.loadFromFile(pathDevelopment);
         rtsDevelopment.setTexture(&txtrDevelopment);
         Go->draw(rtsDevelopment);
        
@@ -337,16 +308,15 @@ void StartWindow::paintSpecialCards(RenderWindow* Go)
     RectangleShape rts;
     Texture txtr;
     int pos = 550;
-    string ruta = "";
+    string path = "";
 
     for (int i = 1; i < 4; i++) {
-        ruta = "resouceImages/E";
-
+        path = "resouceImages/E";
         rts.setPosition(Vector2f(pos, 640));
         rts.setSize(Vector2f(110, 130));
-        ruta += to_string(i);
-        ruta += ".png";
-        txtr.loadFromFile(ruta);
+        path += to_string(i);
+        path += ".png";
+        txtr.loadFromFile(path);
         rts.setTexture(&txtr);
         Go->draw(rts);
         pos += 130;
@@ -395,7 +365,6 @@ void StartWindow::exitButton(RenderWindow* Go) {
                 if (rtsBtnNo.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     windowExit.close();
                 }
-
             }
         }
         windowExit.clear();
@@ -406,7 +375,6 @@ void StartWindow::exitButton(RenderWindow* Go) {
 
         windowExit.display();
     }
-
 }
 
 void StartWindow::saveGameButton(RenderWindow*)
@@ -449,7 +417,7 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     rtsBtnDice.setPosition(Vector2f(700, 10));
     rtsBtnDice.setSize(Vector2f(180, 100));
     Texture textureRtsBtnDice;
-    textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");
+    textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");  
     rtsBtnDice.setTexture(&textureRtsBtnDice);
     Go->draw(rtsBtnDice);
 
@@ -521,105 +489,100 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
 void StartWindow::paintLands(RenderWindow* Go) {
 
     
-    string ruta = "";
+    string path = "";
     Thief thief;
     //Terrenos
-    if (terrenos == false) {
+    if (lands == false) {
 
         RectangleShape rts;
         Texture txtr;
         for (int i = 0; i < 19; i++) {
-            vectorTerrenosRTS[i] = rts;
-            vectorTerrenosTXT[i] = txtr;
+            vectorLandsRTS[i] = rts;
+            vectorLandsTXT[i] = txtr;
         }
 
 
-        int vectorTerrenos[6] = { 4, 4, 4, 3, 3, 1 };//para saber cuantos terrenos de cada uno
-        int numero = 0, contTerrenos = 0;
+        int vectorLands[6] = { 4, 4, 4, 3, 3, 1 };//para saber cuantos terrenos de cada uno
+        int number = 0, contLands = 0;
 
 
         srand(time(NULL));
-        while (contTerrenos <= 18) {
-            numero = 0 + rand() % 6;
-
-            if (vectorTerrenos[numero] != 0) {
-                if (numero == 5) {
-
+        while (contLands <= 18) {
+            number = 0 + rand() % 6;
+            if (vectorLands[number] != 0) {
+                if (number == 5) {
                    /* thief.positionX = TerrenosPosX[contTerrenos];
                     thief.positionY = TerrenosPosY[contTerrenos];*/
-                    posXTerrenoDesierto = TerrenosPosX[contTerrenos];
-                    posYTerrenoDesierto = TerrenosPosY[contTerrenos];
+                    posXDesertLand = LandsPosX[contLands];
+                    posYDesertLand = LandsPosY[contLands];
                 }
-                vectorTerrenosRTS[contTerrenos].setPosition(Vector2f(TerrenosPosX[contTerrenos], TerrenosPosY[contTerrenos]));
-                vectorTerrenosRTS[contTerrenos].setSize(Vector2f(68.5, 68.5));
+                vectorLandsRTS[contLands].setPosition(Vector2f(LandsPosX[contLands], LandsPosY[contLands]));
+                vectorLandsRTS[contLands].setSize(Vector2f(68.5, 68.5));
 
-                ruta = "resouceImages/T";
-                ruta += to_string(numero);
-                ruta += ".png";
-                vectorTerrenosTXT[contTerrenos].loadFromFile(ruta);
+                path = "resouceImages/T";
+                path += to_string(number);
+                path += ".png";
+                vectorLandsTXT[contLands].loadFromFile(path);
 
                 Texture* txt;
-                txt = &vectorTerrenosTXT[contTerrenos];
-                vectorTerrenosRTS[contTerrenos].setTexture(txt);
-
+                txt = &vectorLandsTXT[contLands];
+                vectorLandsRTS[contLands].setTexture(txt);
                 //Go->draw(vectorTerrenosRTS[contTerrenos]);
-
-                vectorTerrenos[numero] = vectorTerrenos[numero] - 1;
-                contTerrenos++;
+                vectorLands[number] = vectorLands[number] - 1;
+                contLands++;
             }
-
         }
-        terrenos = true;
+        lands = true;
     }
 
     for (int i = 0; i < 19; i++) {
-        Go->draw(vectorTerrenosRTS[i]);
+        Go->draw(vectorLandsRTS[i]);
     }
 
 }
 void StartWindow::paintNumberPieces(RenderWindow* Go) {
 
-    RectangleShape fichasNumeradasRts[19], fichaNumeradaRts;
-    Texture fichasNumeradasTxtr[19], fichaNumerasaTxtr;
+    RectangleShape numberPiecesRts[19], numberPieceRts;
+    Texture numberPiecesTxtr[19], numberPieceTxtr;
     Texture* txt;
-    string ruta = "";
+    string path = "";
 
     for (int i = 0; i < 19; i++) {
 
-        fichasNumeradasRts[i] = fichaNumeradaRts;
-        fichasNumeradasTxtr[i] = fichaNumerasaTxtr;
+        numberPiecesRts[i] = numberPieceRts;
+        numberPiecesTxtr[i] = numberPieceTxtr;
     }
 
-    int numeroFichaNumerada[18] = { 5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11 };
-    int posnumeroFichaNumerada = 0;
+    int numberedPieceNumber[18] = { 5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11 };
+    int posNumberedPieceNumber = 0;
     for (int i = 0; i < 19; i++) {
-        if ((TerrenosPosX[i] == posXTerrenoDesierto) && (TerrenosPosY[i] == posYTerrenoDesierto)) { //poner las del ladron
-            fichasNumeradasRts[i].setPosition(Vector2f(posXTerrenoDesierto, posYTerrenoDesierto));  //poner las del ladron
-            fichasNumeradasRts[i].setSize(Vector2f(70, 70));
-            fichasNumeradasTxtr[i].loadFromFile("resouceImages/Ladron.png");
-            txt = &fichasNumeradasTxtr[i];
-            fichasNumeradasRts[i].setTexture(txt);
-            Go->draw(fichasNumeradasRts[i]);
+        if ((LandsPosX[i] == posXDesertLand) && (LandsPosY[i] == posYDesertLand)) { //poner las del ladron
+            numberPiecesRts[i].setPosition(Vector2f(posXDesertLand, posYDesertLand));  //poner las del ladron
+            numberPiecesRts[i].setSize(Vector2f(70, 70));
+            numberPiecesTxtr[i].loadFromFile("resouceImages/Ladron.png");
+            txt = &numberPiecesTxtr[i];
+            numberPiecesRts[i].setTexture(txt);
+            Go->draw(numberPiecesRts[i]);
             i++;
         }
-        fichasNumeradasRts[i].setPosition(Vector2f(TerrenosPosX[i], TerrenosPosY[i]));
-        fichasNumeradasRts[i].setSize(Vector2f(70, 70));
+        numberPiecesRts[i].setPosition(Vector2f(LandsPosX[i], LandsPosY[i]));
+        numberPiecesRts[i].setSize(Vector2f(70, 70));
 
-        ruta = "resouceImages/N";
-        ruta += to_string(numeroFichaNumerada[posnumeroFichaNumerada]);
-        ruta += ".png";
+        path = "resouceImages/N";
+        path += to_string(numberedPieceNumber[posNumberedPieceNumber]);
+        path += ".png";
 
-        fichasNumeradasTxtr[i].loadFromFile(ruta);
+        numberPiecesTxtr[i].loadFromFile(path);
 
-        txt = &fichasNumeradasTxtr[i];
-        fichasNumeradasRts[i].setTexture(txt);
-        Go->draw(fichasNumeradasRts[i]);
-        posnumeroFichaNumerada++;
+        txt = &numberPiecesTxtr[i];
+        numberPiecesRts[i].setTexture(txt);
+        Go->draw(numberPiecesRts[i]);
+        posNumberedPieceNumber++;
 
     }
 
     for (int i = 0; i < 19; i++) {
-        Go->draw(fichasNumeradasRts[i]);
+        Go->draw(numberPiecesRts[i]);
     }
 }
 void StartWindow::PlayerInTurn(RenderWindow* Go) {
@@ -679,7 +642,7 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     RectangleShape rtsPlayerColor;
     rtsPlayerColor.setSize(Vector2f(50, 20));
     rtsPlayerColor.setPosition(1050, 740);
-    rtsPlayerColor.setFillColor(coloresJugador[playerColor]);
+    rtsPlayerColor.setFillColor(playersColor[playerColor]);
     Go->draw(rtsPlayerColor);
 }
 
@@ -801,13 +764,13 @@ void  StartWindow::playerRegister(RenderWindow*) {
 
     rtsColor.setFillColor(Color::Blue);
 
-    string nombre = "", edadString = "";
-    Vector2i coordenadasMouse;
+    string name = "", yearString = "";
+    Vector2i mouseCoordinates;
     
-    int color = 0, edad = 0, puntosVictoria = 0;
+    int color = 0, year = 0, victoryPoints = 0;
     txtName.setString("");
     txtAge.setString("");
-    rtsColor.setFillColor(coloresJugador[playerCounter]);
+    rtsColor.setFillColor(playersColor[playerCounter]);
     while (playerData.isOpen()) {
         
         Event event;
@@ -818,107 +781,98 @@ void  StartWindow::playerRegister(RenderWindow*) {
                 mainWindow();
             }
             if (event.type == Event::KeyPressed) {
-
                 if (event.key.code == Keyboard::Escape) {
                     playerData.close();
                     mainWindow();
                 }
             }
             if (event.type == Event::MouseButtonPressed) {
+                mouseCoordinates = mouse.getPosition(playerData);
 
-                coordenadasMouse = mouse.getPosition(playerData);
-
-                if (rtsBtnSave.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {                   
+                if (rtsBtnSave.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {                   
                     if (playerCounter >= 4) {
                         txtID.setString("");
                         txtRequiredFields.setString("**Jugadores al limite**");       
                     }
-                    else if ((nombre == "") || (edadString == "")) {
+                    else if ((name == "") || (yearString == "")) {
                         txtRequiredFields.setString("**Campos requeridos**");
                     }
                     else {
-                        edad = stoi(edadString);
+                        year = stoi(yearString);
                         id++;                     
                         if (playerCounter == 0) {
-                            Player* player1 = new Player(id, nombre, edad, puntosVictoria, 0);
+                            Player* player1 = new Player(id, name, year, victoryPoints, 0);
                             playerList->inserNode(player1);                                                                           
                         }
                         if (playerCounter == 1) {
-                            Player* player2 = new Player(id, nombre, edad, puntosVictoria, 1);
+                            Player* player2 = new Player(id, name, year, victoryPoints, 1);
                             playerList->inserNode(player2);                                                                           
                         }
                         if (playerCounter == 2) {
-                            Player* player3 = new Player(id, nombre, edad, puntosVictoria, 2);
+                            Player* player3 = new Player(id, name, year, victoryPoints, 2);
                             playerList->inserNode(player3);
-                            registroJugadores = true;                          
+                            playersRegister = true;
                         }
                         if (playerCounter == 3) {
-                            Player* player4 = new Player(id, nombre, edad, puntosVictoria, 3);
+                            Player* player4 = new Player(id, name, year, victoryPoints, 3);
                             playerList->inserNode(player4);                          
                         }
                        
                         //Cuando guarda inicializa los valores                        
-                        nombre = "";
-                        edadString = "";
-                        puntosVictoria = 0, color = 0;
+                        name = "";
+                        yearString = "";
+                        victoryPoints = 0, color = 0;
 
                         txtID.setString("");
                         txtName.setString("");
                         txtAge.setString("");
                         txtRequiredFields.setString("");                      
-                        rtsColor.setFillColor(coloresJugador[playerCounter +1]);
+                        rtsColor.setFillColor(playersColor[playerCounter +1]);
                         playerCounter++;
                     }
                 }
-                if (rtsBtnBack.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsBtnBack.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {
                     playerData.close();
                     mainWindow();
                 }
-                if (rtsBtnPlay.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsBtnPlay.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {
                     playerData.close();
                     playerList->sortPlayerListDescending();
 
                     actualNode = playerList->first;
                     goWindow();
                 }
-
             }
             if (event.type == Event::TextEntered) {
 
-                if (rtsName.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsName.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {
 
                     if ((event.text.unicode >= 32 && event.text.unicode <= 126) && ((txtName.getString().getSize() <= 20))) {
-                        nombre += static_cast<char>(event.text.unicode);
-                        txtName.setString(nombre);
+                        name += static_cast<char>(event.text.unicode);
+                        txtName.setString(name);
                     }
-                    if (event.text.unicode == 8 && nombre.length() > 0) {
-
-                        nombre.pop_back();
-                        txtName.setString(nombre);
+                    if (event.text.unicode == 8 && name.length() > 0) {
+                        name.pop_back();
+                        txtName.setString(name);
                     }
                 }
-                if (rtsAge.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsAge.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {
 
                     if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtAge.getString().getSize() <= 1))) {
-                        edadString += static_cast<char>(event.text.unicode);
-                        txtAge.setString(edadString);
+                        yearString += static_cast<char>(event.text.unicode);
+                        txtAge.setString(yearString);
                     }
-                    if (event.text.unicode == 8 && edadString.length() > 0) {
-
-                        edadString.pop_back();
-                        txtAge.setString(edadString);
+                    if (event.text.unicode == 8 && yearString.length() > 0) {
+                        yearString.pop_back();
+                        txtAge.setString(yearString);
                     }
                 }
             }
         }
-
-
         playerData.clear();
         playerData.draw(rtsBtnPlay);
         paintPlayerRegister(&playerData);
-        if ((playerCounter == 3) || (playerCounter == 4)) {
-            //Boton de atras    
-
+        if ((playerCounter == 3) || (playerCounter == 4)) {                
             rtsBtnPlay.setPosition(Vector2f(300, 580));
             rtsBtnPlay.setSize(Vector2f(150, 50));
             txtrBtnPlay.loadFromFile("resouceImages/btnJugar.png");
@@ -931,28 +885,19 @@ void  StartWindow::playerRegister(RenderWindow*) {
 
 void StartWindow::paintTowns(RenderWindow* Go)
 {
-
     Graph graph;
-    RectangleShape rts;
-    
-    //txtTown.create(00001,00001);
-
+    RectangleShape rts;    
     if (townStatus == false) {
         for (int i = 0; i < graph.vertices.size(); i++) {
             //vectorTown[i]
             vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorTown[i].setSize(Vector2f(20, 20));
             //vectorTown->setTexture(&txtTown);
-            vectorTown[i].setFillColor(Color::White);
-            
-        } 
-        
+            vectorTown[i].setFillColor(Color::White);            
+        }         
         townStatus = true;
     }
-
-    for (int i = 0; i < graph.vertices.size(); i++) {
-        
+    for (int i = 0; i < graph.vertices.size(); i++) {        
         Go->draw(vectorTown[i]);
     }
 }
-

@@ -5,7 +5,6 @@
 
 class SpecialCard : public Card
 {
-
 public:
 	SpecialCard(string, int, int, int);
 	~SpecialCard();

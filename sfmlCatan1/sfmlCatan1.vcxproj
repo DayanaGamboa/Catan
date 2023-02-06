@@ -146,7 +146,6 @@
     <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DevelopmentCard.cpp" />
     <ClCompile Include="Dice.cpp" />
-    <ClCompile Include="EdgeGraph.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Land.cpp" />
@@ -172,7 +171,6 @@
     <ClInclude Include="Deck.h" />
     <ClInclude Include="DevelopmentCard.h" />
     <ClInclude Include="Dice.h" />
-    <ClInclude Include="EdgeGraph.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Land.h" />

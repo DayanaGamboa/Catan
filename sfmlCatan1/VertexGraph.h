@@ -5,28 +5,16 @@ public:
     int data;
     int x;
     int y;
-    /*VertexGraph(int,int,int);
-    ~VertexGraph();
-    void setData(int);
-    int getData();
-    int getX();
-    int getY();
-    bool isConstruido();
-    void construir();*/
-
-
+    
     VertexGraph()
     {
         this->data = data;
         this->x = x;
         this->y = y;
-
     }
     int getData() {
         return this->data;
     }
-
-
     ~VertexGraph()
     {
         //falta?

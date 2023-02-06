@@ -34,7 +34,7 @@ int DevelopmentCard::power() {
 
 string DevelopmentCard::toString() {
 	stringstream s;
-	s << "Infromacion Carta: " << getCardName() << " " << getPowerCard() << " " << getPositionX()
+	s << "Informacion Carta: " << getCardName() << " " << getPowerCard() << " " << getPositionX()
 		<< " " << getPositionY() << " " << getQuantity() << endl;
 	return s.str();
 }

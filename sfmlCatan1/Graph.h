@@ -13,26 +13,26 @@ using namespace sf;
 class Graph {
 public:
     vector<CircleShape> circlesV;
-    vector<list<int>> matrizAdyacencia;
+    vector<list<int>> adjacencyMatrix;
     vector<VertexGraph> vertices;
     bool verticesConstructed[54];
     int numVertices = 54;
-    int posiciones[54][2] = { {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{ 550,302},{ 550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
+    int positions[54][2] = { {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{ 550,302},{ 550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
         {780,300},{737,275},{703,301},{660,282},{625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},{822,361},{780,333},
         {740, 359} ,{700,335},{663,361},{660,390},{703,413},{740, 390} };
 
 
 
     Graph() {
-        matrizAdyacencia.resize(numVertices);
+        adjacencyMatrix.resize(numVertices);
         vertices.resize(numVertices);
 
         includeEdge();
 
         for (int i = 0; i < numVertices; i++) {
             vertices[i].setData(i);
-            vertices[i].x = posiciones[i][0];
-            vertices[i].y = posiciones[i][1];
+            vertices[i].x = positions[i][0];
+            vertices[i].y = positions[i][1];
         }
     }
     void includeEdge() {
@@ -110,17 +110,17 @@ public:
         addEdge(53, 48);
     }
     void addEdge(int origen, int destino) {
-        matrizAdyacencia[origen].push_back(destino);
+        adjacencyMatrix[origen].push_back(destino);
     }
     void drawEdges(RenderWindow* Go) {
 
         for (int i = 0; i < vertices.size(); i++) {
-            for (auto j = matrizAdyacencia[i].begin(); j != matrizAdyacencia[i].end(); j++) {
+            for (auto j = adjacencyMatrix[i].begin(); j != adjacencyMatrix[i].end(); j++) {
                 int indiceAdyacente = *j;
-                VertexGraph v1 = vertices[i];
-                VertexGraph v2 = vertices[indiceAdyacente];
-                Vector2f p1(v1.x, v1.y);
-                Vector2f p2(v2.x, v2.y);
+                VertexGraph vertex1 = vertices[i];
+                VertexGraph vertex2 = vertices[indiceAdyacente];
+                Vector2f p1(vertex1.x, vertex1.y);
+                Vector2f p2(vertex2.x, vertex2.y);
                 VertexArray edge(Lines, 2);
                 edge[0].position = p1;
                 edge[1].position = p2;
@@ -131,46 +131,38 @@ public:
         }
     }
     void drawVertex(RenderWindow* Go) {
-
         CircleShape circle(10);
         circle.setFillColor(Color(135, 135, 135));
-
-
         list<Vector2f> positions = {
             {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{ 550,302},{ 550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
             {780,300},{737,275},{703,301},{660,282},{625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},{822,361},{780,333},
             {740, 359} ,{700,335},{663,361},{660,390},{703,413},{740, 390}
         };
-
-
         for (auto& pos : positions)
         {
             circle.setPosition(pos);
             circlesV.push_back(circle);
         }
-
         for (auto& circle : circlesV)
             Go->draw(circle);
-
     }
-    void imprimirGrafo() {
-
-        for (int i = 0; i < matrizAdyacencia.size(); i++) {
+    /*void imprimirGrafo() {
+        for (int i = 0; i < adjacencyMatrix.size(); i++) {
             cout << i << " : ";
-            for (auto j : matrizAdyacencia[i]) {
+            for (auto j : adjacencyMatrix[i]) {
                 cout << j << " ";
             }
             cout << endl;
         }
-    }
-    void reverseDijkstra(int src) {
+    }*/
+    void reverseDijkstra(int route) {
         vector<int> distance(vertices.size(), INT_MIN), pred(vertices.size(), -1);
         vector<bool> visited(vertices.size(), false);
-        distance[src] = 0;
+        distance[route] = 0;
         for (int count = 0; count < vertices.size() - 1; count++) {
             int u = maxDistance(distance, visited);
             visited[u] = true;
-            for (int v : matrizAdyacencia[u]) {
+            for (int v : adjacencyMatrix[u]) {
                 if (!visited[v] && distance[u] + 1 > distance[v]) {
                     distance[v] = distance[u] + 1;
                     pred[v] = u;
@@ -186,8 +178,7 @@ public:
                 maxIndex = v;
                 cout << "La ruta mas larga: " + to_string(maxIndex)<<endl;
             }
-        }
-        
+        }        
         return maxIndex;
     }
 };

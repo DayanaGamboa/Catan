@@ -5,10 +5,6 @@
 #include "CircularList.h"
 #include "Graph.h"
 #include"Bank.h"
-
-
-
-
 int main()
 {
     StartWindow start(X, Y);
