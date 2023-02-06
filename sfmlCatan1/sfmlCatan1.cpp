@@ -11,7 +11,7 @@
 int main()
 {
     StartWindow start(X, Y);
-    start.mainWindow();
+    start.goWindow();
 
     //Graph graph(54);
 
