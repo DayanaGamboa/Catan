@@ -18,6 +18,7 @@ public:
 
 	Node<T>* createNode(T*);
 	void inserNode(T*);
+	int getSize();
 	void findNode(string);
 	void dropDownList();
 	/*void showCards();*/
@@ -44,6 +45,19 @@ Node<T>* CircularList<T>::createNode(T* obj) {
 	return node;
 
 }
+template<typename T>
+int CircularList<T>::getSize() {
+	int size = 0;
+	Node<T>* current = first;
+	if (first) {
+		do {
+			size++;
+			current = current->getNextNode();
+		} while (current != first);
+	}
+	return size;
+}
+
 template<class T>
 void CircularList<T>::inserNode(T* obj) {
 	Node<T>* node = createNode(obj);

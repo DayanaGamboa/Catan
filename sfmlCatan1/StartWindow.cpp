@@ -139,12 +139,9 @@ void StartWindow::mainWindow()
 
 
 void StartWindow::goWindow() {
-    RenderWindow Go(VideoMode(X, Y), "Area de juego");
-    
-    Graph graph;
-
-    
-    Dice dice1;
+    RenderWindow Go(VideoMode(X, Y), "Area de juego");    
+    Graph graph;   
+    Dice dice;
     //Player player(0, "", 0, 0, 0);
     cout << "hola" << endl;
     while (Go.isOpen()) {
@@ -164,8 +161,8 @@ void StartWindow::goWindow() {
                 
 
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    dice1.pintaDados = false;
-                    dice1.diceFinalAmount(&Go);
+                    dice.pintaDados = false;
+                    dice.diceFinalAmount(&Go);
                 }
                 if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     exitButton(&Go);
@@ -213,20 +210,17 @@ void StartWindow::goWindow() {
             }
 
         }
-
+        
         generateGameArea(&Go);
         paintLands(&Go);
         paintNumberPieces(&Go);
-        dice1.diceFinalAmount(&Go); 
+        dice.diceFinalAmount(&Go); 
         graph.drawVertex(&Go);
         graph.drawEdges(&Go);
         paintTowns(&Go);
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
-        paintOpponentDeck(&Go, 170);
-        paintOpponentDeck(&Go, 280);
-        paintOpponentDeck(&Go, 390);
-        paintOpponentDeck(&Go, 500);
+        paintOpponentDeck(&Go, playerList->getSize());;
         paintSpecialCards(&Go);
         PlayerInTurn(&Go);
 
@@ -305,25 +299,37 @@ void StartWindow::paintResource(RenderWindow* Go, int x, int y)
 }
 
 
-void StartWindow::paintOpponentDeck(RenderWindow* Go, int posY)
+void StartWindow::paintOpponentDeck(RenderWindow* Go, int quantityDecks)
 {
+    
+    string pathImagePlayer[4] = { "resouceImages/jugadorAzul.png", "resouceImages/jugadorRojo.png", "resouceImages/jugadorAmarillo.png", "resouceImages/jugadorVerde.png" };
+    RectangleShape rtsResource, rtsDevelopment;
+    Texture txtrResource, txtrDevelopment;
+    string routeResource = "resouceImages/MP6.png", routeDevelopment = "resouceImages/MP7.png";
+    int posXResource = 10, posXDevelopment = 90, posYCards = 170, posYImage = 190;
 
-    RectangleShape rts1, rts2;
-    Texture txtr1, txtr2;
-    string ruta1 = "resouceImages/MP6.png", ruta2 = "resouceImages/MP7.png";
+    for (int i = 0; i < quantityDecks; i++) {
+        rtsResource.setPosition(Vector2f(posXResource, posYCards));
+        rtsResource.setSize(Vector2f(70, 100));
+        txtrResource.loadFromFile(routeResource);
+        rtsResource.setTexture(&txtrResource);
+        Go->draw(rtsResource);
 
-    rts1.setPosition(Vector2f(10, posY));
-    rts1.setSize(Vector2f(70, 100));
-    txtr1.loadFromFile(ruta1);
-    rts1.setTexture(&txtr1);
-    Go->draw(rts1);
-
-    rts2.setPosition(Vector2f(90, posY));
-    rts2.setSize(Vector2f(70, 100));
-    txtr2.loadFromFile(ruta2);
-    rts2.setTexture(&txtr2);
-    Go->draw(rts2);
-
+        rtsDevelopment.setPosition(Vector2f(posXDevelopment, posYCards));
+        rtsDevelopment.setSize(Vector2f(70, 100));
+        txtrDevelopment.loadFromFile(routeDevelopment);
+        rtsDevelopment.setTexture(&txtrDevelopment);
+        Go->draw(rtsDevelopment);
+       
+        //imagen jugador
+        rtsImgPlayer.setPosition(Vector2f(180, posYImage));
+        rtsImgPlayer.setSize(Vector2f(60, 60));
+        txtrImgPlayer.loadFromFile(pathImagePlayer[i]);
+        rtsImgPlayer.setTexture(&txtrImgPlayer);
+        Go->draw(rtsImgPlayer);
+        posYCards += 110;
+        posYImage += 110;
+    }
 }
 
 void StartWindow::paintSpecialCards(RenderWindow* Go)
@@ -510,34 +516,7 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     txtrBtnEndTurn.loadFromFile("resouceImages/btnTerminarTurno.png");
     rtsBtnEndTurn.setTexture(&txtrBtnEndTurn);
     Go->draw(rtsBtnEndTurn);
-
-    //Jugador azul
-    rtsPlayerBlue.setPosition(Vector2f(180, 190));
-    rtsPlayerBlue.setSize(Vector2f(50, 50));
-    txtrPlayerBlue.loadFromFile("resouceImages/jugadorAzul.png");
-    rtsPlayerBlue.setTexture(&txtrPlayerBlue);
-    Go->draw(rtsPlayerBlue);
-
-    //Jugador rojo
-    rtsPlayerRed.setPosition(Vector2f(180, 300));
-    rtsPlayerRed.setSize(Vector2f(50, 50));
-    txtrPlayerRed.loadFromFile("resouceImages/jugadorRojo.png");
-    rtsPlayerRed.setTexture(&txtrPlayerRed);
-    Go->draw(rtsPlayerRed);
-
-    //Jugador amarillo
-    rtsPlayerYellow.setPosition(Vector2f(180, 410));
-    rtsPlayerYellow.setSize(Vector2f(50, 50));
-    txtrPlayerYellow.loadFromFile("resouceImages/jugadorAmarillo.png");
-    rtsPlayerYellow.setTexture(&txtrPlayerYellow);
-    Go->draw(rtsPlayerYellow);
-
-    //Jugador verde
-    rtsPlayerGreen.setPosition(Vector2f(180, 520));
-    rtsPlayerGreen.setSize(Vector2f(50, 50));
-    txtrPlayerGreen.loadFromFile("resouceImages/jugadorVerde.png");
-    rtsPlayerGreen.setTexture(&txtrPlayerGreen);
-    Go->draw(rtsPlayerGreen);
+    
 }
 void StartWindow::paintLands(RenderWindow* Go) {
 
@@ -697,58 +676,41 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     color.setPosition(955, 730);
     Go->draw(color);
 
-
-
-
-
     RectangleShape rtsPlayerColor;
     rtsPlayerColor.setSize(Vector2f(50, 20));
     rtsPlayerColor.setPosition(1050, 740);
-
-    /* rtsPlayerColor.setFillColor(Color::Blue);*/
-    if (playerColor == 1) {
-        rtsPlayerColor.setFillColor(Color::Blue);
-    }
-    if (playerColor == 2) {
-        rtsPlayerColor.setFillColor(Color::Red);
-    }
-    if (playerColor == 3) {
-        rtsPlayerColor.setFillColor(Color::Yellow);
-    }
-    if (playerColor == 4) {
-        rtsPlayerColor.setFillColor(Color::Green);
-    }
+    rtsPlayerColor.setFillColor(coloresJugador[playerColor]);
     Go->draw(rtsPlayerColor);
 }
 
 void  StartWindow::paintPlayerRegister(RenderWindow* playerData) {
     //MENU
-    fondo.setSize(Vector2f(700, 700));
-    fondo.setFillColor(Color(220, 245, 255));
+    background.setSize(Vector2f(700, 700));
+    background.setFillColor(Color(220, 245, 255));
 
-    titulo1.setFont(font);
-    titulo1.setString("Registro de jugadores: (3-4)");
-    titulo1.setFillColor(Color::Black);
-    titulo1.setPosition(200, 10);
-    titulo1.setCharacterSize(50);
+    txtTitle.setFont(font);
+    txtTitle.setString("Registro de jugadores: (3-4)");
+    txtTitle.setFillColor(Color::Black);
+    txtTitle.setPosition(200, 10);
+    txtTitle.setCharacterSize(50);
 
     //Boton de aceptar    
-    rtsBtnGuardar.setPosition(Vector2f(150, 580));
-    rtsBtnGuardar.setSize(Vector2f(150, 50));
-    txtrBtnGuardar.loadFromFile("resouceImages/btnGuardar.png");
-    rtsBtnGuardar.setTexture(&txtrBtnGuardar);
+    rtsBtnSave.setPosition(Vector2f(150, 580));
+    rtsBtnSave.setSize(Vector2f(150, 50));
+    txtrBtnSave.loadFromFile("resouceImages/btnGuardar.png");
+    rtsBtnSave.setTexture(&txtrBtnSave);
 
     //JUGADOR 1    
-    tituloJugador.setString("Datos del jugador");
-    tituloJugador.setFont(font);
-    tituloJugador.setFillColor(Color::Black);
-    tituloJugador.setPosition(280, 160);
+    titlePlayer.setString("Datos del jugador");
+    titlePlayer.setFont(font);
+    titlePlayer.setFillColor(Color::Black);
+    titlePlayer.setPosition(280, 160);
 
     //titulo ID    
-    tituloID.setFont(font);
-    tituloID.setString("ID ");
-    tituloID.setFillColor(Color::Black);
-    tituloID.setPosition(180, 230 + 10);
+    txtTitleID.setFont(font);
+    txtTitleID.setString("ID ");
+    txtTitleID.setFillColor(Color::Black);
+    txtTitleID.setPosition(180, 230 + 10);
 
     // Caja de texto ID   
     rtsID.setSize(Vector2f(200, 50));
@@ -757,80 +719,80 @@ void  StartWindow::paintPlayerRegister(RenderWindow* playerData) {
 
     //Texto para la caja ID    
     txtID.setFont(font);
-    txtID.setString(to_string(contadorJugadores + 1));
+    txtID.setString(to_string(playerCounter + 1));
     txtID.setFillColor(Color::Black);
     txtID.setPosition(270, 230);
 
     //titulo nombre   
-    tituloNombre.setFont(font);
-    tituloNombre.setString("Nombre ");
-    tituloNombre.setFillColor(Color::Black);
-    tituloNombre.setPosition(180, 310);
+    txtTitleName.setFont(font);
+    txtTitleName.setString("Nombre ");
+    txtTitleName.setFillColor(Color::Black);
+    txtTitleName.setPosition(180, 310);
 
     //Caja de texto nombre  
-    rtsNombre.setSize(Vector2f(200, 50));
-    rtsNombre.setFillColor(Color(187, 208, 216));
-    rtsNombre.setPosition(270, 300);
+    rtsName.setSize(Vector2f(200, 50));
+    rtsName.setFillColor(Color(187, 208, 216));
+    rtsName.setPosition(270, 300);
 
     //Texto para la caja nombre    
-    txtNombre.setFont(font);
-    txtNombre.setFillColor(Color::Black);
-    txtNombre.setPosition(270, 300);
+    txtName.setFont(font);
+    txtName.setFillColor(Color::Black);
+    txtName.setPosition(270, 300);
 
     //titulo edad    
-    tituloEdad.setFont(font);
-    tituloEdad.setString("Edad ");
-    tituloEdad.setFillColor(Color::Black);
-    tituloEdad.setPosition(180, 380);
+    txtTitleAge.setFont(font);
+    txtTitleAge.setString("Edad ");
+    txtTitleAge.setFillColor(Color::Black);
+    txtTitleAge.setPosition(180, 380);
 
     //Caja de texto Edad    
-    rtsEdad.setSize(Vector2f(200, 50));
-    rtsEdad.setFillColor(Color(187, 208, 216));
-    rtsEdad.setPosition(270, 370);
+    rtsAge.setSize(Vector2f(200, 50));
+    rtsAge.setFillColor(Color(187, 208, 216));
+    rtsAge.setPosition(270, 370);
 
     //Texto para la caja Edad  
-    txtEdad.setFont(font);
-    txtEdad.setFillColor(Color::Black);
-    txtEdad.setPosition(270, 370);
+    txtAge.setFont(font);
+    txtAge.setFillColor(Color::Black);
+    txtAge.setPosition(270, 370);
 
     //titulo color  
-    tituloColor.setFont(font);
-    tituloColor.setString("Color");
-    tituloColor.setFillColor(Color::Black);
-    tituloColor.setPosition(180, 460);
+    titleColor.setFont(font);
+    titleColor.setString("Color");
+    titleColor.setFillColor(Color::Black);
+    titleColor.setPosition(180, 460);
 
     //Caja de texto Color  
     rtsColor.setSize(Vector2f(200, 50));
     rtsColor.setPosition(270, 450);
 
     //Text para campos requeridos   
-    txtCamposRequeridos.setFont(font);
-    txtCamposRequeridos.setFillColor(Color::Black);
-    txtCamposRequeridos.setPosition(250, 500);
+    txtRequiredFields.setFont(font);
+    txtRequiredFields.setFillColor(Color::Black);
+    txtRequiredFields.setPosition(250, 500);
 
 
-    playerData->draw(fondo);
-    playerData->draw(titulo1);
-    playerData->draw(rtsBtnGuardar);
+    playerData->draw(background);
+    playerData->draw(txtTitle);
+    playerData->draw(rtsBtnSave);
 
-    playerData->draw(tituloJugador);
+    playerData->draw(titlePlayer);
 
-    playerData->draw(tituloID);
+    playerData->draw(txtTitleID);
     playerData->draw(rtsID);
     playerData->draw(txtID);
 
-    playerData->draw(tituloNombre);
-    playerData->draw(rtsNombre);
-    playerData->draw(txtNombre);
+    playerData->draw(txtTitleName);
+    playerData->draw(rtsName);
+    playerData->draw(txtName);
 
-    playerData->draw(tituloEdad);
-    playerData->draw(rtsEdad);
-    playerData->draw(txtEdad);
+    playerData->draw(txtTitleAge);
+    playerData->draw(rtsAge);
+    playerData->draw(txtAge);
 
-    playerData->draw(tituloColor);
+    playerData->draw(titleColor);
     playerData->draw(rtsColor);
 
-    playerData->draw(txtCamposRequeridos);
+    playerData->draw(txtRequiredFields);
 }
 void  StartWindow::playerRegister(RenderWindow*) {
 
@@ -841,10 +803,13 @@ void  StartWindow::playerRegister(RenderWindow*) {
 
     string nombre = "", edadString = "";
     Vector2i coordenadasMouse;
+    
     int color = 0, edad = 0, puntosVictoria = 0;
-
+    txtName.setString("");
+    txtAge.setString("");
+    rtsColor.setFillColor(coloresJugador[playerCounter]);
     while (playerData.isOpen()) {
-
+        
         Event event;
         while (playerData.pollEvent(event)) {
 
@@ -863,63 +828,53 @@ void  StartWindow::playerRegister(RenderWindow*) {
 
                 coordenadasMouse = mouse.getPosition(playerData);
 
-                if (rtsBtnGuardar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
-                    if (contadorJugadores >= 4) {
+                if (rtsBtnSave.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {                   
+                    if (playerCounter >= 4) {
                         txtID.setString("");
-                        txtCamposRequeridos.setString("**Jugadores al limite**");
+                        txtRequiredFields.setString("**Jugadores al limite**");       
                     }
                     else if ((nombre == "") || (edadString == "")) {
-                        txtCamposRequeridos.setString("**Campos requeridos**");
+                        txtRequiredFields.setString("**Campos requeridos**");
                     }
-
                     else {
                         edad = stoi(edadString);
-                        id++;
-                        contadorJugadores++;
-
-                        if (contadorJugadores == 1) {
-                            Player* player1 = new Player(id, nombre, edad, puntosVictoria, 1);
-                            playerList->inserNode(player1);
-                            cout << "Jugador 1 guardado correctamente" << endl;
-                            rtsColor.setFillColor(Color::Red);
+                        id++;                     
+                        if (playerCounter == 0) {
+                            Player* player1 = new Player(id, nombre, edad, puntosVictoria, 0);
+                            playerList->inserNode(player1);                                                                           
                         }
-                        if (contadorJugadores == 2) {
-                            Player* player2 = new Player(id, nombre, edad, puntosVictoria, 2);
-                            playerList->inserNode(player2);
-                            cout << "Jugador 2 guardado correctamente" << endl;
-                            rtsColor.setFillColor(Color::Yellow);
+                        if (playerCounter == 1) {
+                            Player* player2 = new Player(id, nombre, edad, puntosVictoria, 1);
+                            playerList->inserNode(player2);                                                                           
                         }
-                        if (contadorJugadores == 3) {
-                            Player* player3 = new Player(id, nombre, edad, puntosVictoria, 3);
+                        if (playerCounter == 2) {
+                            Player* player3 = new Player(id, nombre, edad, puntosVictoria, 2);
                             playerList->inserNode(player3);
-                            registroJugadores = true;
-                            cout << "Jugador 3 guardado correctamente" << endl;
-                            rtsColor.setFillColor(Color::Green);
+                            registroJugadores = true;                          
                         }
-                        if (contadorJugadores == 4) {
-                            Player* player4 = new Player(id, nombre, edad, puntosVictoria, 4);
-                            playerList->inserNode(player4);
-                            cout << "Jugador 4 guardado correctamente" << endl;
+                        if (playerCounter == 3) {
+                            Player* player4 = new Player(id, nombre, edad, puntosVictoria, 3);
+                            playerList->inserNode(player4);                          
                         }
-
-                        //Cuando guarda inicializa los valores 
-
+                       
+                        //Cuando guarda inicializa los valores                        
                         nombre = "";
                         edadString = "";
                         puntosVictoria = 0, color = 0;
 
                         txtID.setString("");
-                        txtNombre.setString("");
-                        txtEdad.setString("");
-                        txtCamposRequeridos.setString("");
-
+                        txtName.setString("");
+                        txtAge.setString("");
+                        txtRequiredFields.setString("");                      
+                        rtsColor.setFillColor(coloresJugador[playerCounter +1]);
+                        playerCounter++;
                     }
                 }
-                if (rtsBtnAtras.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsBtnBack.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
                     playerData.close();
                     mainWindow();
                 }
-                if (rtsBtnJugar.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsBtnPlay.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
                     playerData.close();
                     playerList->sortPlayerListDescending();
 
@@ -930,28 +885,28 @@ void  StartWindow::playerRegister(RenderWindow*) {
             }
             if (event.type == Event::TextEntered) {
 
-                if (rtsNombre.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsName.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
 
-                    if ((event.text.unicode >= 32 && event.text.unicode <= 126) && ((txtNombre.getString().getSize() <= 20))) {
+                    if ((event.text.unicode >= 32 && event.text.unicode <= 126) && ((txtName.getString().getSize() <= 20))) {
                         nombre += static_cast<char>(event.text.unicode);
-                        txtNombre.setString(nombre);
+                        txtName.setString(nombre);
                     }
                     if (event.text.unicode == 8 && nombre.length() > 0) {
 
                         nombre.pop_back();
-                        txtNombre.setString(nombre);
+                        txtName.setString(nombre);
                     }
                 }
-                if (rtsEdad.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
+                if (rtsAge.getGlobalBounds().contains(Vector2<float>(coordenadasMouse))) {
 
-                    if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtEdad.getString().getSize() <= 1))) {
+                    if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtAge.getString().getSize() <= 1))) {
                         edadString += static_cast<char>(event.text.unicode);
-                        txtEdad.setString(edadString);
+                        txtAge.setString(edadString);
                     }
                     if (event.text.unicode == 8 && edadString.length() > 0) {
 
                         edadString.pop_back();
-                        txtEdad.setString(edadString);
+                        txtAge.setString(edadString);
                     }
                 }
             }
@@ -959,16 +914,16 @@ void  StartWindow::playerRegister(RenderWindow*) {
 
 
         playerData.clear();
-        playerData.draw(rtsBtnJugar);
+        playerData.draw(rtsBtnPlay);
         paintPlayerRegister(&playerData);
-        if ((contadorJugadores == 3) || (contadorJugadores == 4)) {
+        if ((playerCounter == 3) || (playerCounter == 4)) {
             //Boton de atras    
 
-            rtsBtnJugar.setPosition(Vector2f(300, 580));
-            rtsBtnJugar.setSize(Vector2f(150, 50));
-            txtrBtnJugar.loadFromFile("resouceImages/btnJugar.png");
-            rtsBtnJugar.setTexture(&txtrBtnJugar);
-            playerData.draw(rtsBtnJugar);
+            rtsBtnPlay.setPosition(Vector2f(300, 580));
+            rtsBtnPlay.setSize(Vector2f(150, 50));
+            txtrBtnPlay.loadFromFile("resouceImages/btnJugar.png");
+            rtsBtnPlay.setTexture(&txtrBtnPlay);
+            playerData.draw(rtsBtnPlay);
         }
         playerData.display();
     }

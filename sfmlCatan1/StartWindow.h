@@ -45,17 +45,17 @@ public:
 	void PlayerInTurn(RenderWindow*);
 	void paintPlayerRegister(RenderWindow* playerData);
 	void playerRegister(RenderWindow*);
-    RectangleShape rtsBtnGuardar, rtsBtnJugar, rtsBtnAtras, rtsID, rtsNombre, rtsEdad, rtsColor, fondo;
-    Texture txtrBtnGuardar, txtrBtnAtras, txtrBtnJugar;
-    Text tituloJugador, titulo1, tituloID, txtID, tituloNombre, txtNombre;
-    Text tituloEdad, txtEdad, tituloColor, txtCamposRequeridos;
+    RectangleShape rtsBtnSave, rtsBtnPlay, rtsBtnBack, rtsBtnDice, rtsBtnExit, rtsID, rtsName, rtsAge, rtsColor, background;
+    Texture txtrBtnSave, txtrBtnBack, txtrBtnPlay;
+    Text titlePlayer, txtTitle, txtTitleID, txtID, txtTitleName, txtName;
+    Text txtTitleAge, txtAge, titleColor, txtRequiredFields;
 	 
 	CircularList<Player> * playerList = new  CircularList<Player>;
 
 
 
     bool registroJugadores = false;
-    int contadorJugadores = 0;
+    int playerCounter = 0;
     int id = 0;
 
  
@@ -71,12 +71,11 @@ public:
 	RectangleShape vectorTerrenosRTS[19];
 	Texture vectorTerrenosTXT[19];
 	
-	RectangleShape rtsBtnDice, rtsBtnExit, rtsBtnSave;
 	RectangleShape rtsBtnStreet, rtsBtnTown, rtsBtnCity, rtsBtnEndTurn, rtsBtnDevelopment, rtsBtnTrade;
 	int posXTerrenoDesierto = 0;
 	int posYTerrenoDesierto = 0;
-	RectangleShape rtsPlayerBlue, rtsPlayerRed, rtsPlayerYellow, rtsPlayerGreen;
-	Texture txtrPlayerBlue, txtrPlayerRed, txtrPlayerYellow, txtrPlayerGreen;
+	RectangleShape rtsImgPlayer, rtsPlayerRed, rtsPlayerYellow, rtsPlayerGreen;
+	Texture txtrImgPlayer, txtrPlayerRed, txtrPlayerYellow, txtrPlayerGreen;
 
 	bool terrenos = false;
 	bool fichasNumeradas = false;
@@ -88,6 +87,7 @@ public:
 	
 	int TerrenosPosX[19] = { 753,672,589,552,512,550,589,670,751,791,831,791,711,632,592,632,711,750,672 };
 	int TerrenosPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
+	Color coloresJugador[5] = { Color::Blue, Color::Red, Color::Yellow, Color::Green, Color(187, 208, 216)};
 private:	
 	Font font;
 	Event event;
