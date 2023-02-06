@@ -245,6 +245,9 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     playerData->draw(txtCamposRequeridos);
 
 }
+void Player::buildTown(RenderWindow*, int, int)
+{
+}
 void Player::playerRegister(RenderWindow*) {
     StartWindow startWindow(X, Y);
     RenderWindow playerData(VideoMode(700, 700), "Registro de jugadores");

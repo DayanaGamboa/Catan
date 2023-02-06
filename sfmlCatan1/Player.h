@@ -46,7 +46,7 @@ public:
 
 	void playerRegister(RenderWindow*);
 	void paintPlayerRegister(RenderWindow*);
-	
+	void buildTown(RenderWindow*, int, int);
 	
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;

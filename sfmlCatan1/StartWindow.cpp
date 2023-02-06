@@ -4,6 +4,7 @@
 #include "Dice.h"
 #include "Thief.h"
 #include <string>
+#include "Graph.h"
 
 StartWindow::StartWindow(float widht, float height) {
     if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
@@ -137,27 +138,12 @@ void StartWindow::mainWindow()
 
 void StartWindow::goWindow() {
     RenderWindow Go(VideoMode(X, Y), "Area de juego");
-    //----------------------------------------
-    //pintar circulos del grafo
-    list<CircleShape> circlesV;
-    CircleShape circle(10);
-    circle.setFillColor(Color(135, 135, 135));
+    
+    Graph graph;
 
-
-    list<Vector2f> positions = {
-        {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{550,302},{550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
-        {737,275},{703,301},{660,282},{625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},{822,361},{780,333},{780,300},
-        {700,335},{663,361},{660,390},{703,413},{740, 390},{740, 359}
-    };
-
-
-    for (auto& pos : positions)
-    {
-        circle.setPosition(pos);
-        circlesV.push_back(circle);
-    }
-    //----------------------------------------
+    Vector2i coordinatesMouse = mouse.getPosition(Go);
     Dice dice1;
+    Player player(0, "", 0, 0, 0);
 
     while (Go.isOpen()) {
 
@@ -173,7 +159,7 @@ void StartWindow::goWindow() {
             }
             if (event.type == Event::MouseButtonPressed) {
 
-                Vector2i coordinatesMouse = mouse.getPosition(Go);
+                
 
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     dice1.pintaDados = false;
@@ -203,6 +189,16 @@ void StartWindow::goWindow() {
                 if (rtsBtnEndTurn.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     cout << "Terminar turno" << endl;
                 }
+                for (int i = 0; i < graph.circlesV.size(); i++) {
+
+                    if ((graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse))))
+                    {
+                        player.buildTown(&Go, mouse.getPosition(Go).x, mouse.getPosition(Go).y);
+
+                        cout << "pintado" << endl;
+                        break;
+                    }
+                }
             }
 
         }
@@ -210,9 +206,11 @@ void StartWindow::goWindow() {
         generateGameArea(&Go);
         paintLands(&Go);
         paintNumberPieces(&Go);
-        dice1.diceFinalAmount(&Go);     
-        for (auto& circle : circlesV)
-            Go.draw(circle);
+        dice1.diceFinalAmount(&Go); 
+        graph.drawVertex(&Go);
+
+        graph.drawEdges(&Go);
+        
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
         paintOpponentDeck(&Go, 170);
