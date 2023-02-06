@@ -5,21 +5,28 @@
 #include <list>
 #include "VertexGraph.h"
 #include <string>
+#include <SFML/Graphics.hpp>
+
 using namespace std;
+using namespace sf;
 
 class Graph {
 public:
-
+    vector<CircleShape> circlesV;
     vector<list<int>> matrizAdyacencia;
     vector<VertexGraph> vertices;
+    bool verticesConstructed[54];
+    int numVertices = 54;
+    int posiciones[54][2] = { {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{ 550,302},{ 550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
+        {780,300},{737,275},{703,301},{660,282},{625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},{822,361},{780,333},
+        {740, 359} ,{700,335},{663,361},{660,390},{703,413},{740, 390} };
 
-    Graph(int numVertices) {
+
+
+    Graph() {
         matrizAdyacencia.resize(numVertices);
         vertices.resize(numVertices);
-        int posiciones[54][2] = { {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{ 550,302},{ 550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
-        {737,275},{703,301},{660,282},{625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},{822,361},{780,333},{780,300},
-        {700,335},{663,361},{660,390},{703,413},{740, 390},{740, 359} };
-        
+
         includeEdge();
 
         for (int i = 0; i < numVertices; i++) {
@@ -105,7 +112,47 @@ public:
     void addEdge(int origen, int destino) {
         matrizAdyacencia[origen].push_back(destino);
     }
+    void drawEdges(RenderWindow* Go) {
 
+        for (int i = 0; i < vertices.size(); i++) {
+            for (auto j = matrizAdyacencia[i].begin(); j != matrizAdyacencia[i].end(); j++) {
+                int indiceAdyacente = *j;
+                VertexGraph v1 = vertices[i];
+                VertexGraph v2 = vertices[indiceAdyacente];
+                Vector2f p1(v1.x, v1.y);
+                Vector2f p2(v2.x, v2.y);
+                VertexArray edge(Lines, 2);
+                edge[0].position = p1;
+                edge[1].position = p2;
+                edge[0].color = Color::Black;
+                edge[1].color = Color::Black;
+                Go->draw(edge);
+            }
+        }
+    }
+    void drawVertex(RenderWindow* Go) {
+
+        CircleShape circle(10);
+        circle.setFillColor(Color(135, 135, 135));
+
+
+        list<Vector2f> positions = {
+            {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{ 550,302},{ 550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
+            {780,300},{737,275},{703,301},{660,282},{625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},{822,361},{780,333},
+            {740, 359} ,{700,335},{663,361},{660,390},{703,413},{740, 390}
+        };
+
+
+        for (auto& pos : positions)
+        {
+            circle.setPosition(pos);
+            circlesV.push_back(circle);
+        }
+
+        for (auto& circle : circlesV)
+            Go->draw(circle);
+
+    }
     void imprimirGrafo() {
 
         for (int i = 0; i < matrizAdyacencia.size(); i++) {

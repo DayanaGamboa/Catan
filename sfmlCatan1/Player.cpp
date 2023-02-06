@@ -17,7 +17,7 @@ Player::Player(int id, string name, int age, int victoryPoint, int color)
     specialCardList = new CircularList<SpecialCard>;
     //figurelist = new CircularList<Figure>;
     if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
-        cout << "¡¡No Font!!";
+        cout << "ï¿½ï¿½No Font!!";
     }
 }
 
@@ -391,3 +391,12 @@ void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP,
 //void Player::showInformationPlayerInTurn() {
 //
 //}
+void Player::buildTown(RenderWindow* Go, int verticeIndexX, int verticeIndexY)
+{
+
+    CircleShape town(8);
+    town.setFillColor(Color::Red);
+    town.setPosition(verticeIndexX, verticeIndexY);
+    Go->draw(town);
+    Go->display();
+}

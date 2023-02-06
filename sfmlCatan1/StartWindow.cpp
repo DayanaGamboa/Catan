@@ -4,10 +4,11 @@
 #include "Dice.h"
 #include "Thief.h"
 #include <string>
+#include "Graph.h"
 
 StartWindow::StartWindow(float widht, float height) {
 	if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
-		cout << "¡¡No Font!!";
+		cout << "ï¿½ï¿½No Font!!";
 	}
 	int num = 200;
 	for (int i = 0; i < 4; i++) {
@@ -158,6 +159,12 @@ void StartWindow::goWindow() {
 	}
 	//----------------------------------------
 	Dice dice1;
+    RenderWindow Go(VideoMode(X, Y), "Area de juego");
+    
+    Graph graph;
+
+    
+    Dice dice1;
 
 	while (Go.isOpen()) {
 
@@ -205,6 +212,52 @@ void StartWindow::goWindow() {
 					actualNode = actualNode->getNextNode();
 				}
 			}
+                    exitButton(&Go);
+                }
+            }
+            if (event.type == Event::MouseButtonPressed) {
+                Vector2i coordinatesMouse = mouse.getPosition(Go);
+                
+
+                if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    dice1.pintaDados = false;
+                    dice1.diceFinalAmount(&Go);
+                }
+                if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    exitButton(&Go);
+                }
+                if (rtsBtnSave.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Guardar" << endl;
+                }
+                if (rtsBtnStreet.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Carretera" << endl;
+                }
+                if (rtsBtnCity.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Ciudad" << endl;
+                }
+                if (rtsBtnTown.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Poblado" << endl;
+                }
+                if (rtsBtnDevelopment.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Desarrollo" << endl;
+                }
+                if (rtsBtnTrade.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Comerciar" << endl;
+                }
+                if (rtsBtnEndTurn.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Terminar turno" << endl;
+                }
+                for (int i = 0; i < graph.circlesV.size(); i++) {
+
+                    if ((graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse))))
+                    {
+                        player.buildTown(&Go, mouse.getPosition(Go).x, mouse.getPosition(Go).y);
+
+                        cout << "pintado" << endl;
+                        break;
+                    }
+                }
+            }
 
 		}
 
@@ -222,6 +275,22 @@ void StartWindow::goWindow() {
 		paintOpponentDeck(&Go, 500);
 		paintSpecialCards(&Go);
 		PlayerInTurn(&Go);
+        generateGameArea(&Go);
+        paintLands(&Go);
+        paintNumberPieces(&Go);
+        dice1.diceFinalAmount(&Go); 
+        graph.drawVertex(&Go);
+
+        graph.drawEdges(&Go);
+        
+        paintResource(&Go, 10, 10);
+        paintResource(&Go, 10, 670);
+        paintOpponentDeck(&Go, 170);
+        paintOpponentDeck(&Go, 280);
+        paintOpponentDeck(&Go, 390);
+        paintOpponentDeck(&Go, 500);
+        paintSpecialCards(&Go);
+        PlayerInTurn(&Go);
 
 		Go.display();
 	}
@@ -348,7 +417,7 @@ void StartWindow::exitButton(RenderWindow* Go) {
 	backExit.setSize(Vector2f(400, 300));
 	backExit.setFillColor(Color(220, 245, 255));
 
-	Text text("¿Seguro que deseas salir?", font, 35);
+	Text text("ï¿½Seguro que deseas salir?", font, 35);
 	text.setFillColor(Color::Black);
 	text.setPosition(Vector2f(40, 20));
 
