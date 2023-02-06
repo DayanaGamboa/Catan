@@ -15,10 +15,12 @@
 
 using namespace std;
 using namespace sf;
+
 class Player
 {
 public:
 	Player(int,string,int,int,int);
+	Player();
 	~Player();
 
 	void throwsDice();
@@ -43,9 +45,11 @@ public:
 	void insertSpecialCard(string, int, int, int);
 	void insertFigures(string, int, int);
 	void showCard();
+	void showInformationPlayerInTurn();
 
-	void playerRegister(RenderWindow*);
-	void paintPlayerRegister(RenderWindow*);
+	/*void playerRegister(RenderWindow*);
+	void paintPlayerRegister(RenderWindow*);*/
+	
 	void buildTown(RenderWindow*, int, int);
 	
 	CircularList<ResourceCard>* resourceCardsList;
@@ -54,24 +58,23 @@ public:
 	CircularList<City>* cityList;
 	CircularList<Street>* streetList;
 	CircularList<Town>* townList;
-	CircularList<Player>* playerList;
+	/*CircularList<Player>* playerList;*/
 	
-	RectangleShape rtsBtnGuardar, rtsBtnJugar, rtsBtnAtras, rtsID, rtsNombre, rtsEdad, rtsColor, fondo;
+	/*RectangleShape rtsBtnGuardar, rtsBtnJugar, rtsBtnAtras, rtsID, rtsNombre, rtsEdad, rtsColor, fondo;
 	Texture txtrBtnGuardar, txtrBtnAtras, txtrBtnJugar;
 	Text tituloJugador, titulo1, tituloID, txtID, tituloNombre, txtNombre;
 	Text tituloEdad, txtEdad, tituloColor, txtCamposRequeridos;
 
 	bool registroJugadores = false;
-	int contadorJugadores = 0;
-	int id = 0;
+	int contadorJugadores = 0;*/
+	
 	
 private:
-	int age, victoryPoint, color;
+	int id, age, victoryPoint, color;
 	string name;
 	Font font;
 	Event event;
 	Mouse mouse;
-	//Deck deck[]; // Debería de ser una lista?
 
 };
 

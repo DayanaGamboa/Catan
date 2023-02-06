@@ -6,7 +6,10 @@
 #include<windows.h> 
 #include <string>
 #include <list>
-
+#include "CircularList.h"
+#include "Player.h"
+#include "Node.h"
+ 
 
 using namespace std;
 using namespace sf;
@@ -20,6 +23,7 @@ using namespace sf;
 class StartWindow
 {
 public:
+	Node<Player>* actualNode;
 	StartWindow(float width, float height);
 	void drawWindow(RenderWindow& window);
 	void moveUp();
@@ -39,6 +43,24 @@ public:
 	void loadGameButton(RenderWindow*);
 	void paintLands(RenderWindow*);
 	void PlayerInTurn(RenderWindow*);
+	void paintPlayerRegister(RenderWindow* playerData);
+	void playerRegister(RenderWindow*);
+    RectangleShape rtsBtnGuardar, rtsBtnJugar, rtsBtnAtras, rtsID, rtsNombre, rtsEdad, rtsColor, fondo;
+    Texture txtrBtnGuardar, txtrBtnAtras, txtrBtnJugar;
+    Text tituloJugador, titulo1, tituloID, txtID, tituloNombre, txtNombre;
+    Text tituloEdad, txtEdad, tituloColor, txtCamposRequeridos;
+	 
+	CircularList<Player> * playerList = new  CircularList<Player>;
+
+
+
+    bool registroJugadores = false;
+    int contadorJugadores = 0;
+    int id = 0;
+
+ 
+
+
 
 	void paintTowns(RenderWindow*);
 
