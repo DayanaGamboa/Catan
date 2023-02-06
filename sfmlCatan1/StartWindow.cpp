@@ -136,6 +136,8 @@ void StartWindow::mainWindow()
     }
 }
 
+
+
 void StartWindow::goWindow() {
     RenderWindow Go(VideoMode(X, Y), "Area de juego");
     
@@ -193,7 +195,15 @@ void StartWindow::goWindow() {
 
                     if ((graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse))))
                     {
-                        player.buildTown(&Go, mouse.getPosition(Go).x, mouse.getPosition(Go).y);
+                       
+                        txtTown.loadFromFile("resouceImages/casa.png");
+                        
+                        
+                        //vectorTown[i].setTexture(&txtTown);
+                        vectorTown[i].setFillColor(Color::Black);
+                        Go.draw(vectorTown[i]);
+                        //Go.display();
+                        //player.buildTown(&Go, mouse.getPosition(Go).x, mouse.getPosition(Go).y);
 
                         cout << "pintado" << endl;
                         break;
@@ -208,9 +218,8 @@ void StartWindow::goWindow() {
         paintNumberPieces(&Go);
         dice1.diceFinalAmount(&Go); 
         graph.drawVertex(&Go);
-
         graph.drawEdges(&Go);
-        
+        paintTowns(&Go);
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
         paintOpponentDeck(&Go, 170);
@@ -573,7 +582,7 @@ void StartWindow::paintLands(RenderWindow* Go) {
                 txt = &vectorTerrenosTXT[contTerrenos];
                 vectorTerrenosRTS[contTerrenos].setTexture(txt);
 
-                Go->draw(vectorTerrenosRTS[contTerrenos]);
+                //Go->draw(vectorTerrenosRTS[contTerrenos]);
 
                 vectorTerrenos[numero] = vectorTerrenos[numero] - 1;
                 contTerrenos++;
@@ -705,5 +714,32 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
         rtsPlayerColor.setFillColor(Color::Green);
     }
     Go->draw(rtsPlayerColor);
+}
+
+void StartWindow::paintTowns(RenderWindow* Go)
+{
+
+    Graph graph;
+    RectangleShape rts;
+    
+    //txtTown.create(00001,00001);
+
+    if (townStatus == false) {
+        for (int i = 0; i < graph.vertices.size(); i++) {
+            //vectorTown[i]
+            vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
+            vectorTown[i].setSize(Vector2f(20, 20));
+            //vectorTown->setTexture(&txtTown);
+            vectorTown[i].setFillColor(Color::White);
+            
+        } 
+        
+        townStatus = true;
+    }
+
+    for (int i = 0; i < graph.vertices.size(); i++) {
+        
+        Go->draw(vectorTown[i]);
+    }
 }
 
