@@ -1,27 +1,4 @@
-﻿  Graph.cpp
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(123,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(123,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  Partida.cpp
-  Player.cpp
-  StartWindow.cpp
+﻿  StartWindow.cpp
 C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -109,26 +86,4 @@ C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(616,66): warning C4
           [
               T=float
           ]
-  sfmlCatan1.cpp
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(123,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(123,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  Generating Code...
   sfmlCatan1.vcxproj -> C:\Users\monge\source\repos\Catan\x64\Debug\sfmlCatan1.exe

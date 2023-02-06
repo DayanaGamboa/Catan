@@ -245,8 +245,14 @@ void Player::paintPlayerRegister(RenderWindow* playerData) {
     playerData->draw(txtCamposRequeridos);
 
 }
-void Player::buildTown(RenderWindow*, int, int)
+void Player::buildTown(RenderWindow* Go, int verticeIndexX, int verticeIndexY)
 {
+
+    CircleShape town(8);
+    town.setFillColor(Color::Red);
+    town.setPosition(verticeIndexX, verticeIndexY);
+    Go->draw(town);
+    Go->display();
 }
 void Player::playerRegister(RenderWindow*) {
     StartWindow startWindow(X, Y);

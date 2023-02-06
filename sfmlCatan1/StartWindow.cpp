@@ -141,7 +141,7 @@ void StartWindow::goWindow() {
     
     Graph graph;
 
-    Vector2i coordinatesMouse = mouse.getPosition(Go);
+    
     Dice dice1;
     Player player(0, "", 0, 0, 0);
 
@@ -158,7 +158,7 @@ void StartWindow::goWindow() {
                 }
             }
             if (event.type == Event::MouseButtonPressed) {
-
+                Vector2i coordinatesMouse = mouse.getPosition(Go);
                 
 
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
