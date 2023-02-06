@@ -1,4 +1,8 @@
-﻿  StartWindow.cpp
+﻿  Partida.cpp
+  Player.cpp
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Player.cpp(253,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Player.cpp(253,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  StartWindow.cpp
 C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -30,60 +34,84 @@ C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(79,48): warning C42
           [
               T=unsigned int
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(285,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(294,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(285,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(294,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(305,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(314,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(311,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(320,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(329,34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(338,34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(552,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(564,123): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(561,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(573,123): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(564,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(573,95): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(608,77): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(617,77): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(608,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(617,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(616,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(625,83): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(616,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(625,66): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(730,77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\monge\source\repos\Catan\sfmlCatan1\StartWindow.cpp(730,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  sfmlCatan1.cpp
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(122,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(123,37): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\monge\source\repos\Catan\sfmlCatan1\Graph.h(123,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
   sfmlCatan1.vcxproj -> C:\Users\monge\source\repos\Catan\x64\Debug\sfmlCatan1.exe

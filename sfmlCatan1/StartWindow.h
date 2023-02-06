@@ -62,6 +62,8 @@ public:
 
 
 
+	void paintTowns(RenderWindow*);
+
 	int StartWindowPressed() {
 		return StartWindowSelected;
 	}
@@ -78,8 +80,12 @@ public:
 
 	bool terrenos = false;
 	bool fichasNumeradas = false;
+	
+	bool townStatus = false;
 
-
+	RectangleShape vectorTown[54];
+	Texture txtTown;
+	
 	int TerrenosPosX[19] = { 753,672,589,552,512,550,589,670,751,791,831,791,711,632,592,632,711,750,672 };
 	int TerrenosPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
 private:	
