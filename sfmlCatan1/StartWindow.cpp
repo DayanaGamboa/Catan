@@ -71,7 +71,7 @@ void StartWindow::mainWindow()
 {
     RenderWindow windowMENU(VideoMode(X, Y), "Start Game Window", Style::Default);
     StartWindow  startMenu(windowMENU.getSize().x, windowMENU.getSize().y);
-    Player player(0, "", 0,0,0);
+    Player player(0, "", 0,0,Color::White);
     RectangleShape background;
     background.setSize(Vector2f(X, Y));
     Texture startWindowImage;
@@ -273,34 +273,76 @@ void StartWindow::paintResource(RenderWindow* Go, int x, int y)
 void StartWindow::paintOpponentDeck(RenderWindow* Go, int quantityDecks)
 {
     
+
     string pathImagePlayer[4] = { "resouceImages/jugadorAzul.png", "resouceImages/jugadorRojo.png", "resouceImages/jugadorAmarillo.png", "resouceImages/jugadorVerde.png" };
     RectangleShape rtsResource, rtsDevelopment;
     Texture txtrResource, txtrDevelopment;
-    string pathResource = "resouceImages/MP6.png", pathDevelopment = "resouceImages/MP7.png";
-    int posXResource = 10, posXDevelopment = 90, posYCards = 170, posYImage = 190;
+    string routeResource = "resouceImages/MP6.png", routeDevelopment = "resouceImages/MP7.png";
+    int posXResource = 10, posXDevelopment = 90, posYCards = 170, posYImage = 190, posXImage = 180;
+    Text txtPVPlayers[4] = {}, txtPVPlayer1, txtPVPlayer2, txtPVPlayer3, txtPVPlayer4;
 
     for (int i = 0; i < quantityDecks; i++) {
+        //cartas de recursos
         rtsResource.setPosition(Vector2f(posXResource, posYCards));
         rtsResource.setSize(Vector2f(70, 100));
-        txtrResource.loadFromFile(pathResource);
+        txtrResource.loadFromFile(routeResource);
         rtsResource.setTexture(&txtrResource);
         Go->draw(rtsResource);
 
+        //cartas de desarrollo
         rtsDevelopment.setPosition(Vector2f(posXDevelopment, posYCards));
         rtsDevelopment.setSize(Vector2f(70, 100));
-        txtrDevelopment.loadFromFile(pathDevelopment);
+        txtrDevelopment.loadFromFile(routeDevelopment);
         rtsDevelopment.setTexture(&txtrDevelopment);
         Go->draw(rtsDevelopment);
-       
-        //imagen jugador
-        rtsImgPlayer.setPosition(Vector2f(180, posYImage));
-        rtsImgPlayer.setSize(Vector2f(60, 60));
-        txtrImgPlayer.loadFromFile(pathImagePlayer[i]);
+
+        //cuadrado color
+        RectangleShape rtsColor2;
+        rtsColor2.setPosition(Vector2f(posXImage, posYImage));
+        rtsColor2.setSize(Vector2f(50, 50));
+        rtsColor2.setFillColor(playersColor[i]);
+        Go->draw(rtsColor2);
+
+        //imagen jugador-Negro
+        rtsImgPlayer.setPosition(Vector2f(posXImage, posYImage));
+        rtsImgPlayer.setSize(Vector2f(50, 50));
+        txtrImgPlayer.loadFromFile("resouceImages/jugadorNegro.png");
         rtsImgPlayer.setTexture(&txtrImgPlayer);
         Go->draw(rtsImgPlayer);
+
         posYCards += 110;
         posYImage += 110;
     }
+
+
+    txtPVPlayer1.setString(to_string(nodePlayer1->getData()->getVictoryPoint()));
+    txtPVPlayer1.setFont(font);
+    txtPVPlayer1.setFillColor(Color::Black);
+    txtPVPlayer1.setPosition(posXImage + 60, 190 + 10);
+
+    txtPVPlayer2.setString(to_string(nodePlayer2->getData()->getVictoryPoint()));
+    txtPVPlayer2.setFont(font);
+    txtPVPlayer2.setFillColor(Color::Black);
+    txtPVPlayer2.setPosition(posXImage + 60, 300 + 10);
+
+    txtPVPlayer3.setString(to_string(nodePlayer3->getData()->getVictoryPoint()));
+    txtPVPlayer3.setFont(font);
+    txtPVPlayer3.setFillColor(Color::Black);
+    txtPVPlayer3.setPosition(posXImage + 60, 410 + 10);
+
+    if (quantityDecks == 4) {
+        txtPVPlayer4.setString(to_string(nodePlayer4->getData()->getVictoryPoint()));
+        txtPVPlayer4.setFont(font);
+        txtPVPlayer4.setFillColor(Color::Black);
+        txtPVPlayer4.setPosition(posXImage + 60, 520 + 10);
+        Go->draw(txtPVPlayer4);
+    }
+   
+
+    Go->draw(txtPVPlayer1);
+    Go->draw(txtPVPlayer2);
+    Go->draw(txtPVPlayer3);
+  
 }
 
 void StartWindow::paintSpecialCards(RenderWindow* Go)
@@ -588,7 +630,8 @@ void StartWindow::paintNumberPieces(RenderWindow* Go) {
 void StartWindow::PlayerInTurn(RenderWindow* Go) {
 
     string playerID = to_string(actualNode->getData()->getId()), playerName = actualNode->getData()->getName();
-    int playerColor = actualNode->getData()->getColor(), puntosVictoria = actualNode->getData()->getVictoryPoint();
+    Color playerColor = actualNode->getData()->getColor();
+    int puntosVictoria = actualNode->getData()->getVictoryPoint();
 
     RectangleShape rtsBackPlayer;
     rtsBackPlayer.setPosition(950, 640);
@@ -642,7 +685,7 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     RectangleShape rtsPlayerColor;
     rtsPlayerColor.setSize(Vector2f(50, 20));
     rtsPlayerColor.setPosition(1050, 740);
-    rtsPlayerColor.setFillColor(playersColor[playerColor]);
+    rtsPlayerColor.setFillColor(playerColor);
     Go->draw(rtsPlayerColor);
 }
 
@@ -764,10 +807,10 @@ void  StartWindow::playerRegister(RenderWindow*) {
 
     rtsColor.setFillColor(Color::Blue);
 
-    string name = "", yearString = "";
+    string name = "", ageString = "";
     Vector2i mouseCoordinates;
     
-    int color = 0, year = 0, victoryPoints = 0;
+    int color = 0, age = 0, victoryPoints = 0;
     txtName.setString("");
     txtAge.setString("");
     rtsColor.setFillColor(playersColor[playerCounter]);
@@ -794,33 +837,33 @@ void  StartWindow::playerRegister(RenderWindow*) {
                         txtID.setString("");
                         txtRequiredFields.setString("**Jugadores al limite**");       
                     }
-                    else if ((name == "") || (yearString == "")) {
+                    else if ((name == "") || (ageString == "")) {
                         txtRequiredFields.setString("**Campos requeridos**");
                     }
                     else {
-                        year = stoi(yearString);
+                        age = stoi(ageString);
                         id++;                     
                         if (playerCounter == 0) {
-                            Player* player1 = new Player(id, name, year, victoryPoints, 0);
+                            Player* player1 = new Player(id, name, age, 15, Color::Blue);
                             playerList->inserNode(player1);                                                                           
                         }
                         if (playerCounter == 1) {
-                            Player* player2 = new Player(id, name, year, victoryPoints, 1);
+                            Player* player2 = new Player(id, name, age, 30, Color::Yellow);
                             playerList->inserNode(player2);                                                                           
                         }
                         if (playerCounter == 2) {
-                            Player* player3 = new Player(id, name, year, victoryPoints, 2);
+                            Player* player3 = new Player(id, name, age, 5, Color::Green);
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
                         if (playerCounter == 3) {
-                            Player* player4 = new Player(id, name, year, victoryPoints, 3);
+                            Player* player4 = new Player(id, name, age, 70, Color::Red);
                             playerList->inserNode(player4);                          
                         }
                        
                         //Cuando guarda inicializa los valores                        
                         name = "";
-                        yearString = "";
+                        ageString = "";
                         victoryPoints = 0, color = 0;
 
                         txtID.setString("");
@@ -840,6 +883,8 @@ void  StartWindow::playerRegister(RenderWindow*) {
                     playerList->sortPlayerListDescending();
 
                     actualNode = playerList->first;
+                    accommodateColors();
+                    savePlayerInfo();
                     goWindow();
                 }
             }
@@ -859,12 +904,12 @@ void  StartWindow::playerRegister(RenderWindow*) {
                 if (rtsAge.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {
 
                     if ((event.text.unicode >= 48 && event.text.unicode <= 57) && ((txtAge.getString().getSize() <= 1))) {
-                        yearString += static_cast<char>(event.text.unicode);
-                        txtAge.setString(yearString);
+                        ageString += static_cast<char>(event.text.unicode);
+                        txtAge.setString(ageString);
                     }
-                    if (event.text.unicode == 8 && yearString.length() > 0) {
-                        yearString.pop_back();
-                        txtAge.setString(yearString);
+                    if (event.text.unicode == 8 && ageString.length() > 0) {
+                        ageString.pop_back();
+                        txtAge.setString(ageString);
                     }
                 }
             }
@@ -900,4 +945,19 @@ void StartWindow::paintTowns(RenderWindow* Go)
     for (int i = 0; i < graph.vertices.size(); i++) {        
         Go->draw(vectorTown[i]);
     }
+}
+
+void StartWindow::accommodateColors() {
+
+    for (int i = 0; i < playerList->getSize(); i++) {
+        playersColor[i] = actualNode->getData()->getColor();
+        actualNode = actualNode->getNextNode();
+    }
+
+}
+void StartWindow::savePlayerInfo() {
+    nodePlayer1 = playerList->first;
+    nodePlayer2 = nodePlayer1->getNextNode();
+    nodePlayer3 = nodePlayer2->getNextNode();
+    nodePlayer4 = nodePlayer3->getNextNode();
 }

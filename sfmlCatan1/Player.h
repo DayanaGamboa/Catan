@@ -19,7 +19,7 @@ using namespace sf;
 class Player
 {
 public:
-	Player(int,string,int,int,int);
+	Player(int,string,int,int,Color);
 	Player();
 	~Player();
 
@@ -38,8 +38,8 @@ public:
 	void setAge(int);
 	int getVictoryPoint();
 	void setVictoryPoint(int);
-	int getColor();
-	void setColor(int);
+	Color getColor();
+	void setColor(Color);
 	void insertResourceCard(string, int, int, int, int);
 	void insertDevelopmentCard(string, int, int, int, int);
 	void insertSpecialCard(string, int, int, int);
@@ -70,7 +70,8 @@ public:
 	
 	
 private:
-	int id, age, victoryPoint, color;
+	int id, age, victoryPoint;
+	Color color;
 	string name;
 	Font font;
 	Event event;

@@ -3,7 +3,7 @@
 
 Player::Player()
 {}
-Player::Player(int id, string name, int age, int victoryPoint, int color)
+Player::Player(int id, string name, int age, int victoryPoint, Color color)
 {
     this->id = id;
     this->name = name;
@@ -61,11 +61,11 @@ void Player::setVictoryPoint(int victoryPoint) {
     this->victoryPoint = victoryPoint;
 }
 
-int Player::getColor() {
+Color Player::getColor() {
     return color;
 }
 
-void Player::setColor(int color) {
+void Player::setColor(Color color) {
 
     this->color = color;
 }
@@ -97,7 +97,7 @@ void Player::endTurn()
 string Player::toString() {
     stringstream s;
     s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " "
-        << getColor() << endl;
+        /*<< getColor()*/ << endl;
     cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
     resourceCardsList->dropDownList();
     cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
