@@ -850,6 +850,7 @@ void  StartWindow::playerRegister(RenderWindow*) {
                             player1->insertResourceCard("lana", 0, 0, 0, 1);
                             player1->insertResourceCard("mineral", 0, 0, 0, 5);
                             player1->insertResourceCard("cereal", 0, 0, 0, 9);
+                            player1->insertDevelopmentCard("caballero", 0, 0, 0, 2);
                             playerList->inserNode(player1); 
                         }
                         if (playerCounter == 1) {
@@ -859,6 +860,7 @@ void  StartWindow::playerRegister(RenderWindow*) {
                             player2->insertResourceCard("lana", 0, 0, 0, 8);
                             player2->insertResourceCard("mineral", 0, 0, 0, 7);
                             player2->insertResourceCard("cereal", 0, 0, 0, 9);
+                            player2->insertDevelopmentCard("caballero", 0, 0, 0, 1);
                             playerList->inserNode(player2);                                                                           
                         }
                         if (playerCounter == 2) {
@@ -868,6 +870,7 @@ void  StartWindow::playerRegister(RenderWindow*) {
                             player3->insertResourceCard("lana", 0, 0, 0, 9);
                             player3->insertResourceCard("mineral", 0, 0, 0, 4);
                             player3->insertResourceCard("cereal", 0, 0, 0, 5);
+                            player3->insertDevelopmentCard("caballero", 0, 0, 0, 4);
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
@@ -878,6 +881,7 @@ void  StartWindow::playerRegister(RenderWindow*) {
                             player4->insertResourceCard("lana", 0, 0, 0, 2);
                             player4->insertResourceCard("mineral", 0, 0, 0, 9);
                             player4->insertResourceCard("cereal", 0, 0, 0, 7);
+                            player4->insertDevelopmentCard("caballero", 0, 0, 0, 5);
                             playerList->inserNode(player4);                          
                         }
                        
@@ -1092,7 +1096,7 @@ void StartWindow::paintBankCounters(RenderWindow* Go) {
     development.setFont(font);
     development.setFillColor(Color::Black);
     development.setPosition(posXTxt, 2.5);
-    development.setString("0");
+    development.setString(to_string(bank.countDevelopmentCard()));
 
     Go->draw(sheep);
     Go->draw(wood);
@@ -1156,7 +1160,7 @@ void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
     development.setFont(font);
     development.setFillColor(Color::Black);
     development.setPosition(posXTxt, posYTxt);
-    development.setString("0");
+    development.setString(to_string(actualNode->getData()->countDevelopmentCard()));
 
     Go->draw(sheep);
     Go->draw(wood);
