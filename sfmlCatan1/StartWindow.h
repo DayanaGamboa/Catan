@@ -55,6 +55,8 @@ public:
 	void paintTowns(RenderWindow*);
 	void accommodateColors();
 	void savePlayerInfo();
+	void paintBankCounters(RenderWindow*);
+	void paintPlayerCountersInTurn(RenderWindow*);
 	int StartWindowPressed() {
 		return StartWindowSelected;
 	}

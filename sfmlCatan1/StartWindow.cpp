@@ -199,6 +199,8 @@ void StartWindow::goWindow() {
         paintOpponentDeck(&Go, playerList->getSize());;
         paintSpecialCards(&Go);
         PlayerInTurn(&Go);
+        paintBankCounters(&Go);
+        paintPlayerCountersInTurn(&Go);
         Go.display();
     }
 }
@@ -960,4 +962,137 @@ void StartWindow::savePlayerInfo() {
     nodePlayer2 = nodePlayer1->getNextNode();
     nodePlayer3 = nodePlayer2->getNextNode();
     nodePlayer4 = nodePlayer3->getNextNode();
+}
+void StartWindow::paintBankCounters(RenderWindow* Go) {
+
+    Text sheep, wood, mineral, cereals, clay, development;
+    RectangleShape rtsBlanco;
+    int posXTxt = 0;
+    int x = 10;
+    int y = 10;
+
+    for (int i = 0; i < 6; i++) {
+        //cuadrado color blanco
+        RectangleShape rtsBlanco;
+        rtsBlanco.setPosition(Vector2f(x, y));
+        rtsBlanco.setSize(Vector2f(20, 25));
+        rtsBlanco.setFillColor(Color::White);
+        Go->draw(rtsBlanco);
+        x += 90;
+    }
+    
+    posXTxt = 13;   
+    sheep.setFont(font);
+    sheep.setFillColor(Color::Black);
+    sheep.setPosition(posXTxt, 2.5);
+    sheep.setString("0");
+
+    posXTxt += 90;   
+    wood.setFont(font);
+    wood.setFillColor(Color::Black);
+    wood.setPosition(posXTxt, 2.5);
+    wood.setString("0");
+    posXTxt += 90;
+
+    mineral.setFont(font);
+    mineral.setFillColor(Color::Black);
+    mineral.setPosition(posXTxt, 2.5);
+    mineral.setString("0");
+    posXTxt += 90;
+
+    cereals.setFont(font);
+    cereals.setFillColor(Color::Black);
+    cereals.setPosition(posXTxt, 2.5);
+    cereals.setString("0");
+    posXTxt += 90;
+
+    clay.setFont(font);
+    clay.setFillColor(Color::Black);
+    clay.setPosition(posXTxt, 2.5);
+    clay.setString("0");
+    posXTxt += 90;
+    
+    development.setFont(font);
+    development.setFillColor(Color::Black);
+    development.setPosition(posXTxt, 2.5);
+    development.setString("0");
+
+    Go->draw(sheep);
+    Go->draw(wood);
+    Go->draw(mineral);
+    Go->draw(cereals);
+    Go->draw(clay);
+    Go->draw(development);
+
+    
+}
+void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
+
+    Text sheep, wood, mineral, cereals, clay, development;
+    RectangleShape rtsBlanco;
+    int posXTxt = 0;
+    int posYTxt = 662;
+    int x = 10;
+    int y = 670;
+
+    for (int i = 0; i < 6; i++) {
+        //cuadrado color blanco
+        RectangleShape rtsBlanco;
+        rtsBlanco.setPosition(Vector2f(x, y));
+        rtsBlanco.setSize(Vector2f(20, 25));
+        rtsBlanco.setFillColor(Color::White);
+        Go->draw(rtsBlanco);
+        x += 90;
+    }
+
+    posXTxt = 13;
+    sheep.setString(to_string(actualNode->getData()->getVictoryPoint()));
+    sheep.setFont(font);
+    sheep.setFillColor(Color::Black);
+    sheep.setPosition(posXTxt, posYTxt);
+    sheep.setString("0");
+
+    posXTxt += 90;
+    wood.setString(to_string(actualNode->getData()->getVictoryPoint()));
+    wood.setFont(font);
+    wood.setFillColor(Color::Black);
+    wood.setPosition(posXTxt, posYTxt);
+    wood.setString("0");
+    posXTxt += 90;
+
+    mineral.setString(to_string(actualNode->getData()->getVictoryPoint()));
+    mineral.setFont(font);
+    mineral.setFillColor(Color::Black);
+    mineral.setPosition(posXTxt, posYTxt);
+    mineral.setString("0");
+    posXTxt += 90;
+
+    cereals.setString(to_string(actualNode->getData()->getVictoryPoint()));
+    cereals.setFont(font);
+    cereals.setFillColor(Color::Black);
+    cereals.setPosition(posXTxt, posYTxt);
+    cereals.setString("0");
+    posXTxt += 90;
+
+    clay.setString(to_string(actualNode->getData()->getVictoryPoint()));
+    clay.setFont(font);
+    clay.setFillColor(Color::Black);
+    clay.setPosition(posXTxt, posYTxt);
+    clay.setString("0");
+    posXTxt += 90;
+
+    development.setString(to_string(actualNode->getData()->getVictoryPoint()));
+    development.setFont(font);
+    development.setFillColor(Color::Black);
+    development.setPosition(posXTxt, posYTxt);
+    development.setString("0");
+
+    Go->draw(sheep);
+    Go->draw(wood);
+    Go->draw(mineral);
+    Go->draw(cereals);
+    Go->draw(clay);
+    Go->draw(development);
+
+
 }
