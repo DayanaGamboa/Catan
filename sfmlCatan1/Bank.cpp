@@ -33,6 +33,18 @@ int Bank::putCards(int, int)
 	return 0;
 }
 
+int Bank::countDevelopmentCard() {
+	int count = 0;
+	nodeDevelopment = developmentCardList->first;
+	do {
+		count += nodeDevelopment->getData()->getQuantity();
+		nodeDevelopment = nodeDevelopment->getNextNode();
+
+	} while (nodeDevelopment != developmentCardList->first);
+
+	return count;
+}
+
 void Bank::loadLists() {
 	ResourceCard* wood = new ResourceCard("madera", 0, 0, 0, 19);
 	ResourceCard* wool = new ResourceCard("lana", 0, 0, 0, 19);

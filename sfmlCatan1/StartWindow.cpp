@@ -1092,7 +1092,7 @@ void StartWindow::paintBankCounters(RenderWindow* Go) {
     development.setFont(font);
     development.setFillColor(Color::Black);
     development.setPosition(posXTxt, 2.5);
-    development.setString("0");
+    development.setString(to_string(bank.countDevelopmentCard()));
 
     Go->draw(sheep);
     Go->draw(wood);
