@@ -84,7 +84,6 @@ public:
 	bool lands = false;
 	bool numberPieces = false;
 	bool townStatus = false;
-	bool townStatus2 = false;
 	int LandsPosX[19] = { 753,672,589,552,512,550,589,670,751,791,831,791,711,632,592,632,711,750,672 };
 	int LandsPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
 	
