@@ -126,6 +126,7 @@ void StartWindow::goWindow() {
     RenderWindow Go(VideoMode(X, Y), "Area de juego");    
     Graph graph;   
     Dice dice;
+    bool townBtnPressed = false;
     while (Go.isOpen()) {
 
         while (Go.pollEvent(event)) {
@@ -159,7 +160,7 @@ void StartWindow::goWindow() {
                     cout << "Ciudad" << endl;
                 }
                 if (rtsBtnTown.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    cout << "Poblado" << endl;
+                    townBtnPressed = true;
                 }
                 if (rtsBtnDevelopment.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     cout << "Desarrollo" << endl;
@@ -172,15 +173,17 @@ void StartWindow::goWindow() {
                     actualNode = actualNode->getNextNode();
                     saveResourcePlayer();
                 }
-                for (int i = 0; i < graph.circlesV.size(); i++) {
+                if (townBtnPressed == true) {
+                    for (int i = 0; i < graph.circlesV.size(); i++) {
 
-                    if ((graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse))))
-                    {
-                        builtTown(&Go, i);
-                        cout << "pintado" << endl;
-                        break;
+                        if (graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse)))
+                        {
+                            builtTown(&Go, i);
+                            townBtnPressed = false;
+                            break;
+                        }
+
                     }
-
                 }
 
             }
@@ -188,7 +191,7 @@ void StartWindow::goWindow() {
         generateGameArea(&Go);
         paintLands(&Go);
         paintNumberPieces(&Go);
-        dice.diceFinalAmount(&Go); 
+        dice.diceFinalAmount(&Go);
         graph.drawVertex(&Go);
         graph.drawEdges(&Go);
         paintTowns(&Go);
@@ -689,8 +692,7 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     rtsPlayerColor.setFillColor(playerColor);
     Go->draw(rtsPlayerColor);
 }
-
-void  StartWindow::paintPlayerRegister(RenderWindow* playerData) {
+void StartWindow::paintPlayerRegister(RenderWindow* playerData) {
     //MENU
     background.setSize(Vector2f(700, 700));
     background.setFillColor(Color(220, 245, 255));
@@ -801,7 +803,7 @@ void  StartWindow::paintPlayerRegister(RenderWindow* playerData) {
 
     playerData->draw(txtRequiredFields);
 }
-void  StartWindow::playerRegister(RenderWindow*) {
+void StartWindow::playerRegister(RenderWindow*) {
 
     RenderWindow playerData(VideoMode(700, 700), "Registro de jugadores");
     //Player* player = new Player();
@@ -957,7 +959,6 @@ void  StartWindow::playerRegister(RenderWindow*) {
         playerData.display();
     }
 }
-
 void StartWindow::paintTowns(RenderWindow* Go)
 {
     RectangleShape rts;
@@ -968,14 +969,14 @@ void StartWindow::paintTowns(RenderWindow* Go)
 
             //Inicializa rectangulos en el area de juego
             vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
-            vectorTown[i].setSize(Vector2f(20, 20));          
+            vectorTown[i].setSize(Vector2f(20, 20));
             vectorTown[i].setFillColor(Color::Transparent);
             //inicializa poblados en el area de juego
             vectorBlackHouse[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorBlackHouse[i].setSize(Vector2f(20, 20));
             vectorBlackHouse[i].setFillColor(Color::Transparent);
         }
-        townStatus = true;       
+        townStatus = true;
     }
     //recorre rectangulos y poblados
     for (int i = 0; i < graph.vertices.size(); i++) {
