@@ -12,6 +12,7 @@
 #include "Dice.h"
 #include "Thief.h"
 #include "Graph.h"
+#include "Bank.h"
 
 
 using namespace std;
@@ -31,6 +32,15 @@ public:
 	Node<Player>* nodePlayer2;
 	Node<Player>* nodePlayer3;
 	Node<Player>* nodePlayer4;
+	Node<ResourceCard>* nodeResource;
+	Node<ResourceCard>* nodeResourceBankWood;
+	Node<ResourceCard>* nodeResourceBankSheep;
+	Node<ResourceCard>* nodeResourceBankMineral;
+	Node<ResourceCard>* nodeResourceBankClay;
+	Node<ResourceCard>* nodeResourceCereal;
+
+
+
 	StartWindow(float width, float height);
 	void drawWindow(RenderWindow& window);
 	void moveUp();
@@ -58,6 +68,8 @@ public:
 	void savePlayerInfo();
 	void paintBankCounters(RenderWindow*);
 	void paintPlayerCountersInTurn(RenderWindow*);
+	void saveResourcePlayer();
+	void saveResourceBank();
 	int StartWindowPressed() {
 		return StartWindowSelected;
 	}
@@ -67,6 +79,7 @@ public:
     Text titlePlayer, txtTitle, txtTitleID, txtID, txtTitleName, txtName;
     Text txtTitleAge, txtAge, titleColor, txtRequiredFields;
 	CircularList<Player> * playerList = new  CircularList<Player>;
+	Bank bank;
 	RectangleShape vectorLandsRTS[19];
 	Texture vectorLandsTXT[19];
 	RectangleShape rtsBtnStreet, rtsBtnTown, rtsBtnCity, rtsBtnEndTurn, rtsBtnDevelopment, rtsBtnTrade;
@@ -86,6 +99,7 @@ public:
 	bool townStatus = false;
 	int LandsPosX[19] = { 753,672,589,552,512,550,589,670,751,791,831,791,711,632,592,632,711,750,672 };
 	int LandsPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
+	int woodR = 0, clayR = 0, mineralR = 0, sheepR = 0, cerealR = 0;
 	
 
 private:	

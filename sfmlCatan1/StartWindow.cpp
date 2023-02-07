@@ -170,6 +170,7 @@ void StartWindow::goWindow() {
                 if (rtsBtnEndTurn.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     cout << "Terminar turno" << endl;
                     actualNode = actualNode->getNextNode();
+                    saveResourcePlayer();
                 }
                 for (int i = 0; i < graph.circlesV.size(); i++) {
 
@@ -844,19 +845,39 @@ void  StartWindow::playerRegister(RenderWindow*) {
                         id++;                     
                         if (playerCounter == 0) {
                             Player* player1 = new Player(id, name, age, 15, Color::Blue);
-                            playerList->inserNode(player1);                                                                           
+                            player1->insertResourceCard("madera",0,0,0,7);
+                            player1->insertResourceCard("arcilla", 0, 0, 0, 2);
+                            player1->insertResourceCard("lana", 0, 0, 0, 1);
+                            player1->insertResourceCard("mineral", 0, 0, 0, 5);
+                            player1->insertResourceCard("cereal", 0, 0, 0, 9);
+                            playerList->inserNode(player1); 
                         }
                         if (playerCounter == 1) {
                             Player* player2 = new Player(id, name, age, 30, Color::Yellow);
+                            player2->insertResourceCard("madera", 0, 0, 0, 5);
+                            player2->insertResourceCard("arcilla", 0, 0, 0, 1);
+                            player2->insertResourceCard("lana", 0, 0, 0, 8);
+                            player2->insertResourceCard("mineral", 0, 0, 0, 7);
+                            player2->insertResourceCard("cereal", 0, 0, 0, 9);
                             playerList->inserNode(player2);                                                                           
                         }
                         if (playerCounter == 2) {
                             Player* player3 = new Player(id, name, age, 5, Color::Green);
+                            player3->insertResourceCard("madera", 0, 0, 0, 2);
+                            player3->insertResourceCard("arcilla", 0, 0, 0, 7);
+                            player3->insertResourceCard("lana", 0, 0, 0, 9);
+                            player3->insertResourceCard("mineral", 0, 0, 0, 4);
+                            player3->insertResourceCard("cereal", 0, 0, 0, 5);
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
                         if (playerCounter == 3) {
                             Player* player4 = new Player(id, name, age, 70, Color::Red);
+                            player4->insertResourceCard("madera", 0, 0, 0, 1);
+                            player4->insertResourceCard("arcilla", 0, 0, 0, 8);
+                            player4->insertResourceCard("lana", 0, 0, 0, 2);
+                            player4->insertResourceCard("mineral", 0, 0, 0, 9);
+                            player4->insertResourceCard("cereal", 0, 0, 0, 7);
                             playerList->inserNode(player4);                          
                         }
                        
@@ -884,6 +905,9 @@ void  StartWindow::playerRegister(RenderWindow*) {
                     actualNode = playerList->first;
                     accommodateColors();
                     savePlayerInfo();
+                    saveResourcePlayer();
+                    bank.loadLists();
+                    saveResourceBank();
                     goWindow();
                 }
             }
@@ -987,6 +1011,35 @@ void StartWindow::savePlayerInfo() {
     nodePlayer3 = nodePlayer2->getNextNode();
     nodePlayer4 = nodePlayer3->getNextNode();
 }
+void StartWindow::saveResourcePlayer() {
+    nodeResource = actualNode->getData()->resourceCardsList->first;
+    do {
+        if (nodeResource->getData()->getCardName() == "madera") {
+            woodR = nodeResource->getData()->getQuantity();
+        }
+        if (nodeResource->getData()->getCardName() == "mineral") {
+            mineralR = nodeResource->getData()->getQuantity();
+        }
+        if (nodeResource->getData()->getCardName() == "cereal") {
+            cerealR = nodeResource->getData()->getQuantity();
+        }
+        if (nodeResource->getData()->getCardName() == "arcilla") {
+            clayR = nodeResource->getData()->getQuantity();
+        }
+        if (nodeResource->getData()->getCardName() == "lana") {
+            sheepR = nodeResource->getData()->getQuantity();
+        }
+        nodeResource = nodeResource->getNextNode();
+    } while (nodeResource != actualNode->getData()->resourceCardsList->first);
+    
+}
+void StartWindow::saveResourceBank() {
+    nodeResourceBankWood = bank.resourceCardsList->first;
+    nodeResourceBankSheep = nodeResourceBankWood->getNextNode();
+    nodeResourceCereal = nodeResourceBankSheep->getNextNode();
+    nodeResourceBankClay = nodeResourceCereal->getNextNode();
+    nodeResourceBankMineral = nodeResourceBankClay->getNextNode();
+}
 void StartWindow::paintBankCounters(RenderWindow* Go) {
 
     Text sheep, wood, mineral, cereals, clay, development;
@@ -1009,31 +1062,31 @@ void StartWindow::paintBankCounters(RenderWindow* Go) {
     sheep.setFont(font);
     sheep.setFillColor(Color::Black);
     sheep.setPosition(posXTxt, 2.5);
-    sheep.setString("0");
+    sheep.setString(to_string(nodeResourceBankSheep->getData()->getQuantity()));
 
     posXTxt += 90;   
     wood.setFont(font);
     wood.setFillColor(Color::Black);
     wood.setPosition(posXTxt, 2.5);
-    wood.setString("0");
+    wood.setString(to_string(nodeResourceBankWood->getData()->getQuantity()));
     posXTxt += 90;
 
     mineral.setFont(font);
     mineral.setFillColor(Color::Black);
     mineral.setPosition(posXTxt, 2.5);
-    mineral.setString("0");
+    mineral.setString(to_string(nodeResourceBankMineral->getData()->getQuantity()));
     posXTxt += 90;
 
     cereals.setFont(font);
     cereals.setFillColor(Color::Black);
     cereals.setPosition(posXTxt, 2.5);
-    cereals.setString("0");
+    cereals.setString(to_string(nodeResourceCereal->getData()->getQuantity()));
     posXTxt += 90;
 
     clay.setFont(font);
     clay.setFillColor(Color::Black);
     clay.setPosition(posXTxt, 2.5);
-    clay.setString("0");
+    clay.setString(to_string(nodeResourceBankClay->getData()->getQuantity()));
     posXTxt += 90;
     
     development.setFont(font);
@@ -1070,42 +1123,36 @@ void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
     }
 
     posXTxt = 13;
-    sheep.setString(to_string(actualNode->getData()->getVictoryPoint()));
     sheep.setFont(font);
     sheep.setFillColor(Color::Black);
     sheep.setPosition(posXTxt, posYTxt);
-    sheep.setString("0");
+    sheep.setString(to_string(sheepR));
 
     posXTxt += 90;
-    wood.setString(to_string(actualNode->getData()->getVictoryPoint()));
     wood.setFont(font);
     wood.setFillColor(Color::Black);
     wood.setPosition(posXTxt, posYTxt);
-    wood.setString("0");
+    wood.setString(to_string(woodR));
     posXTxt += 90;
 
-    mineral.setString(to_string(actualNode->getData()->getVictoryPoint()));
     mineral.setFont(font);
     mineral.setFillColor(Color::Black);
     mineral.setPosition(posXTxt, posYTxt);
-    mineral.setString("0");
+    mineral.setString(to_string(mineralR));
     posXTxt += 90;
 
-    cereals.setString(to_string(actualNode->getData()->getVictoryPoint()));
     cereals.setFont(font);
     cereals.setFillColor(Color::Black);
     cereals.setPosition(posXTxt, posYTxt);
-    cereals.setString("0");
+    cereals.setString(to_string(cerealR));
     posXTxt += 90;
 
-    clay.setString(to_string(actualNode->getData()->getVictoryPoint()));
     clay.setFont(font);
     clay.setFillColor(Color::Black);
     clay.setPosition(posXTxt, posYTxt);
-    clay.setString("0");
+    clay.setString(to_string(clayR));
     posXTxt += 90;
 
-    development.setString(to_string(actualNode->getData()->getVictoryPoint()));
     development.setFont(font);
     development.setFillColor(Color::Black);
     development.setPosition(posXTxt, posYTxt);
