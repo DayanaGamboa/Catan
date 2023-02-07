@@ -174,17 +174,14 @@ void StartWindow::goWindow() {
                 for (int i = 0; i < graph.circlesV.size(); i++) {
 
                     if ((graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse))))
-                    {                       
-                        txtTown.loadFromFile("resouceImages/casa.png");
-                        //vectorTown[i].setTexture(&txtTown);
-                        vectorTown[i].setFillColor(Color::Black);
-                        Go.draw(vectorTown[i]);
-                        //player.buildTown(&Go, mouse.getPosition(Go).x, mouse.getPosition(Go).y);
-
+                    {
+                        builtTown(&Go, i);
                         cout << "pintado" << endl;
                         break;
                     }
+
                 }
+
             }
         }        
         generateGameArea(&Go);
@@ -932,23 +929,63 @@ void  StartWindow::playerRegister(RenderWindow*) {
 
 void StartWindow::paintTowns(RenderWindow* Go)
 {
-    Graph graph;
-    RectangleShape rts;    
+    RectangleShape rts;
+
     if (townStatus == false) {
+
         for (int i = 0; i < graph.vertices.size(); i++) {
+
             //vectorTown[i]
             vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorTown[i].setSize(Vector2f(20, 20));
             //vectorTown->setTexture(&txtTown);
-            vectorTown[i].setFillColor(Color::White);            
-        }         
+            vectorTown[i].setFillColor(Color::Transparent);
+        }
         townStatus = true;
     }
-    for (int i = 0; i < graph.vertices.size(); i++) {        
+    for (int i = 0; i < graph.vertices.size(); i++) {
         Go->draw(vectorTown[i]);
     }
-}
 
+    if (townStatus2 == false) {
+
+        for (int i = 0; i < graph.vertices.size(); i++) {
+
+            vectorBlackHouse[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
+            vectorBlackHouse[i].setSize(Vector2f(20, 20));
+            //vectorTown->setTexture(&txtTown);
+            //vectorBlackHouse[i].setFillColor(Color::Transparent);
+        }
+        townStatus2 = true;
+    }
+    for (int i = 0; i < graph.vertices.size(); i++) {
+        Go->draw(vectorBlackHouse[i]);
+    }
+}
+void StartWindow::builtTown(RenderWindow* Go, int i)
+{
+    if (vectorTown[i].getFillColor() == Color::Transparent) {
+
+        vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
+        vectorTown[i].setSize(Vector2f(20, 20));
+        /*vectorTown->setTexture(&txtTown);*/
+        vectorTown[i].setFillColor(actualNode->getData()->getColor());
+        //vectorTown[i].setTexture(&rtsHouse);
+
+        Go->draw(vectorTown[i]);
+
+
+        vectorBlackHouse[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
+        txtTown.loadFromFile("resouceImages/casaNegra.png");
+        vectorBlackHouse[i].setTexture(&txtTown);
+        //vectorBlackHouse[i].setFillColor(Color::Red);
+
+        Go->draw(vectorBlackHouse[i]);
+    }
+    else {
+        cout << "No se puede pintar";
+    }
+}
 void StartWindow::accommodateColors() {
 
     for (int i = 0; i < playerList->getSize(); i++) {

@@ -19,6 +19,7 @@ public:
 	Node<T>* createNode(T*);
 	void inserNode(T*);
 	int getSize();
+	int getCantResources(string);
 	void findNode(string);
 	void dropDownList();
 	/*void showCards();*/
@@ -28,6 +29,7 @@ public:
 	void increaseQuantity(string, int);
 	void decrementQuantity(string, int);
 	void sortPlayerListDescending();
+
 	/*void playerInformationInTurn();*/
 	/*void PlayerInformation();*/
 };
@@ -195,21 +197,14 @@ void CircularList<T>::sortPlayerListDescending() {
 		next = node->getNextNode();
 	} 
 }
-
-//template<class T>
-//void CircularList<T>::showCards() {
-//
-//	if (first) {
-//		Node<T>* node = first;
-//		do {
-//			cout << node->getData()->showCard() << endl;
-//			node = node->getNextNode();
-//		} while (node != first);
-//	}
-//	else {
-//		cout << "Lista vacia...!" << endl;
-//	}
-//
-//}
-
-
+template<class T>
+int CircularList<T>::getCantResources(string nameCard)
+{
+	int quantity = 0;
+	Node<T>* node = first;
+	if (node->getData()->getCardName() == nameCard) {
+		quantity = node->getData()->getQuantity();
+		return quantity;
+	}
+	node = node->getNextNode();
+}

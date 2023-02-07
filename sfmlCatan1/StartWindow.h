@@ -53,6 +53,7 @@ public:
 	void paintPlayerRegister(RenderWindow* playerData);
 	void playerRegister(RenderWindow*);
 	void paintTowns(RenderWindow*);
+	void builtTown(RenderWindow*, int);
 	void accommodateColors();
 	void savePlayerInfo();
 	void paintBankCounters(RenderWindow*);
@@ -71,9 +72,10 @@ public:
 	RectangleShape rtsBtnStreet, rtsBtnTown, rtsBtnCity, rtsBtnEndTurn, rtsBtnDevelopment, rtsBtnTrade;
 	RectangleShape rtsImgPlayer, rtsPlayerRed, rtsPlayerYellow, rtsPlayerGreen;
 	Texture txtrImgPlayer, txtrPlayerRed, txtrPlayerYellow, txtrPlayerGreen;
-	RectangleShape vectorTown[54];
+	RectangleShape vectorTown[54], vectorBlackHouse[54];
 	Texture txtTown;
 	Color playersColor[5] = { Color::Blue, Color::Yellow, Color::Green, Color::Red, Color(187, 208, 216) };
+	Graph graph;
 	bool playersRegister = false;
 	int playerCounter = 0;
 	int id = 0;
@@ -82,6 +84,7 @@ public:
 	bool lands = false;
 	bool numberPieces = false;
 	bool townStatus = false;
+	bool townStatus2 = false;
 	int LandsPosX[19] = { 753,672,589,552,512,550,589,670,751,791,831,791,711,632,592,632,711,750,672 };
 	int LandsPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
 	
