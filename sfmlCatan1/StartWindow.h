@@ -70,6 +70,8 @@ public:
 	void paintPlayerCountersInTurn(RenderWindow*);
 	void saveResourcePlayer();
 	void saveResourceBank();
+	void paintCountersFigures(RenderWindow*);
+
 	int StartWindowPressed() {
 		return StartWindowSelected;
 	}

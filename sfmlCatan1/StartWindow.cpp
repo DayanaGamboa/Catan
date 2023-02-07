@@ -199,6 +199,7 @@ void StartWindow::goWindow() {
         PlayerInTurn(&Go);
         paintBankCounters(&Go);
         paintPlayerCountersInTurn(&Go);
+        paintCountersFigures(&Go);
         Go.display();
     }
 }
@@ -1169,5 +1170,72 @@ void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
     Go->draw(clay);
     Go->draw(development);
 
+
+}
+void StartWindow::paintCountersFigures(RenderWindow* Go) {
+    int x = 280;
+
+    for (int i = 0; i < 3; i++) {
+        //cuadrados grandes
+        RectangleShape rtsCuadradosGrandres;
+        rtsCuadradosGrandres.setPosition(Vector2f(x, 600));
+        rtsCuadradosGrandres.setSize(Vector2f(70, 60));
+        rtsCuadradosGrandres.setFillColor(actualNode->getData()->getColor());
+        Go->draw(rtsCuadradosGrandres);
+
+        //cuadrado color blanco
+        RectangleShape rtsBlanco;
+        rtsBlanco.setPosition(Vector2f(x, 600));
+        rtsBlanco.setSize(Vector2f(20, 25));
+        rtsBlanco.setFillColor(Color::White);
+        Go->draw(rtsBlanco);
+
+        x += 90;
+    }
+
+    RectangleShape rtsCarretera;
+    rtsCarretera.setPosition(Vector2f(300, 610));
+    rtsCarretera.setSize(Vector2f(35, 35));
+    Texture txtrCarretera;
+    txtrCarretera.loadFromFile("resouceImages/carreteraNegra.png");
+    rtsCarretera.setTexture(&txtrCarretera);
+    Go->draw(rtsCarretera);
+
+    RectangleShape rtsPoblado;
+    rtsPoblado.setPosition(Vector2f(390, 610));
+    rtsPoblado.setSize(Vector2f(35, 35));
+    Texture txtrPoblado;
+    txtrPoblado.loadFromFile("resouceImages/casaNegra.png");
+    rtsPoblado.setTexture(&txtrPoblado);
+    Go->draw(rtsPoblado);
+
+    RectangleShape rtsCiudad;
+    rtsCiudad.setPosition(Vector2f(480, 610));
+    rtsCiudad.setSize(Vector2f(35, 35));
+    Texture txtrCiudad;
+    txtrCiudad.loadFromFile("resouceImages/ciudadNegra.png");
+    rtsCiudad.setTexture(&txtrCiudad);
+    Go->draw(rtsCiudad);
+
+    Text txtCarretera;
+    txtCarretera.setFont(font);
+    txtCarretera.setFillColor(Color::Black);
+    txtCarretera.setPosition(284, 590);
+    txtCarretera.setString("15");
+    Go->draw(txtCarretera);
+
+    Text txtPoblado;
+    txtPoblado.setFont(font);
+    txtPoblado.setFillColor(Color::Black);
+    txtPoblado.setPosition(374, 590);
+    txtPoblado.setString("5");
+    Go->draw(txtPoblado);
+
+    Text txtCiudad;
+    txtCiudad.setFont(font);
+    txtCiudad.setFillColor(Color::Black);
+    txtCiudad.setPosition(464, 590);
+    txtCiudad.setString("4");
+    Go->draw(txtCiudad);
 
 }
