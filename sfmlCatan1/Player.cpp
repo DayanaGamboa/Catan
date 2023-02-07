@@ -147,3 +147,15 @@ void Player::buildTown(RenderWindow* Go, int verticeIndexX, int verticeIndexY)
     Go->draw(town);
     Go->display();
 }
+
+int Player::countDevelopmentCard() {
+    int count = 0;
+    nodeDevelopment = developmentCardList->first;
+    do {
+        count += nodeDevelopment->getData()->getQuantity();
+        nodeDevelopment = nodeDevelopment->getNextNode();
+
+    } while (nodeDevelopment != developmentCardList->first);
+
+    return count;
+}

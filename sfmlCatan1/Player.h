@@ -23,6 +23,8 @@ public:
 	Player();
 	~Player();
 
+	Node<DevelopmentCard>* nodeDevelopment;
+
 	void throwsDice();
 	void build();
 	void trade();
@@ -46,6 +48,7 @@ public:
 	void insertFigures(string, int, int);
 	void showCard();
 	void showInformationPlayerInTurn();
+	int countDevelopmentCard();
 
 	/*void playerRegister(RenderWindow*);
 	void paintPlayerRegister(RenderWindow*);*/
