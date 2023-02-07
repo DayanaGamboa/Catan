@@ -2,7 +2,7 @@
 #include "Figure.h"
 #include<sstream>
 
-class Town : Figure
+class Town /*: Figure*/
 {
 public:
 	Town(string, int, int, int);
