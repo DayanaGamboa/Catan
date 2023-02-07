@@ -852,6 +852,8 @@ void  StartWindow::playerRegister(RenderWindow*) {
                             player1->insertResourceCard("mineral", 0, 0, 0, 5);
                             player1->insertResourceCard("cereal", 0, 0, 0, 9);
                             player1->insertDevelopmentCard("caballero", 0, 0, 0, 2);
+
+                            /*player1->insertFigures("Street", 0, 0, 0);*/
                             playerList->inserNode(player1); 
                         }
                         if (playerCounter == 1) {

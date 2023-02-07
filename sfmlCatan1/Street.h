@@ -5,7 +5,7 @@
 class Street : Figure
 {
 public:
-	Street(string, int, int);
+	Street(string, int, int, int);
 	~Street();
 	string toString();
 };

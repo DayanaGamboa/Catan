@@ -1,6 +1,6 @@
 #include "Street.h"
 
-Street::Street(string name, int positionX, int positionY) : Figure(name,positionX, positionY)
+Street::Street(string name, int positionX, int positionY, int quantity) : Figure(name,positionX, positionY, quantity)
 {
 }
 

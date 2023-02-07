@@ -1,10 +1,12 @@
 #include "Figure.h"
 
-Figure::Figure(string figureName, int positionX, int positionY)
+Figure::Figure(string figureName, int positionX, int positionY, int quantity)
+
 {
     this->figureName = figureName;
     this->positionX = positionX;
     this->positionY = positionY;
+    this->quantity = quantity;
 }
 
 Figure::~Figure()

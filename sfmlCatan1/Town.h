@@ -5,7 +5,7 @@
 class Town : Figure
 {
 public:
-	Town(string, int, int);
+	Town(string, int, int, int);
 	~Town();
 	string toString();
 
