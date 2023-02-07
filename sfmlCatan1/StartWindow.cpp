@@ -959,51 +959,38 @@ void StartWindow::paintTowns(RenderWindow* Go)
 
         for (int i = 0; i < graph.vertices.size(); i++) {
 
-            //vectorTown[i]
+            //Inicializa rectangulos en el area de juego
             vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
-            vectorTown[i].setSize(Vector2f(20, 20));
-            //vectorTown->setTexture(&txtTown);
+            vectorTown[i].setSize(Vector2f(20, 20));          
             vectorTown[i].setFillColor(Color::Transparent);
-        }
-        townStatus = true;
-    }
-    for (int i = 0; i < graph.vertices.size(); i++) {
-        Go->draw(vectorTown[i]);
-    }
-
-    if (townStatus2 == false) {
-
-        for (int i = 0; i < graph.vertices.size(); i++) {
-
+            //inicializa poblados en el area de juego
             vectorBlackHouse[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorBlackHouse[i].setSize(Vector2f(20, 20));
-            //vectorTown->setTexture(&txtTown);
-            //vectorBlackHouse[i].setFillColor(Color::Transparent);
+            vectorBlackHouse[i].setFillColor(Color::Transparent);
         }
-        townStatus2 = true;
+        townStatus = true;       
     }
+    //recorre rectangulos y poblados
     for (int i = 0; i < graph.vertices.size(); i++) {
+        Go->draw(vectorTown[i]);
         Go->draw(vectorBlackHouse[i]);
     }
+
 }
 void StartWindow::builtTown(RenderWindow* Go, int i)
 {
     if (vectorTown[i].getFillColor() == Color::Transparent) {
 
         vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
-        vectorTown[i].setSize(Vector2f(20, 20));
-        /*vectorTown->setTexture(&txtTown);*/
+        vectorTown[i].setSize(Vector2f(20, 20));       
         vectorTown[i].setFillColor(actualNode->getData()->getColor());
-        //vectorTown[i].setTexture(&rtsHouse);
-
-        Go->draw(vectorTown[i]);
-
-
-        vectorBlackHouse[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
+       
+        vectorBlackHouse[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);       
+        vectorBlackHouse[i].setFillColor(actualNode->getData()->getColor());
         txtTown.loadFromFile("resouceImages/casaNegra.png");
         vectorBlackHouse[i].setTexture(&txtTown);
-        //vectorBlackHouse[i].setFillColor(Color::Red);
 
+        Go->draw(vectorTown[i]);
         Go->draw(vectorBlackHouse[i]);
     }
     else {
