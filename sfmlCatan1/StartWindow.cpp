@@ -239,7 +239,7 @@ void StartWindow::goWindow() {
         paintCitys(&Go);
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
-        paintOpponentDeck(&Go, playerList->getSize());;
+        paintOpponentDeck(&Go, playerList->getSize());
         paintSpecialCards(&Go);
         PlayerInTurn(&Go);
         paintBankCounters(&Go);
@@ -477,27 +477,24 @@ void StartWindow::loadGameButton(RenderWindow*)
 
 void StartWindow::generateGameArea(RenderWindow* Go) {
     //MAR
-    RectangleShape rtsSea;
-    rtsSea.setSize(Vector2f(X, Y));
-    Texture textureRtsSea;
+    RectangleShape rtsSea, rtsLand, rtsBank;
+    Texture textureRtsSea, textureRtsLand, textureRtsBank, textureRtsBtnDice, textureRtsBtnSave, textureRtsBtnExit, txtrBtnStreet;
+    Texture txtrBtnCity, txtrBtnTown, txtrBtnDevelopment, txtrBtnTrade, txtrBtnEndTurn;
+    rtsSea.setSize(Vector2f(X, Y));   
     textureRtsSea.loadFromFile("resouceImages/goGame.jpg");
     rtsSea.setTexture(&textureRtsSea);
     Go->draw(rtsSea);
 
-    //Hexagono para los terrenos
-    RectangleShape rtsLand;
+    //Hexagono para los terrenos   
     rtsLand.setPosition(Vector2f(450, 120));
     rtsLand.setSize(Vector2f(510, 510));
-    Texture textureRtsLand;
     textureRtsLand.loadFromFile("resouceImages/AreaJuego.png");
     rtsLand.setTexture(&textureRtsLand);
     Go->draw(rtsLand);
 
     //Bank
-    RectangleShape rtsBank;
     rtsBank.setPosition(Vector2f(550, 30));
     rtsBank.setSize(Vector2f(64, 64));
-    Texture textureRtsBank;
     textureRtsBank.loadFromFile("resouceImages/banco.png");
     rtsBank.setTexture(&textureRtsBank);
     Go->draw(rtsBank);
@@ -505,7 +502,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnDice
     rtsBtnDice.setPosition(Vector2f(700, 10));
     rtsBtnDice.setSize(Vector2f(180, 100));
-    Texture textureRtsBtnDice;
     textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");  
     rtsBtnDice.setTexture(&textureRtsBtnDice);
     Go->draw(rtsBtnDice);
@@ -513,7 +509,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnGuardar
     rtsBtnSave.setPosition(Vector2f(1170, 10));
     rtsBtnSave.setSize(Vector2f(150, 50));
-    Texture textureRtsBtnSave;
     textureRtsBtnSave.loadFromFile("resouceImages/btnGuardar.png");
     rtsBtnSave.setTexture(&textureRtsBtnSave);
     Go->draw(rtsBtnSave);
@@ -521,7 +516,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnSalir
     rtsBtnExit.setPosition(Vector2f(1170, 70));
     rtsBtnExit.setSize(Vector2f(150, 50));
-    Texture textureRtsBtnExit;
     textureRtsBtnExit.loadFromFile("resouceImages/btnSalir.png");
     rtsBtnExit.setTexture(&textureRtsBtnExit);
     Go->draw(rtsBtnExit);
@@ -529,7 +523,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnCarretera
     rtsBtnStreet.setPosition(Vector2f(1170, 200));
     rtsBtnStreet.setSize(Vector2f(150, 50));
-    Texture txtrBtnStreet;
     txtrBtnStreet.loadFromFile("resouceImages/btnCarretera.png");
     rtsBtnStreet.setTexture(&txtrBtnStreet);
     Go->draw(rtsBtnStreet);
@@ -537,7 +530,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnCiudad
     rtsBtnCity.setPosition(Vector2f(1170, 260));
     rtsBtnCity.setSize(Vector2f(150, 50));
-    Texture txtrBtnCity;
     txtrBtnCity.loadFromFile("resouceImages/btnCiudad.png");
     rtsBtnCity.setTexture(&txtrBtnCity);
     Go->draw(rtsBtnCity);
@@ -545,7 +537,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnPoblado
     rtsBtnTown.setPosition(Vector2f(1170, 320));
     rtsBtnTown.setSize(Vector2f(150, 50));
-    Texture txtrBtnTown;
     txtrBtnTown.loadFromFile("resouceImages/btnPoblado.png");
     rtsBtnTown.setTexture(&txtrBtnTown);
     Go->draw(rtsBtnTown);
@@ -553,7 +544,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnDesarrollo
     rtsBtnDevelopment.setPosition(Vector2f(1170, 380));
     rtsBtnDevelopment.setSize(Vector2f(150, 50));
-    Texture txtrBtnDevelopment;
     txtrBtnDevelopment.loadFromFile("resouceImages/btnDesarrollo.png");
     rtsBtnDevelopment.setTexture(&txtrBtnDevelopment);
     Go->draw(rtsBtnDevelopment);
@@ -561,7 +551,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnComerciar
     rtsBtnTrade.setPosition(Vector2f(1170, 440));
     rtsBtnTrade.setSize(Vector2f(150, 50));
-    Texture txtrBtnTrade;
     txtrBtnTrade.loadFromFile("resouceImages/btnComerciar.png");
     rtsBtnTrade.setTexture(&txtrBtnTrade);
     Go->draw(rtsBtnTrade);
@@ -569,18 +558,15 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnTerminarTurno
     rtsBtnEndTurn.setPosition(Vector2f(1170, 500));
     rtsBtnEndTurn.setSize(Vector2f(150, 50));
-    Texture txtrBtnEndTurn;
     txtrBtnEndTurn.loadFromFile("resouceImages/btnTerminarTurno.png");
     rtsBtnEndTurn.setTexture(&txtrBtnEndTurn);
     Go->draw(rtsBtnEndTurn);
     
 }
 void StartWindow::paintLands(RenderWindow* Go) {
-
-    
+   
     string path = "";
     Thief thief;
-    //Terrenos
     if (lands == false) {
 
         RectangleShape rts;
@@ -590,20 +576,19 @@ void StartWindow::paintLands(RenderWindow* Go) {
             vectorLandsTXT[i] = txtr;
         }
 
-
         int vectorLands[6] = { 4, 4, 4, 3, 3, 1 };//para saber cuantos terrenos de cada uno
         int number = 0, contLands = 0;
-
-
         srand(time(NULL));
+
         while (contLands <= 18) {
             number = 0 + rand() % 6;
             if (vectorLands[number] != 0) {
+
                 if (number == 5) {
-                   /* thief.positionX = TerrenosPosX[contTerrenos];
-                    thief.positionY = TerrenosPosY[contTerrenos];*/
+
                     posXDesertLand = LandsPosX[contLands];
                     posYDesertLand = LandsPosY[contLands];
+
                 }
                 vectorLandsRTS[contLands].setPosition(Vector2f(LandsPosX[contLands], LandsPosY[contLands]));
                 vectorLandsRTS[contLands].setSize(Vector2f(68.5, 68.5));
@@ -616,7 +601,6 @@ void StartWindow::paintLands(RenderWindow* Go) {
                 Texture* txt;
                 txt = &vectorLandsTXT[contLands];
                 vectorLandsRTS[contLands].setTexture(txt);
-                //Go->draw(vectorTerrenosRTS[contTerrenos]);
                 vectorLands[number] = vectorLands[number] - 1;
                 contLands++;
             }
@@ -627,7 +611,6 @@ void StartWindow::paintLands(RenderWindow* Go) {
     for (int i = 0; i < 19; i++) {
         Go->draw(vectorLandsRTS[i]);
     }
-
 }
 void StartWindow::paintNumberPieces(RenderWindow* Go) {
 
@@ -680,22 +663,20 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     Color playerColor = actualNode->getData()->getColor();
     puntosVictoria = actualNode->getData()->getVictoryPoint();
 
-    RectangleShape rtsBackPlayer;
+    RectangleShape rtsBackPlayer, rtsPlayerColor;
+    Text description, ID, PV, name, color;
+
     rtsBackPlayer.setPosition(950, 640);
     rtsBackPlayer.setSize(Vector2f(350, 130));
     rtsBackPlayer.setFillColor(Color(220, 245, 255));
     Go->draw(rtsBackPlayer);
 
-    //Titulo  
-    Text description;
     description.setString("Datos del jugador en turno");
     description.setFont(font);
     description.setFillColor(Color::Black);
     description.setPosition(980, 635);
     Go->draw(description);
 
-    //titulo ID  
-    Text ID;
     ID.setFont(font);
     ID.setString("ID:  ");
     ID.setFillColor(Color::Black);
@@ -703,8 +684,6 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     ID.setString(ID.getString() + playerID);
     Go->draw(ID);
 
-    //titulo PV 
-    Text PV;
     PV.setFont(font);
     PV.setString("PV:  ");
     PV.setFillColor(Color::Black);
@@ -712,8 +691,6 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     PV.setString(PV.getString() + to_string(puntosVictoria));
     Go->draw(PV);
 
-    //titulo nombre   
-    Text name;
     name.setFont(font);
     name.setString("Nombre:  ");
     name.setFillColor(Color::Black);
@@ -721,15 +698,12 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     name.setString(name.getString() + playerName);
     Go->draw(name);
 
-    //titulo color  
-    Text color;
     color.setFont(font);
     color.setString("Color:  ");
     color.setFillColor(Color::Black);
     color.setPosition(955, 730);
     Go->draw(color);
 
-    RectangleShape rtsPlayerColor;
     rtsPlayerColor.setSize(Vector2f(50, 20));
     rtsPlayerColor.setPosition(1050, 740);
     rtsPlayerColor.setFillColor(playerColor);
@@ -739,6 +713,7 @@ void StartWindow::paintPlayerRegister(RenderWindow* playerData) {
     //MENU
     background.setSize(Vector2f(700, 700));
     background.setFillColor(Color(220, 245, 255));
+
 
     txtTitle.setFont(font);
     txtTitle.setString("Registro de jugadores: (3-4)");
@@ -849,17 +824,14 @@ void StartWindow::paintPlayerRegister(RenderWindow* playerData) {
 void StartWindow::playerRegister(RenderWindow*) {
 
     RenderWindow playerData(VideoMode(700, 700), "Registro de jugadores");
-    //Player* player = new Player();
-
     rtsColor.setFillColor(Color::Blue);
-
-    string name = "", ageString = "";
-    Vector2i mouseCoordinates;
-    
+    rtsColor.setFillColor(playersColor[playerCounter]);
     int color = 0, age = 0, victoryPoints = 0;
+    string name = "", ageString = "";
+    Vector2i mouseCoordinates;   
     txtName.setString("");
     txtAge.setString("");
-    rtsColor.setFillColor(playersColor[playerCounter]);
+    
     while (playerData.isOpen()) {
         
         Event event;
@@ -902,8 +874,6 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player1->insertFigures("ciudad", 0, 0, 5);
                             player1->insertSpecialCard("mayor ruta", 0, 0, 0, 1);
                             player1->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
-
-                            /*player1->insertFigures("Street", 0, 0, 0);*/
                             playerList->inserNode(player1); 
                         }
                         if (playerCounter == 1) {
@@ -932,7 +902,7 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player3->insertDevelopmentCard("caballero", 0, 0, 0, 4);
                             player3->insertFigures("carretera", 0, 0, 15);
                             player3->insertFigures("poblado", 0, 0, 4);
-                              player3->insertFigures("ciudad", 0, 0, 5);
+                            player3->insertFigures("ciudad", 0, 0, 5);
                             player3->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
                             player3->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
 
@@ -954,13 +924,10 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player4->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
 
                             playerList->inserNode(player4);                          
-                        }
-                       
-                        //Cuando guarda inicializa los valores                        
+                        }                                           
                         name = "";
                         ageString = "";
                         victoryPoints = 0, color = 0;
-
                         txtID.setString("");
                         txtName.setString("");
                         txtAge.setString("");
@@ -976,7 +943,6 @@ void StartWindow::playerRegister(RenderWindow*) {
                 if (rtsBtnPlay.getGlobalBounds().contains(Vector2<float>(mouseCoordinates))) {
                     playerData.close();
                     playerList->sortPlayerListDescending();
-
                     actualNode = playerList->first;
                     accommodateColors();
                     savePlayerInfo();
@@ -1031,48 +997,40 @@ void StartWindow::paintTowns(RenderWindow* Go)
     if (townStatus == false) {
 
         for (int i = 0; i < graph.vertices.size(); i++) {
-
-            //Inicializa rectangulos en el area de juego
             vectorTown[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorTown[i].setSize(Vector2f(20, 20));
             vectorTown[i].setFillColor(Color::Transparent);
-            //inicializa poblados en el area de juego
+           
             vectorBlackHouse[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorBlackHouse[i].setSize(Vector2f(20, 20));
             vectorBlackHouse[i].setFillColor(Color::Transparent);
         }
         townStatus = true;
     }
-    //recorre rectangulos y poblados
     for (int i = 0; i < graph.vertices.size(); i++) {
         Go->draw(vectorTown[i]);
         Go->draw(vectorBlackHouse[i]);
     }
-
 }
 void StartWindow::paintCitys(RenderWindow* Go)
 {
     if (cityStatus == false) {
 
         for (int i = 0; i < graph.vertices.size(); i++) {
-
-            //Inicializa rectangulos en el area de juego
             vectorCity[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorCity[i].setSize(Vector2f(20, 20));
             vectorCity[i].setFillColor(Color::Transparent);
-            //inicializa poblados en el area de juego
+
             vectorBlackCity[i].setPosition(graph.vertices[i].x, graph.vertices[i].y);
             vectorBlackCity[i].setSize(Vector2f(20, 20));
             vectorBlackCity[i].setFillColor(Color::Transparent);
         }
         cityStatus = true;
     }
-    //recorre rectangulos y poblados
     for (int i = 0; i < graph.vertices.size(); i++) {
         Go->draw(vectorCity[i]);
         Go->draw(vectorBlackCity[i]);
     }
-
 }
 void StartWindow::builtTown(RenderWindow* Go, int i)
 {
@@ -1103,7 +1061,6 @@ void StartWindow::builtCity(RenderWindow* Go, int i)
         vectorBlackCity[i].setFillColor(actualNode->getData()->getColor());
         txtCity.loadFromFile("resouceImages/ciudadNegra.png");
         vectorBlackCity[i].setTexture(&txtCity);
-
         Go->draw(vectorCity[i]);
         Go->draw(vectorBlackCity[i]);
 
@@ -1123,7 +1080,6 @@ void StartWindow::accommodateColors() {
         playersColor[i] = actualNode->getData()->getColor();
         actualNode = actualNode->getNextNode();
     }
-
 }
 void StartWindow::savePlayerInfo() {
     nodePlayer1 = playerList->first;
@@ -1150,8 +1106,7 @@ void StartWindow::saveResourcePlayer() {
             sheepR = nodeResource->getData()->getQuantity();
         }
         nodeResource = nodeResource->getNextNode();
-    } while (nodeResource != actualNode->getData()->resourceCardsList->first);
-    
+    } while (nodeResource != actualNode->getData()->resourceCardsList->first);  
 }
 void StartWindow::saveResourceBank() {
     nodeResourceBankWood = bank.resourceCardsList->first;
@@ -1169,15 +1124,13 @@ void StartWindow::paintBankCounters(RenderWindow* Go) {
     int y = 10;
 
     for (int i = 0; i < 6; i++) {
-        //cuadrado color blanco
         RectangleShape rtsBlanco;
         rtsBlanco.setPosition(Vector2f(x, y));
         rtsBlanco.setSize(Vector2f(20, 25));
         rtsBlanco.setFillColor(Color::White);
         Go->draw(rtsBlanco);
         x += 90;
-    }
-    
+    }    
     posXTxt = 13;   
     sheep.setFont(font);
     sheep.setFillColor(Color::Black);
@@ -1219,12 +1172,9 @@ void StartWindow::paintBankCounters(RenderWindow* Go) {
     Go->draw(mineral);
     Go->draw(cereals);
     Go->draw(clay);
-    Go->draw(development);
-
-    
+    Go->draw(development);   
 }
 void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
-
     Text sheep, wood, mineral, cereals, clay, development;
     RectangleShape rtsBlanco;
     int posXTxt = 0;
@@ -1284,8 +1234,6 @@ void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
     Go->draw(cereals);
     Go->draw(clay);
     Go->draw(development);
-
-
 }
 void StartWindow::saveFigfurePlayer() {
     nodeFigure = actualNode->getData()->figureList->first;
@@ -1301,74 +1249,61 @@ void StartWindow::saveFigfurePlayer() {
         }  
         nodeFigure = nodeFigure->getNextNode();
     } while (nodeFigure != actualNode->getData()->figureList->first);
-
 }
 void StartWindow::paintCountersFigures(RenderWindow* Go) {
     int x = 280;
-
     for (int i = 0; i < 3; i++) {
-        //cuadrados grandes
-        RectangleShape rtsCuadradosGrandres;
+        RectangleShape rtsCuadradosGrandres, rtsBlanco;
         rtsCuadradosGrandres.setPosition(Vector2f(x, 600));
         rtsCuadradosGrandres.setSize(Vector2f(70, 60));
         rtsCuadradosGrandres.setFillColor(actualNode->getData()->getColor());
         Go->draw(rtsCuadradosGrandres);
-
-        //cuadrado color blanco
-        RectangleShape rtsBlanco;
+        
         rtsBlanco.setPosition(Vector2f(x, 600));
         rtsBlanco.setSize(Vector2f(20, 25));
         rtsBlanco.setFillColor(Color::White);
         Go->draw(rtsBlanco);
-
         x += 90;
     }
 
-    RectangleShape rtsCarretera;
+    RectangleShape rtsCarretera, rtsPoblado, rtsCiudad;
+    Texture txtrCarretera, txtrPoblado, txtrCiudad;
+    Text txtCarretera, txtPoblado, txtCiudad;
     rtsCarretera.setPosition(Vector2f(300, 610));
-    rtsCarretera.setSize(Vector2f(35, 35));
-    Texture txtrCarretera;
+    rtsCarretera.setSize(Vector2f(35, 35));  
     txtrCarretera.loadFromFile("resouceImages/carreteraNegra.png");
     rtsCarretera.setTexture(&txtrCarretera);
     Go->draw(rtsCarretera);
 
-    RectangleShape rtsPoblado;
     rtsPoblado.setPosition(Vector2f(390, 610));
     rtsPoblado.setSize(Vector2f(35, 35));
-    Texture txtrPoblado;
     txtrPoblado.loadFromFile("resouceImages/casaNegra.png");
     rtsPoblado.setTexture(&txtrPoblado);
     Go->draw(rtsPoblado);
 
-    RectangleShape rtsCiudad;
     rtsCiudad.setPosition(Vector2f(480, 610));
     rtsCiudad.setSize(Vector2f(35, 35));
-    Texture txtrCiudad;
     txtrCiudad.loadFromFile("resouceImages/ciudadNegra.png");
     rtsCiudad.setTexture(&txtrCiudad);
     Go->draw(rtsCiudad);
 
-    Text txtCarretera;
     txtCarretera.setFont(font);
     txtCarretera.setFillColor(Color::Black);
     txtCarretera.setPosition(284, 590);
     txtCarretera.setString(to_string(streetF));
     Go->draw(txtCarretera);
 
-    Text txtPoblado;
     txtPoblado.setFont(font);
     txtPoblado.setFillColor(Color::Black);
     txtPoblado.setPosition(374, 590);
     txtPoblado.setString(to_string(townF));
     Go->draw(txtPoblado);
 
-    Text txtCiudad;
     txtCiudad.setFont(font);
     txtCiudad.setFillColor(Color::Black);
     txtCiudad.setPosition(464, 590);
     txtCiudad.setString(to_string(cityF));
     Go->draw(txtCiudad);
-
 }
 void StartWindow::existenceSpecialCard() {
     
@@ -1385,7 +1320,6 @@ void StartWindow::existenceSpecialCard() {
            
 }
 void StartWindow::paintCounterSpecials(RenderWindow* Go) {
-
     int x = 550;
     int y = 640;
     for (int i = 0; i < 2; i++) {
@@ -1412,12 +1346,10 @@ void StartWindow::paintCounterSpecials(RenderWindow* Go) {
     txtMayorRuta.setPosition(683, y);
     txtMayorRuta.setString(to_string(specialMajorRoute));
     Go->draw(txtMayorRuta);
-
 }
 
 void StartWindow::restarFigura(string figura, int numero) {
-    nodeFigure = actualNode->getData()->figureList->first;
-    
+    nodeFigure = actualNode->getData()->figureList->first;   
     do {
         if (nodeFigure->getData()->getCardName() == figura) {
             cout << "seteado" << endl;
@@ -1425,5 +1357,4 @@ void StartWindow::restarFigura(string figura, int numero) {
         }
         nodeFigure = nodeFigure->getNextNode();
     } while (nodeFigure != actualNode->getData()->figureList->first);
-
 }
