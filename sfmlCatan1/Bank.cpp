@@ -10,22 +10,29 @@ Bank::~Bank()
 {
 }
 
-void Bank::addUpCards(string name, int quantity)
+void Bank::updateDevelopmentCard(string name, int quantity)
 {
-	resourceCardsList->increaseQuantity(name, quantity);
-	resourceCardsList->dropDownList();
+	nodeDevelopment = developmentCardList->first;
+	do {
+		if (nodeDevelopment->getData()->getCardName() == name) {
+			cout << "seteado" << endl;
+			nodeDevelopment->getData()->setQuantity(quantity);
+		}
+		nodeDevelopment = nodeDevelopment->getNextNode();
+	} while (nodeDevelopment != developmentCardList->first);
 }
 
-void Bank::substtractCards(string name, int type, int quantity)
+void Bank::updateResourceCard(string name, int quantity)
 {
-	if (type == 1) {
-		resourceCardsList->decrementQuantity(name, quantity);
-		resourceCardsList->dropDownList();
-	}
-	if (type == 2) {
-		developmentCardList->decrementQuantity(name, quantity);
-		developmentCardList->dropDownList();
-	}	
+	nodeResource = resourceCardsList->first;
+	do {
+		if (nodeResource->getData()->getCardName() == name) {
+			cout << "seteado" << endl;
+			nodeResource->getData()->setQuantity(quantity);
+		}
+		nodeResource = nodeResource->getNextNode();
+	} while (nodeResource != resourceCardsList->first);
+
 }
 
 int Bank::putCards(int, int)

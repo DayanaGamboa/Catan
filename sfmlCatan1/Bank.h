@@ -11,8 +11,9 @@ public:
 	Bank();
 	~Bank();
 	Node<DevelopmentCard>* nodeDevelopment;
-	void addUpCards(string, int);
-	void substtractCards(string, int, int);
+	Node<ResourceCard>* nodeResource;
+	void updateDevelopmentCard(string, int);
+	void updateResourceCard(string, int);
 	int putCards(int, int);
 	int countDevelopmentCard();
 	void loadLists();
