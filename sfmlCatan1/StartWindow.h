@@ -80,6 +80,7 @@ public:
 	void paintCounterSpecials(RenderWindow*);
 	void restarFigura(string, int);
 	void subtractResources(string, int);
+	void victory();
 
 	int StartWindowPressed() {
 		return StartWindowSelected;

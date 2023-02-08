@@ -219,7 +219,8 @@ void StartWindow::goWindow() {
                             builtCity(&Go, i);
                             
                             if (puntosVictoria == 10) {
-                                cout << "GANOOOOOOOOOO" << endl;
+                                victory();
+                                
                             }
                             break;
                         }
@@ -1380,4 +1381,57 @@ void StartWindow::subtractResources(string resource, int numero) {
         }
         nodeResource = nodeResource->getNextNode();
     } while (nodeResource != actualNode->getData()->resourceCardsList->first);
+}
+void StartWindow::victory()
+{
+
+    RenderWindow windowVictory(VideoMode(600, 400), "VICTORY");
+
+    RectangleShape rtsOk, backVictory;
+    Texture textureRtsBtnOk;
+
+    Text win, title;
+
+    title.setString("********GANADOR********");
+    title.setFont(font);
+    title.setPosition(120, 100);
+    title.setCharacterSize(45);
+    title.setFillColor(Color::Black);
+
+    //text.setString(text.getString() + winningPlayer);
+    backVictory.setSize(Vector2f(600, 400));
+    backVictory.setFillColor(Color(220, 245, 255));
+
+    rtsOk.setSize(Vector2f(150, 50));
+    rtsOk.setPosition(Vector2f(220, 350));
+    textureRtsBtnOk.loadFromFile("resouceImages/btnOk.png");
+    rtsOk.setTexture(&textureRtsBtnOk);
+
+
+    win.setString(actualNode->getData()->getName());
+    win.setFont(font);
+    win.setPosition(225, 185);
+    win.setFillColor(Color::Black);
+    while (windowVictory.isOpen()) {
+
+        while (windowVictory.pollEvent(event)) {
+            if (event.type == Event::MouseButtonPressed) {
+
+                Vector2i coordinatesMouse = mouse.getPosition(windowVictory);
+
+                if (rtsOk.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    exit(0);
+                }
+            }
+        }
+        windowVictory.clear();
+        windowVictory.draw(backVictory);
+        windowVictory.draw(title);
+        windowVictory.draw(win);
+        windowVictory.draw(rtsOk);
+
+        windowVictory.display();
+    }
+
+
 }
