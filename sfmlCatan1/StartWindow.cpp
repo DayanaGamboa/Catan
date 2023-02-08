@@ -476,27 +476,24 @@ void StartWindow::loadGameButton(RenderWindow*)
 
 void StartWindow::generateGameArea(RenderWindow* Go) {
     //MAR
-    RectangleShape rtsSea;
-    rtsSea.setSize(Vector2f(X, Y));
-    Texture textureRtsSea;
+    RectangleShape rtsSea, rtsLand, rtsBank;
+    Texture textureRtsSea, textureRtsLand, textureRtsBank, textureRtsBtnDice, textureRtsBtnSave, textureRtsBtnExit, txtrBtnStreet;
+    Texture txtrBtnCity, txtrBtnTown, txtrBtnDevelopment, txtrBtnTrade, txtrBtnEndTurn;
+    rtsSea.setSize(Vector2f(X, Y));   
     textureRtsSea.loadFromFile("resouceImages/goGame.jpg");
     rtsSea.setTexture(&textureRtsSea);
     Go->draw(rtsSea);
 
-    //Hexagono para los terrenos
-    RectangleShape rtsLand;
+    //Hexagono para los terrenos   
     rtsLand.setPosition(Vector2f(450, 120));
     rtsLand.setSize(Vector2f(510, 510));
-    Texture textureRtsLand;
     textureRtsLand.loadFromFile("resouceImages/AreaJuego.png");
     rtsLand.setTexture(&textureRtsLand);
     Go->draw(rtsLand);
 
     //Bank
-    RectangleShape rtsBank;
     rtsBank.setPosition(Vector2f(550, 30));
     rtsBank.setSize(Vector2f(64, 64));
-    Texture textureRtsBank;
     textureRtsBank.loadFromFile("resouceImages/banco.png");
     rtsBank.setTexture(&textureRtsBank);
     Go->draw(rtsBank);
@@ -504,7 +501,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnDice
     rtsBtnDice.setPosition(Vector2f(700, 10));
     rtsBtnDice.setSize(Vector2f(180, 100));
-    Texture textureRtsBtnDice;
     textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");  
     rtsBtnDice.setTexture(&textureRtsBtnDice);
     Go->draw(rtsBtnDice);
@@ -512,7 +508,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnGuardar
     rtsBtnSave.setPosition(Vector2f(1170, 10));
     rtsBtnSave.setSize(Vector2f(150, 50));
-    Texture textureRtsBtnSave;
     textureRtsBtnSave.loadFromFile("resouceImages/btnGuardar.png");
     rtsBtnSave.setTexture(&textureRtsBtnSave);
     Go->draw(rtsBtnSave);
@@ -520,7 +515,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnSalir
     rtsBtnExit.setPosition(Vector2f(1170, 70));
     rtsBtnExit.setSize(Vector2f(150, 50));
-    Texture textureRtsBtnExit;
     textureRtsBtnExit.loadFromFile("resouceImages/btnSalir.png");
     rtsBtnExit.setTexture(&textureRtsBtnExit);
     Go->draw(rtsBtnExit);
@@ -528,7 +522,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnCarretera
     rtsBtnStreet.setPosition(Vector2f(1170, 200));
     rtsBtnStreet.setSize(Vector2f(150, 50));
-    Texture txtrBtnStreet;
     txtrBtnStreet.loadFromFile("resouceImages/btnCarretera.png");
     rtsBtnStreet.setTexture(&txtrBtnStreet);
     Go->draw(rtsBtnStreet);
@@ -536,7 +529,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnCiudad
     rtsBtnCity.setPosition(Vector2f(1170, 260));
     rtsBtnCity.setSize(Vector2f(150, 50));
-    Texture txtrBtnCity;
     txtrBtnCity.loadFromFile("resouceImages/btnCiudad.png");
     rtsBtnCity.setTexture(&txtrBtnCity);
     Go->draw(rtsBtnCity);
@@ -544,7 +536,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnPoblado
     rtsBtnTown.setPosition(Vector2f(1170, 320));
     rtsBtnTown.setSize(Vector2f(150, 50));
-    Texture txtrBtnTown;
     txtrBtnTown.loadFromFile("resouceImages/btnPoblado.png");
     rtsBtnTown.setTexture(&txtrBtnTown);
     Go->draw(rtsBtnTown);
@@ -552,7 +543,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnDesarrollo
     rtsBtnDevelopment.setPosition(Vector2f(1170, 380));
     rtsBtnDevelopment.setSize(Vector2f(150, 50));
-    Texture txtrBtnDevelopment;
     txtrBtnDevelopment.loadFromFile("resouceImages/btnDesarrollo.png");
     rtsBtnDevelopment.setTexture(&txtrBtnDevelopment);
     Go->draw(rtsBtnDevelopment);
@@ -560,7 +550,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnComerciar
     rtsBtnTrade.setPosition(Vector2f(1170, 440));
     rtsBtnTrade.setSize(Vector2f(150, 50));
-    Texture txtrBtnTrade;
     txtrBtnTrade.loadFromFile("resouceImages/btnComerciar.png");
     rtsBtnTrade.setTexture(&txtrBtnTrade);
     Go->draw(rtsBtnTrade);
@@ -568,18 +557,15 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     //btnTerminarTurno
     rtsBtnEndTurn.setPosition(Vector2f(1170, 500));
     rtsBtnEndTurn.setSize(Vector2f(150, 50));
-    Texture txtrBtnEndTurn;
     txtrBtnEndTurn.loadFromFile("resouceImages/btnTerminarTurno.png");
     rtsBtnEndTurn.setTexture(&txtrBtnEndTurn);
     Go->draw(rtsBtnEndTurn);
     
 }
 void StartWindow::paintLands(RenderWindow* Go) {
-
-    
+   
     string path = "";
     Thief thief;
-    //Terrenos
     if (lands == false) {
 
         RectangleShape rts;
@@ -589,20 +575,19 @@ void StartWindow::paintLands(RenderWindow* Go) {
             vectorLandsTXT[i] = txtr;
         }
 
-
         int vectorLands[6] = { 4, 4, 4, 3, 3, 1 };//para saber cuantos terrenos de cada uno
         int number = 0, contLands = 0;
-
-
         srand(time(NULL));
+
         while (contLands <= 18) {
             number = 0 + rand() % 6;
             if (vectorLands[number] != 0) {
+
                 if (number == 5) {
-                   /* thief.positionX = TerrenosPosX[contTerrenos];
-                    thief.positionY = TerrenosPosY[contTerrenos];*/
+
                     posXDesertLand = LandsPosX[contLands];
                     posYDesertLand = LandsPosY[contLands];
+
                 }
                 vectorLandsRTS[contLands].setPosition(Vector2f(LandsPosX[contLands], LandsPosY[contLands]));
                 vectorLandsRTS[contLands].setSize(Vector2f(68.5, 68.5));
@@ -615,7 +600,6 @@ void StartWindow::paintLands(RenderWindow* Go) {
                 Texture* txt;
                 txt = &vectorLandsTXT[contLands];
                 vectorLandsRTS[contLands].setTexture(txt);
-                //Go->draw(vectorTerrenosRTS[contTerrenos]);
                 vectorLands[number] = vectorLands[number] - 1;
                 contLands++;
             }
@@ -626,7 +610,6 @@ void StartWindow::paintLands(RenderWindow* Go) {
     for (int i = 0; i < 19; i++) {
         Go->draw(vectorLandsRTS[i]);
     }
-
 }
 void StartWindow::paintNumberPieces(RenderWindow* Go) {
 
