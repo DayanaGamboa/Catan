@@ -181,6 +181,7 @@ void StartWindow::goWindow() {
                     actualNode = actualNode->getNextNode();
                     saveResourcePlayer();
                     saveFigfurePlayer();
+                    existenceSpecialCard();
                     firstPlay = true;
                 }
                 if (townBtnPressed == true) {
@@ -868,6 +869,8 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player1->insertFigures("carretera", 0, 0, 15);
                             player1->insertFigures("poblado", 0, 0, 15);
                             player1->insertFigures("ciudad", 0, 0, 15);
+                            player1->insertSpecialCard("mayor ruta", 0, 0, 0, 1);
+                            player1->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
 
                             /*player1->insertFigures("Street", 0, 0, 0);*/
                             playerList->inserNode(player1); 
@@ -883,6 +886,8 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player2->insertFigures("carretera", 0, 0, 5);
                             player2->insertFigures("poblado", 0, 0, 5);
                             player2->insertFigures("ciudad", 0, 0, 5);
+                            player2->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
+                            player2->insertSpecialCard("mayor ejercito", 0, 0, 0, 1);
 
                             playerList->inserNode(player2);                                                                           
                         }
@@ -897,6 +902,8 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player3->insertFigures("carretera", 0, 0, 4);
                             player3->insertFigures("poblado", 0, 0, 4);
                             player3->insertFigures("ciudad", 0, 0, 4);
+                            player3->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
+                            player3->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
 
                             playerList->inserNode(player3);
                             playersRegister = true;
@@ -912,6 +919,8 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player4->insertFigures("carretera", 0, 0, 7);
                             player4->insertFigures("poblado", 0, 0, 7);
                             player4->insertFigures("ciudad", 0, 0, 7);
+                            player4->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
+                            player4->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
 
                             playerList->inserNode(player4);                          
                         }
@@ -1285,6 +1294,20 @@ void StartWindow::paintCountersFigures(RenderWindow* Go) {
     Go->draw(txtCiudad);
 
 }
+void StartWindow::existenceSpecialCard() {
+    
+    nodeSpecial = actualNode->getData()->specialCardList->first;
+    do {
+        if (nodeSpecial->getData()->getCardName() == "mayor ruta") {
+            specialMajorRoute = nodeSpecial->getData()->getQuantity();
+        }
+        if (nodeSpecial->getData()->getCardName() == "mayor ejercito") {
+            specialLargestArmy = nodeSpecial->getData()->getQuantity();
+        }
+        nodeSpecial = nodeSpecial->getNextNode();
+    } while (nodeSpecial != actualNode->getData()->specialCardList->first);
+           
+}
 void StartWindow::paintCounterSpecials(RenderWindow* Go) {
 
     int x = 550;
@@ -1304,14 +1327,14 @@ void StartWindow::paintCounterSpecials(RenderWindow* Go) {
     txtMayorEjercito.setFont(font);
     txtMayorEjercito.setFillColor(Color::Black);
     txtMayorEjercito.setPosition(553, y);
-    txtMayorEjercito.setString("0");
+    txtMayorEjercito.setString(to_string(specialLargestArmy));
     Go->draw(txtMayorEjercito);
 
     Text txtMayorRuta;
     txtMayorRuta.setFont(font);
     txtMayorRuta.setFillColor(Color::Black);
     txtMayorRuta.setPosition(683, y);
-    txtMayorRuta.setString("0");
+    txtMayorRuta.setString(to_string(specialMajorRoute));
     Go->draw(txtMayorRuta);
 
 }

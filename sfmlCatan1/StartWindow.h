@@ -34,6 +34,7 @@ public:
 	Node<Player>* nodePlayer4;
 	Node<ResourceCard>* nodeResource;
 	Node<Figure>* nodeFigure;
+	Node<SpecialCard>* nodeSpecial;
 	Node<ResourceCard>* nodeResourceBankWood;
 	Node<ResourceCard>* nodeResourceBankSheep;
 	Node<ResourceCard>* nodeResourceBankMineral;
@@ -72,6 +73,7 @@ public:
 	void saveResourcePlayer();
 	void saveFigfurePlayer();
 	void saveResourceBank();
+	void existenceSpecialCard();
 	void paintCountersFigures(RenderWindow*);
 	void paintCounterSpecials(RenderWindow*);
 
@@ -106,6 +108,7 @@ public:
 	int LandsPosY[19] = { 228,228,228,285,344,401,457,457,457,401,344,285,285,285,344,401,401,343,343 };
 	int woodR = 0, clayR = 0, mineralR = 0, sheepR = 0, cerealR = 0;
 	int streetF = 0, townF = 0, cityF = 0;
+	int specialLargestArmy = 0, specialMajorRoute = 0;
 
 private:	
 	Font font;

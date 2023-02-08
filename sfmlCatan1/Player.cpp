@@ -130,9 +130,9 @@ void Player::insertDevelopmentCard(string cardNameP, int powerCardP, int positio
     }
 }
 
-void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP, int positionYP)
+void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
 {
-    SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP);
+    SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
     specialCardList->inserNode(info);
 }
 
