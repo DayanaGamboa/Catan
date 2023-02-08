@@ -73,6 +73,7 @@ public:
 	void saveFigfurePlayer();
 	void saveResourceBank();
 	void paintCountersFigures(RenderWindow*);
+	void paintCounterSpecials(RenderWindow*);
 
 	int StartWindowPressed() {
 		return StartWindowSelected;

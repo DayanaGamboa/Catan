@@ -12,7 +12,7 @@ int Dice::diceFinalAmount(RenderWindow * Go) {
 
         int diceSum = 0;
 
-        if (paintDices == false) {
+        if (paintDices) {
 
             int numRandom = 0;
             srand(time(NULL));
@@ -36,10 +36,11 @@ int Dice::diceFinalAmount(RenderWindow * Go) {
             rtsDice2.setTexture(&txtrRtsDice2);
             diceSum += numRandom;
             cout << "SUMA: " << diceSum << endl;
-            paintDices = true;
+            paintDices = false;
         }
         Go->draw(rtsDice1);
         Go->draw(rtsDice2);
+        
 
         return diceSum;
     }

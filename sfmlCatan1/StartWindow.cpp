@@ -123,10 +123,12 @@ void StartWindow::mainWindow()
     }
 }
 void StartWindow::goWindow() {
-    RenderWindow Go(VideoMode(X, Y), "Area de juego");    
-    Graph graph;   
+    RenderWindow Go(VideoMode(X, Y), "Area de juego");
+    Graph graph;
     Dice dice;
+    dice.paintDices = false;
     bool townBtnPressed = false;
+    bool firstPlay = true;
     while (Go.isOpen()) {
 
         while (Go.pollEvent(event)) {
@@ -144,8 +146,14 @@ void StartWindow::goWindow() {
                 
 
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    dice.paintDices = false;
-                    dice.diceFinalAmount(&Go);
+                    if (firstPlay == true) {
+                        dice.paintDices = true;
+                        dice.diceFinalAmount(&Go);
+                        firstPlay = false;
+                    }
+                    else {
+                        cout << "Solo tiene un turno" << endl;
+                    }
                 }
                 if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     exitButton(&Go);
@@ -173,6 +181,7 @@ void StartWindow::goWindow() {
                     actualNode = actualNode->getNextNode();
                     saveResourcePlayer();
                     saveFigfurePlayer();
+                    firstPlay = true;
                 }
                 if (townBtnPressed == true) {
                     for (int i = 0; i < graph.circlesV.size(); i++) {
@@ -204,6 +213,7 @@ void StartWindow::goWindow() {
         paintBankCounters(&Go);
         paintPlayerCountersInTurn(&Go);
         paintCountersFigures(&Go);
+        paintCounterSpecials(&Go);
         Go.display();
     }
 }
@@ -1273,5 +1283,35 @@ void StartWindow::paintCountersFigures(RenderWindow* Go) {
     txtCiudad.setPosition(464, 590);
     txtCiudad.setString(to_string(cityF));
     Go->draw(txtCiudad);
+
+}
+void StartWindow::paintCounterSpecials(RenderWindow* Go) {
+
+    int x = 550;
+    int y = 640;
+    for (int i = 0; i < 2; i++) {
+        //cuadrado color blanco
+        RectangleShape rtsBlanco;
+        rtsBlanco.setPosition(Vector2f(x, y));
+        rtsBlanco.setSize(Vector2f(20, 25));
+        rtsBlanco.setFillColor(Color::White);
+        Go->draw(rtsBlanco);
+
+        x += 130;
+    }
+    y -= 7;
+    Text txtMayorEjercito;
+    txtMayorEjercito.setFont(font);
+    txtMayorEjercito.setFillColor(Color::Black);
+    txtMayorEjercito.setPosition(553, y);
+    txtMayorEjercito.setString("0");
+    Go->draw(txtMayorEjercito);
+
+    Text txtMayorRuta;
+    txtMayorRuta.setFont(font);
+    txtMayorRuta.setFillColor(Color::Black);
+    txtMayorRuta.setPosition(683, y);
+    txtMayorRuta.setString("0");
+    Go->draw(txtMayorRuta);
 
 }
