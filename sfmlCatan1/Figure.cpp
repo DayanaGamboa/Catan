@@ -13,10 +13,10 @@ Figure::~Figure()
 {
 }
 
-string Figure::getFigureName() {
+string Figure::getCardName() {
     return figureName;
 }
-void Figure::setFigureName(string figureName) {
+void Figure::setCardName(string figureName) {
     this->figureName = figureName;
 }
 
@@ -32,4 +32,11 @@ int  Figure::getPositionY() {
 }
 void Figure::setPositionY(int positionY) {
     this->positionY = positionY;
+}
+
+int  Figure::getQuantity() {
+    return quantity;
+}
+void Figure::setQuantity(int quantity) {
+    this->quantity = quantity;
 }

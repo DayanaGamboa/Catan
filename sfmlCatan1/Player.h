@@ -45,32 +45,17 @@ public:
 	void insertResourceCard(string, int, int, int, int);
 	void insertDevelopmentCard(string, int, int, int, int);
 	void insertSpecialCard(string, int, int, int);
-	void insertFigures(string, int, int);
-	void showCard();
-	void showInformationPlayerInTurn();
+	void insertFigures(string, int, int, int);
 	int countDevelopmentCard();
 
-	/*void playerRegister(RenderWindow*);
-	void paintPlayerRegister(RenderWindow*);*/
 	
 	void buildTown(RenderWindow*, int, int);
 	
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;
 	CircularList<SpecialCard>* specialCardList;
-	CircularList<City>* cityList;
-	CircularList<Street>* streetList;
-	CircularList<Town>* townList;
-	/*CircularList<Player>* playerList;*/
-	
-	/*RectangleShape rtsBtnGuardar, rtsBtnJugar, rtsBtnAtras, rtsID, rtsNombre, rtsEdad, rtsColor, fondo;
-	Texture txtrBtnGuardar, txtrBtnAtras, txtrBtnJugar;
-	Text tituloJugador, titulo1, tituloID, txtID, tituloNombre, txtNombre;
-	Text tituloEdad, txtEdad, tituloColor, txtCamposRequeridos;
+	CircularList<Figure>* figureList;
 
-	bool registroJugadores = false;
-	int contadorJugadores = 0;*/
-	
 	
 private:
 	int id, age, victoryPoint;

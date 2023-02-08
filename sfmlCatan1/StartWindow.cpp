@@ -172,6 +172,7 @@ void StartWindow::goWindow() {
                     cout << "Terminar turno" << endl;
                     actualNode = actualNode->getNextNode();
                     saveResourcePlayer();
+                    saveFigfurePlayer();
                 }
                 if (townBtnPressed == true) {
                     for (int i = 0; i < graph.circlesV.size(); i++) {
@@ -854,6 +855,9 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player1->insertResourceCard("mineral", 0, 0, 0, 5);
                             player1->insertResourceCard("cereal", 0, 0, 0, 9);
                             player1->insertDevelopmentCard("caballero", 0, 0, 0, 2);
+                            player1->insertFigures("carretera", 0, 0, 15);
+                            player1->insertFigures("poblado", 0, 0, 15);
+                            player1->insertFigures("ciudad", 0, 0, 15);
 
                             /*player1->insertFigures("Street", 0, 0, 0);*/
                             playerList->inserNode(player1); 
@@ -866,6 +870,10 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player2->insertResourceCard("mineral", 0, 0, 0, 7);
                             player2->insertResourceCard("cereal", 0, 0, 0, 9);
                             player2->insertDevelopmentCard("caballero", 0, 0, 0, 1);
+                            player2->insertFigures("carretera", 0, 0, 5);
+                            player2->insertFigures("poblado", 0, 0, 5);
+                            player2->insertFigures("ciudad", 0, 0, 5);
+
                             playerList->inserNode(player2);                                                                           
                         }
                         if (playerCounter == 2) {
@@ -876,6 +884,10 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player3->insertResourceCard("mineral", 0, 0, 0, 4);
                             player3->insertResourceCard("cereal", 0, 0, 0, 5);
                             player3->insertDevelopmentCard("caballero", 0, 0, 0, 4);
+                            player3->insertFigures("carretera", 0, 0, 4);
+                            player3->insertFigures("poblado", 0, 0, 4);
+                            player3->insertFigures("ciudad", 0, 0, 4);
+
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
@@ -887,6 +899,10 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player4->insertResourceCard("mineral", 0, 0, 0, 9);
                             player4->insertResourceCard("cereal", 0, 0, 0, 7);
                             player4->insertDevelopmentCard("caballero", 0, 0, 0, 5);
+                            player4->insertFigures("carretera", 0, 0, 7);
+                            player4->insertFigures("poblado", 0, 0, 7);
+                            player4->insertFigures("ciudad", 0, 0, 7);
+
                             playerList->inserNode(player4);                          
                         }
                        
@@ -917,6 +933,7 @@ void StartWindow::playerRegister(RenderWindow*) {
                     saveResourcePlayer();
                     bank.loadLists();
                     saveResourceBank();
+                    saveFigfurePlayer();
                     goWindow();
                 }
             }
@@ -1175,6 +1192,22 @@ void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
 
 
 }
+void StartWindow::saveFigfurePlayer() {
+    nodeFigure = actualNode->getData()->figureList->first;
+    do {
+        if (nodeFigure->getData()->getCardName() == "carretera") {
+            streetF = nodeFigure->getData()->getQuantity();
+        }
+        if (nodeFigure->getData()->getCardName() == "poblado") {
+            townF = nodeFigure->getData()->getQuantity();
+        }
+        if (nodeFigure->getData()->getCardName() == "ciudad") {
+            cityF = nodeFigure->getData()->getQuantity();
+        }  
+        nodeFigure = nodeFigure->getNextNode();
+    } while (nodeFigure != actualNode->getData()->figureList->first);
+
+}
 void StartWindow::paintCountersFigures(RenderWindow* Go) {
     int x = 280;
 
@@ -1224,21 +1257,21 @@ void StartWindow::paintCountersFigures(RenderWindow* Go) {
     txtCarretera.setFont(font);
     txtCarretera.setFillColor(Color::Black);
     txtCarretera.setPosition(284, 590);
-    txtCarretera.setString("15");
+    txtCarretera.setString(to_string(streetF));
     Go->draw(txtCarretera);
 
     Text txtPoblado;
     txtPoblado.setFont(font);
     txtPoblado.setFillColor(Color::Black);
     txtPoblado.setPosition(374, 590);
-    txtPoblado.setString("5");
+    txtPoblado.setString(to_string(townF));
     Go->draw(txtPoblado);
 
     Text txtCiudad;
     txtCiudad.setFont(font);
     txtCiudad.setFillColor(Color::Black);
     txtCiudad.setPosition(464, 590);
-    txtCiudad.setString("4");
+    txtCiudad.setString(to_string(cityF));
     Go->draw(txtCiudad);
 
 }

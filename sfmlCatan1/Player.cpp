@@ -15,7 +15,7 @@ Player::Player(int id, string name, int age, int victoryPoint, Color color)
     resourceCardsList = new CircularList<ResourceCard>;
     developmentCardList = new CircularList<DevelopmentCard>;
     specialCardList = new CircularList<SpecialCard>;
-    //figurelist = new CircularList<Figure>;
+    figureList = new CircularList<Figure>;
     if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
         cout << "��No Font!!";
     }
@@ -134,6 +134,17 @@ void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP,
 {
     SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP);
     specialCardList->inserNode(info);
+}
+
+void Player::insertFigures(string cardNameP, int positionXP, int positionYP, int quantityP)
+{
+    if (figureList->existenceOfCard(cardNameP) == true) {
+        figureList->increaseQuantity(cardNameP, quantityP);
+    }
+    else {
+        Figure* info = new Figure(cardNameP, positionXP, positionYP, quantityP);
+        figureList->inserNode(info);
+    }
 }
 //
 //void Player::showInformationPlayerInTurn() {
