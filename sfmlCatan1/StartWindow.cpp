@@ -863,11 +863,11 @@ void StartWindow::playerRegister(RenderWindow*) {
                         id++;                     
                         if (playerCounter == 0) {
                             Player* player1 = new Player(id, name, age, 8, Color::Blue);
-                            player1->insertResourceCard("madera",0,0,0,7);
-                            player1->insertResourceCard("arcilla", 0, 0, 0, 2);
-                            player1->insertResourceCard("lana", 0, 0, 0, 1);
+                            player1->insertResourceCard("madera",0,0,0,5);
+                            player1->insertResourceCard("arcilla", 0, 0, 0, 5);
+                            player1->insertResourceCard("lana", 0, 0, 0, 5);
                             player1->insertResourceCard("mineral", 0, 0, 0, 5);
-                            player1->insertResourceCard("cereal", 0, 0, 0, 9);
+                            player1->insertResourceCard("cereal", 0, 0, 0, 5);
                             player1->insertDevelopmentCard("caballero", 0, 0, 0, 2);
                             player1->insertFigures("carretera", 0, 0, 15);
                             player1->insertFigures("poblado", 0, 0, 4);
@@ -879,10 +879,10 @@ void StartWindow::playerRegister(RenderWindow*) {
                         if (playerCounter == 1) {
                             Player* player2 = new Player(id, name, age, 7, Color::Yellow);
                             player2->insertResourceCard("madera", 0, 0, 0, 5);
-                            player2->insertResourceCard("arcilla", 0, 0, 0, 1);
-                            player2->insertResourceCard("lana", 0, 0, 0, 8);
-                            player2->insertResourceCard("mineral", 0, 0, 0, 7);
-                            player2->insertResourceCard("cereal", 0, 0, 0, 9);
+                            player2->insertResourceCard("arcilla", 0, 0, 0, 5);
+                            player2->insertResourceCard("lana", 0, 0, 0, 5);
+                            player2->insertResourceCard("mineral", 0, 0, 0, 5);
+                            player2->insertResourceCard("cereal", 0, 0, 0, 5);
                             player2->insertDevelopmentCard("caballero", 0, 0, 0, 1);
                             player2->insertFigures("carretera", 0, 0, 15);
                             player2->insertFigures("poblado", 0, 0, 4);
@@ -894,10 +894,10 @@ void StartWindow::playerRegister(RenderWindow*) {
                         }
                         if (playerCounter == 2) {
                             Player* player3 = new Player(id, name, age, 5, Color::Green);
-                            player3->insertResourceCard("madera", 0, 0, 0, 2);
-                            player3->insertResourceCard("arcilla", 0, 0, 0, 7);
-                            player3->insertResourceCard("lana", 0, 0, 0, 9);
-                            player3->insertResourceCard("mineral", 0, 0, 0, 4);
+                            player3->insertResourceCard("madera", 0, 0, 0, 5);
+                            player3->insertResourceCard("arcilla", 0, 0, 0, 5);
+                            player3->insertResourceCard("lana", 0, 0, 0, 5);
+                            player3->insertResourceCard("mineral", 0, 0, 0, 5);
                             player3->insertResourceCard("cereal", 0, 0, 0, 5);
                             player3->insertDevelopmentCard("caballero", 0, 0, 0, 4);
                             player3->insertFigures("carretera", 0, 0, 15);
@@ -911,11 +911,11 @@ void StartWindow::playerRegister(RenderWindow*) {
                         }
                         if (playerCounter == 3) {
                             Player* player4 = new Player(id, name, age, 5, Color::Red);
-                            player4->insertResourceCard("madera", 0, 0, 0, 1);
-                            player4->insertResourceCard("arcilla", 0, 0, 0, 8);
-                            player4->insertResourceCard("lana", 0, 0, 0, 2);
-                            player4->insertResourceCard("mineral", 0, 0, 0, 9);
-                            player4->insertResourceCard("cereal", 0, 0, 0, 7);
+                            player4->insertResourceCard("madera", 0, 0, 0, 5);
+                            player4->insertResourceCard("arcilla", 0, 0, 0, 5);
+                            player4->insertResourceCard("lana", 0, 0, 0, 5);
+                            player4->insertResourceCard("mineral", 0, 0, 0, 5);
+                            player4->insertResourceCard("cereal", 0, 0, 0, 5);
                             player4->insertDevelopmentCard("caballero", 0, 0, 0, 5);
                             player4->insertFigures("carretera", 0, 0, 15);
                             player4->insertFigures("poblado", 0, 0, 4);
@@ -1045,7 +1045,15 @@ void StartWindow::builtTown(RenderWindow* Go, int i)
         Go->draw(vectorBlackHouse[i]);
         townBtnPressed = false;
         townF--;
+        woodR--;
+        clayR--;
+        cerealR--;
+        sheepR--;
         restarFigura("poblado", townF);
+        subtractResources("madera", woodR);
+        subtractResources("arcilla", clayR);
+        subtractResources("cereal", cerealR);
+        subtractResources("lana", sheepR);
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 1);
         puntosVictoria++;
     }
@@ -1066,7 +1074,11 @@ void StartWindow::builtCity(RenderWindow* Go, int i)
 
         cityBtnPressed = false;
         cityF--;
+        cerealR -= 2;
+        mineralR -= 3;
         restarFigura("ciudad", cityF);
+        subtractResources("cereal", cerealR);
+        subtractResources("mineral", mineralR);
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 2);
         puntosVictoria += 2;
     }
@@ -1357,4 +1369,15 @@ void StartWindow::restarFigura(string figura, int numero) {
         }
         nodeFigure = nodeFigure->getNextNode();
     } while (nodeFigure != actualNode->getData()->figureList->first);
+}
+
+void StartWindow::subtractResources(string resource, int numero) {
+    nodeResource = actualNode->getData()->resourceCardsList->first;
+    do {
+        if (nodeResource->getData()->getCardName() == resource) {
+            cout << "seteado" << endl;
+            nodeResource->getData()->setQuantity(numero);
+        }
+        nodeResource = nodeResource->getNextNode();
+    } while (nodeResource != actualNode->getData()->resourceCardsList->first);
 }
