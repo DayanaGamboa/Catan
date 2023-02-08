@@ -2,7 +2,7 @@
 
 StartWindow::StartWindow(float widht, float height) {
     if (!font.loadFromFile("Fonts/LESLIE.ttf")) {
-        cout << "¡¡No Font!!";
+        cout << "ï¿½ï¿½No Font!!";
     }
     int num = 200;
     for (int i = 0; i < 4; i++) {
@@ -193,6 +193,7 @@ void StartWindow::goWindow() {
                     actualNode = actualNode->getNextNode();
                     saveResourcePlayer();
                     saveFigfurePlayer();
+                    existenceSpecialCard();
                     firstPlay = true;
                 }
                 if (townBtnPressed == true) {
@@ -419,7 +420,7 @@ void StartWindow::exitButton(RenderWindow* Go) {
     backExit.setSize(Vector2f(400, 300));
     backExit.setFillColor(Color(220, 245, 255));
 
-    Text text("¿Seguro que deseas salir?", font, 35);
+    Text text("ï¿½Seguro que deseas salir?", font, 35);
     text.setFillColor(Color::Black);
     text.setPosition(Vector2f(40, 20));
 
@@ -871,6 +872,8 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player1->insertFigures("carretera", 0, 0, 15);
                             player1->insertFigures("poblado", 0, 0, 4);
                             player1->insertFigures("ciudad", 0, 0, 5);
+                            player1->insertSpecialCard("mayor ruta", 0, 0, 0, 1);
+                            player1->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
                             playerList->inserNode(player1); 
                         }
                         if (playerCounter == 1) {
@@ -884,6 +887,9 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player2->insertFigures("carretera", 0, 0, 15);
                             player2->insertFigures("poblado", 0, 0, 4);
                             player2->insertFigures("ciudad", 0, 0, 5);
+                            player2->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
+                            player2->insertSpecialCard("mayor ejercito", 0, 0, 0, 1);
+
                             playerList->inserNode(player2);                                                                           
                         }
                         if (playerCounter == 2) {
@@ -897,6 +903,9 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player3->insertFigures("carretera", 0, 0, 15);
                             player3->insertFigures("poblado", 0, 0, 4);
                             player3->insertFigures("ciudad", 0, 0, 5);
+                            player3->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
+                            player3->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
+
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
@@ -911,6 +920,9 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player4->insertFigures("carretera", 0, 0, 15);
                             player4->insertFigures("poblado", 0, 0, 4);
                             player4->insertFigures("ciudad", 0, 0, 5);
+                            player4->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
+                            player4->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
+
                             playerList->inserNode(player4);                          
                         }                                           
                         name = "";
@@ -1293,6 +1305,20 @@ void StartWindow::paintCountersFigures(RenderWindow* Go) {
     txtCiudad.setString(to_string(cityF));
     Go->draw(txtCiudad);
 }
+void StartWindow::existenceSpecialCard() {
+    
+    nodeSpecial = actualNode->getData()->specialCardList->first;
+    do {
+        if (nodeSpecial->getData()->getCardName() == "mayor ruta") {
+            specialMajorRoute = nodeSpecial->getData()->getQuantity();
+        }
+        if (nodeSpecial->getData()->getCardName() == "mayor ejercito") {
+            specialLargestArmy = nodeSpecial->getData()->getQuantity();
+        }
+        nodeSpecial = nodeSpecial->getNextNode();
+    } while (nodeSpecial != actualNode->getData()->specialCardList->first);
+           
+}
 void StartWindow::paintCounterSpecials(RenderWindow* Go) {
     int x = 550;
     int y = 640;
@@ -1311,14 +1337,14 @@ void StartWindow::paintCounterSpecials(RenderWindow* Go) {
     txtMayorEjercito.setFont(font);
     txtMayorEjercito.setFillColor(Color::Black);
     txtMayorEjercito.setPosition(553, y);
-    txtMayorEjercito.setString("0");
+    txtMayorEjercito.setString(to_string(specialLargestArmy));
     Go->draw(txtMayorEjercito);
 
     Text txtMayorRuta;
     txtMayorRuta.setFont(font);
     txtMayorRuta.setFillColor(Color::Black);
     txtMayorRuta.setPosition(683, y);
-    txtMayorRuta.setString("0");
+    txtMayorRuta.setString(to_string(specialMajorRoute));
     Go->draw(txtMayorRuta);
 }
 

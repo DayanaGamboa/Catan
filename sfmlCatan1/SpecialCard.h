@@ -6,9 +6,14 @@
 class SpecialCard : public Card
 {
 public:
-	SpecialCard(string, int, int, int);
+	SpecialCard(string, int, int, int,int);
 	~SpecialCard();
+	int getQuantity();
+	void setQuantity(int);
 	int power();
 	string toString();
+
+private:
+	int quantity;
 };
 

@@ -1,9 +1,9 @@
 #include "ResourceCard.h"
 #include<sstream>
 
-ResourceCard::ResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP) : Card(cardNameP, powerCardP, positionXP, positionYP)
+ResourceCard::ResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantity) : Card(cardNameP, powerCardP, positionXP, positionYP)
 {
-    quantity = quantityP;
+    this->quantity = quantity;
 }
 
 ResourceCard::~ResourceCard()
