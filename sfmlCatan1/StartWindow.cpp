@@ -205,6 +205,7 @@ void StartWindow::goWindow() {
                             
                             if (puntosVictoria == 10) {
                                 cout << "GANOOOOOOOOOO" << endl;
+                                victory();
                             }
                             break;
                         }
