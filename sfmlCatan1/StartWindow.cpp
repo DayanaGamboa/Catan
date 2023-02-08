@@ -238,7 +238,7 @@ void StartWindow::goWindow() {
         paintCitys(&Go);
         paintResource(&Go, 10, 10);
         paintResource(&Go, 10, 670);
-        paintOpponentDeck(&Go, playerList->getSize());;
+        paintOpponentDeck(&Go, playerList->getSize());
         paintSpecialCards(&Go);
         PlayerInTurn(&Go);
         paintBankCounters(&Go);
@@ -662,22 +662,20 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     Color playerColor = actualNode->getData()->getColor();
     puntosVictoria = actualNode->getData()->getVictoryPoint();
 
-    RectangleShape rtsBackPlayer;
+    RectangleShape rtsBackPlayer, rtsPlayerColor;
+    Text description, ID, PV, name, color;
+
     rtsBackPlayer.setPosition(950, 640);
     rtsBackPlayer.setSize(Vector2f(350, 130));
     rtsBackPlayer.setFillColor(Color(220, 245, 255));
     Go->draw(rtsBackPlayer);
 
-    //Titulo  
-    Text description;
     description.setString("Datos del jugador en turno");
     description.setFont(font);
     description.setFillColor(Color::Black);
     description.setPosition(980, 635);
     Go->draw(description);
 
-    //titulo ID  
-    Text ID;
     ID.setFont(font);
     ID.setString("ID:  ");
     ID.setFillColor(Color::Black);
@@ -685,8 +683,6 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     ID.setString(ID.getString() + playerID);
     Go->draw(ID);
 
-    //titulo PV 
-    Text PV;
     PV.setFont(font);
     PV.setString("PV:  ");
     PV.setFillColor(Color::Black);
@@ -694,8 +690,6 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     PV.setString(PV.getString() + to_string(puntosVictoria));
     Go->draw(PV);
 
-    //titulo nombre   
-    Text name;
     name.setFont(font);
     name.setString("Nombre:  ");
     name.setFillColor(Color::Black);
@@ -703,15 +697,12 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     name.setString(name.getString() + playerName);
     Go->draw(name);
 
-    //titulo color  
-    Text color;
     color.setFont(font);
     color.setString("Color:  ");
     color.setFillColor(Color::Black);
     color.setPosition(955, 730);
     Go->draw(color);
 
-    RectangleShape rtsPlayerColor;
     rtsPlayerColor.setSize(Vector2f(50, 20));
     rtsPlayerColor.setPosition(1050, 740);
     rtsPlayerColor.setFillColor(playerColor);
