@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <sstream>
 using namespace std;
 
 class Figure
@@ -16,6 +17,7 @@ public:
 	void setPositionY(int);
 	int  getQuantity();
 	void setQuantity(int);
+	string toString();
 
 private:
 	string figureName;

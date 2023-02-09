@@ -149,7 +149,10 @@ void StartWindow::goWindow() {
                     exitButton(&Go);
                 }
                 if (rtsBtnSave.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
+                    cout << "Guardar" << endl;
+                    playerList->saveFile("infoPlayer.txt");
                 }
+
                 if (rtsBtnStreet.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                    streetBtnPressed = true;
                 }

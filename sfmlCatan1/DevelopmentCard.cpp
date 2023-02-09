@@ -25,6 +25,6 @@ int DevelopmentCard::power() {
 
 string DevelopmentCard::toString() {
 	stringstream s;
-	s << "Informacion Carta: " << getCardName() << " " << getQuantity() << endl;
+	s << getCardName() << "," << getQuantity() << endl;
 	return s.str();
 }

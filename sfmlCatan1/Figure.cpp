@@ -40,3 +40,8 @@ int  Figure::getQuantity() {
 void Figure::setQuantity(int quantity) {
     this->quantity = quantity;
 }
+string Figure::toString() {
+    stringstream s;
+    s << getCardName() << "," << getQuantity() << endl;
+    return s.str();
+}

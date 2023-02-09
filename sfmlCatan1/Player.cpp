@@ -96,7 +96,34 @@ void Player::endTurn()
 
 string Player::toString() {
     stringstream s;
-    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " " << endl;
+    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " "
+        /*<< getColor()*/ << endl;
+
+    nodeResource = resourceCardsList->first;
+    do {
+        s << nodeResource->getData()->toString();
+        nodeResource = nodeResource->getNextNode();
+    } while (nodeResource != resourceCardsList->first);
+
+
+    nodeDevelopment = developmentCardList->first;
+    do {
+        s << nodeDevelopment->getData()->toString();
+        nodeDevelopment = nodeDevelopment->getNextNode();
+    } while (nodeDevelopment != developmentCardList->first);
+
+
+    nodeFigure = figureList->first;
+    do {
+        s << nodeFigure->getData()->toString();
+        nodeFigure = nodeFigure->getNextNode();
+    } while (nodeFigure != figureList->first);
+
+    nodeSpecial = specialCardList->first;
+    do {
+        s << nodeSpecial->getData()->toString();
+        nodeSpecial = nodeSpecial->getNextNode();
+    } while (nodeSpecial != specialCardList->first);
 
     return s.str();
 }

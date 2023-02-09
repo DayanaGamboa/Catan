@@ -1,0 +1,46 @@
+3 Arianna 22 8 
+madera,1
+arcilla,1
+lana,3
+mineral,0
+cereal,1
+caballero,0
+progreso,0
+PuntosVictoria,0
+carretera,15
+poblado,3
+ciudad,5
+mayor ruta,0
+mayor ejercito,0
+
+2 Maria 21 8 
+madera,2
+arcilla,1
+lana,3
+mineral,0
+cereal,2
+caballero,0
+progreso,0
+PuntosVictoria,0
+carretera,15
+poblado,3
+ciudad,5
+mayor ruta,0
+mayor ejercito,0
+mayor ejercito,1
+
+1 Dayana 20 7 
+madera,4
+arcilla,2
+lana,2
+mineral,0
+cereal,2
+caballero,0
+progreso,0
+PuntosVictoria,0
+carretera,15
+poblado,4
+ciudad,5
+mayor ruta,1
+mayor ejercito,0
+

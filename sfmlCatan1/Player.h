@@ -21,7 +21,8 @@ public:
 
 	Node<DevelopmentCard>* nodeDevelopment;
 	Node<ResourceCard>* nodeResource;
-
+	Node<Figure>* nodeFigure;
+	Node<SpecialCard>* nodeSpecial;
 	void throwsDice();
 	void build();
 	void trade();

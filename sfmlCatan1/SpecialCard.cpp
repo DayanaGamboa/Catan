@@ -25,6 +25,6 @@ int SpecialCard::power() {
 
 string SpecialCard::toString() {
 	stringstream s;
-	s << "Infromacion Carta: " << getCardName() << " " << getQuantity() << endl;
+	s << getCardName() << "," << getQuantity() << endl;
 	return s.str();
 }
