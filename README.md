@@ -1,12 +1,17 @@
-# Ajustes Catan
+# Catan Game
 ```
-1
+This project was based on the development of the board game Catan, to execute the project you should follow the next steps
 ```
-- dasd
-<pre>
-  <code>1</code>
-</pre>
+- Dowload the library SFML-2.5.1
+- extract the downloaded zip inside disk C
 
 <h1 align="center">
-    CATAN
+    Developers
 </h1>
+
+<h4 align="center">
+  <code>Dayana Gamboa Monge</code>
+  <code>Arianna Aguilar Leiva</code>
+  <code>Maria Jose Chacon Mora</code>
+</h4>
+
