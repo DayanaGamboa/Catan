@@ -146,17 +146,14 @@
     <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="Land.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Number.cpp" />
     <ClCompile Include="Partida.cpp" />
-    <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceCard.cpp" />
     <ClCompile Include="sfmlCatan1.cpp" />
     <ClCompile Include="SpecialCard.cpp" />
     <ClCompile Include="StartWindow.cpp" />
-    <ClCompile Include="Thief.cpp" />
     <ClCompile Include="VertexGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,16 +164,13 @@
     <ClInclude Include="Dice.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Graph.h" />
-    <ClInclude Include="Land.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Number.h" />
     <ClInclude Include="Partida.h" />
-    <ClInclude Include="Piece.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceCard.h" />
     <ClInclude Include="SpecialCard.h" />
     <ClInclude Include="StartWindow.h" />
-    <ClInclude Include="Thief.h" />
     <ClInclude Include="VertexGraph.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

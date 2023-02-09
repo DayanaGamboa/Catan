@@ -20,6 +20,7 @@ public:
 	~Player();
 
 	Node<DevelopmentCard>* nodeDevelopment;
+	Node<ResourceCard>* nodeResource;
 
 	void throwsDice();
 	void build();
@@ -43,6 +44,7 @@ public:
 	void insertSpecialCard(string, int);
 	void insertFigures(string, int, int, int);
 	int countDevelopmentCard();
+	void loadList();
 
 	
 	void buildTown(RenderWindow*, int, int);

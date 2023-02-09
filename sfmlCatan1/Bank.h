@@ -1,4 +1,6 @@
 #pragma once
+#include <stdlib.h>
+#include <time.h>
 #include "Card.h"
 #include "CircularList.h"
 #include "ResourceCard.h"
@@ -12,7 +14,6 @@ public:
 	~Bank();
 	Node<DevelopmentCard>* nodeDevelopment;
 	Node<ResourceCard>* nodeResource;
-	void updateDevelopmentCard(string, int);
 	void updateResourceCard(string, int);
 	int countDevelopmentCard();
 	void loadLists();

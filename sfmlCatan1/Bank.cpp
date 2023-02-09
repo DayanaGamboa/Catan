@@ -10,25 +10,14 @@ Bank::~Bank()
 {
 }
 
-void Bank::updateDevelopmentCard(string name, int quantity)
-{
-	nodeDevelopment = developmentCardList->first;
-	do {
-		if (nodeDevelopment->getData()->getCardName() == name) {
-			cout << "seteado" << endl;
-			nodeDevelopment->getData()->setQuantity(quantity);
-		}
-		nodeDevelopment = nodeDevelopment->getNextNode();
-	} while (nodeDevelopment != developmentCardList->first);
-}
-
 void Bank::updateResourceCard(string name, int quantity)
 {
 	nodeResource = resourceCardsList->first;
+	int count = 0;
 	do {
 		if (nodeResource->getData()->getCardName() == name) {
-			cout << "seteado" << endl;
-			nodeResource->getData()->setQuantity(quantity);
+			count = nodeResource->getData()->getQuantity();
+			nodeResource->getData()->setQuantity(count + quantity);
 		}
 		nodeResource = nodeResource->getNextNode();
 	} while (nodeResource != resourceCardsList->first);
@@ -68,6 +57,11 @@ void Bank::loadLists() {
 }
 
 string Bank::generateDevelopmentCard() {
-	string name = " ";
+	srand(time(NULL));
+	int num = 0;
+	num = rand() % (3);
+	string name;
+	name = vect[num];
+	cout << name << endl;
 	return name;
 }

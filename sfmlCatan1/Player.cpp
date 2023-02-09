@@ -96,14 +96,7 @@ void Player::endTurn()
 
 string Player::toString() {
     stringstream s;
-    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " "
-        /*<< getColor()*/ << endl;
-    cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
-    resourceCardsList->dropDownList();
-    cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
-    developmentCardList->dropDownList();
-    cout << "Informaccion de cartas especiales que posee el jugador: " << endl << endl;
-    specialCardList->dropDownList();
+    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " " << endl;
 
     return s.str();
 }
@@ -132,8 +125,13 @@ void Player::insertDevelopmentCard(string cardNameP, int quantityP)
 
 void Player::insertSpecialCard(string cardNameP, int quantityP)
 {
-    SpecialCard* info = new SpecialCard(cardNameP, quantityP);
-    specialCardList->inserNode(info);
+    if (specialCardList->existenceOfCard(cardNameP) == true) {
+        specialCardList->increaseQuantity(cardNameP, quantityP);
+    }
+    else {
+        SpecialCard* info = new SpecialCard(cardNameP, quantityP);
+        specialCardList->inserNode(info);
+    }
 }
 
 void Player::insertFigures(string cardNameP, int positionXP, int positionYP, int quantityP)
@@ -169,4 +167,20 @@ int Player::countDevelopmentCard() {
     } while (nodeDevelopment != developmentCardList->first);
 
     return count;
+}
+
+void Player::loadList() {
+    insertResourceCard("madera", 0);
+    insertResourceCard("arcilla", 0);
+    insertResourceCard("lana", 0);
+    insertResourceCard("mineral", 0);
+    insertResourceCard("cereal", 0);
+    insertDevelopmentCard("caballero", 0);
+    insertDevelopmentCard("progreso", 0);
+    insertDevelopmentCard("PuntosVictoria", 0);
+    insertFigures("carretera", 0, 0, 15);
+    insertFigures("poblado", 0, 0, 4);
+    insertFigures("ciudad", 0, 0, 5);
+    insertSpecialCard("mayor ruta", 0);
+    insertSpecialCard("mayor ejercito", 0);
 }
