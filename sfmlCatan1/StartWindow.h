@@ -33,6 +33,7 @@ public:
 	Node<Player>* nodePlayer3;
 	Node<Player>* nodePlayer4;
 	Node<ResourceCard>* nodeResource;
+	Node<DevelopmentCard>* nodeDevelopmentBank;
 	Node<Figure>* nodeFigure;
 	Node<SpecialCard>* nodeSpecial;
 	Node<ResourceCard>* nodeResourceBankWood;
@@ -82,6 +83,7 @@ public:
 	void subtractResources(string, int);
 	void victory();
 	void generateResources(int);
+	void buyDevelopmentCard(string);
 
 	int StartWindowPressed() {
 		return StartWindowSelected;

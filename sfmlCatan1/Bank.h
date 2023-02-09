@@ -1,4 +1,6 @@
 #pragma once
+#include <stdlib.h>
+#include <time.h>
 #include "Card.h"
 #include "CircularList.h"
 #include "ResourceCard.h"

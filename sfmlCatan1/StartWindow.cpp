@@ -183,6 +183,15 @@ void StartWindow::goWindow() {
                 }
                 if (rtsBtnDevelopment.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     cout << "Desarrollo" << endl;
+                    string name = bank.generateDevelopmentCard();
+                    buyDevelopmentCard(name);
+                    actualNode->getData()->insertDevelopmentCard(name, 1);
+                    cerealR--;
+                    sheepR--;
+                    mineralR--;
+                    subtractResources("cereal", cerealR);
+                    subtractResources("lana", sheepR);
+                    subtractResources("mineral", mineralR);
                 }
                 if (rtsBtnTrade.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     cout << "Comerciar" << endl;
@@ -1532,4 +1541,15 @@ void StartWindow::generateResources(int sumaDados) {
             }
         }
     }
+}
+void StartWindow::buyDevelopmentCard(string resource) {
+    nodeDevelopmentBank = bank.developmentCardList->first;
+    do {
+        if (nodeDevelopmentBank->getData()->getCardName() == resource) {
+            cout << "seteado" << endl;
+            int numero = nodeDevelopmentBank->getData()->getQuantity();
+            nodeDevelopmentBank->getData()->setQuantity(numero - 1);
+        }
+        nodeDevelopmentBank = nodeDevelopmentBank->getNextNode();
+    } while (nodeDevelopmentBank != bank.developmentCardList->first);
 }

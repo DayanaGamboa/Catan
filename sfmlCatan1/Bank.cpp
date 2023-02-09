@@ -68,6 +68,11 @@ void Bank::loadLists() {
 }
 
 string Bank::generateDevelopmentCard() {
-	string name = " ";
+	srand(time(NULL));
+	int num = 0;
+	num = rand() % (3);
+	string name;
+	name = vect[num];
+	cout << name << endl;
 	return name;
 }
