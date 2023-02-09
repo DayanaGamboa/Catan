@@ -8,7 +8,6 @@ class Figure
 public:
 	Figure(string, int, int, int);
 	~Figure();
-	/*virtual string toString() = 0;*/
 	string getCardName();
 	void setCardName(string);
 	int  getPositionX();
