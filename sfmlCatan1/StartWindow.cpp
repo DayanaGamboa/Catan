@@ -592,7 +592,7 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
 void StartWindow::paintLands(RenderWindow* Go) {
 
     string path = "";
-    Thief thief;
+    //Thief thief;
     if (lands == false) {
 
         RectangleShape rts;
