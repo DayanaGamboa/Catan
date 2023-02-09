@@ -165,7 +165,7 @@ void StartWindow::goWindow() {
                     cout << "Carretera" << endl;
                 }
                 if (rtsBtnCity.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    if (cityF > 0) {
+                    if (cityF > 0 && cerealR >= 2 && mineralR >= 3) {
                         cityBtnPressed = true;
                     }
                     else {
@@ -173,7 +173,7 @@ void StartWindow::goWindow() {
                     }
                 }
                 if (rtsBtnTown.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    if (townF > 0) {
+                    if (townF > 0 && woodR >= 1 && clayR >= 1 && cerealR >= 1 && sheepR >= 1) {
                         townBtnPressed = true;                                               
                     }
                     else {
@@ -183,15 +183,21 @@ void StartWindow::goWindow() {
                 }
                 if (rtsBtnDevelopment.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     cout << "Desarrollo" << endl;
-                    string name = bank.generateDevelopmentCard();
-                    buyDevelopmentCard(name);
-                    actualNode->getData()->insertDevelopmentCard(name, 1);
-                    cerealR--;
-                    sheepR--;
-                    mineralR--;
-                    subtractResources("cereal", cerealR);
-                    subtractResources("lana", sheepR);
-                    subtractResources("mineral", mineralR);
+                    if (bank.countDevelopmentCard() >= 1 && cerealR >= 1 && sheepR >= 1 && mineralR >= 1) {
+                        string name = bank.generateDevelopmentCard();
+                        buyDevelopmentCard(name);
+                        actualNode->getData()->insertDevelopmentCard(name, 1);
+                        cerealR--;
+                        sheepR--;
+                        mineralR--;
+                        subtractResources("cereal", cerealR);
+                        subtractResources("lana", sheepR);
+                        subtractResources("mineral", mineralR);
+                    }
+                    else {
+                        cout << "No tiene recursos necesarios" << endl;
+                    }
+                    
                 }
                 if (rtsBtnTrade.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     cout << "Comerciar" << endl;
@@ -907,66 +913,25 @@ void StartWindow::playerRegister(RenderWindow*) {
                         id++;                     
                         if (playerCounter == 0) {
                             Player* player1 = new Player(id, name, age, 5, Color::Blue);
-                            player1->insertResourceCard("madera", 5);
-                            player1->insertResourceCard("arcilla", 5);
-                            player1->insertResourceCard("lana", 5);
-                            player1->insertResourceCard("mineral", 5);
-                            player1->insertResourceCard("cereal", 5);
-                            player1->insertDevelopmentCard("caballero",2);
-                            player1->insertFigures("carretera", 0, 0, 15);
-                            player1->insertFigures("poblado", 0, 0, 4);
-                            player1->insertFigures("ciudad", 0, 0, 5);
+                            player1->loadList();
                             player1->insertSpecialCard("mayor ruta", 1);
-                            player1->insertSpecialCard("mayor ejercito", 0);
                             playerList->inserNode(player1);
                         }
                         if (playerCounter == 1) {
                             Player* player2 = new Player(id, name, age, 5, Color::Yellow);
-                            player2->insertResourceCard("madera", 5);
-                            player2->insertResourceCard("arcilla", 5);
-                            player2->insertResourceCard("lana", 5);
-                            player2->insertResourceCard("mineral", 5);
-                            player2->insertResourceCard("cereal", 5);
-                            player2->insertDevelopmentCard("caballero", 1);
-                            player2->insertFigures("carretera", 0, 0, 15);
-                            player2->insertFigures("poblado", 0, 0, 4);
-                            player2->insertFigures("ciudad", 0, 0, 5);
-                            player2->insertSpecialCard("mayor ruta", 0);
+                            player2->loadList();
                             player2->insertSpecialCard("mayor ejercito", 1);
-
                             playerList->inserNode(player2);
                         }
                         if (playerCounter == 2) {
                             Player* player3 = new Player(id, name, age, 5, Color::Green);
-                            player3->insertResourceCard("madera", 5);
-                            player3->insertResourceCard("arcilla", 5);
-                            player3->insertResourceCard("lana", 5);
-                            player3->insertResourceCard("mineral", 5);
-                            player3->insertResourceCard("cereal", 5);
-                            player3->insertDevelopmentCard("caballero", 4);
-                            player3->insertFigures("carretera", 0, 0, 15);
-                            player3->insertFigures("poblado", 0, 0, 4);
-                            player3->insertFigures("ciudad", 0, 0, 5);
-                            player3->insertSpecialCard("mayor ruta", 0);
-                            player3->insertSpecialCard("mayor ejercito", 0);
-
+                            player3->loadList();
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
                         if (playerCounter == 3) {
                             Player* player4 = new Player(id, name, age, 5, Color::Red);
-                            player4->insertResourceCard("madera", 5);
-                            player4->insertResourceCard("arcilla", 5);
-                            player4->insertResourceCard("lana", 5);
-                            player4->insertResourceCard("mineral", 5);
-                            player4->insertResourceCard("cereal", 5);
-                            player4->insertDevelopmentCard("caballero", 5);
-                            player4->insertFigures("carretera", 0, 0, 15);
-                            player4->insertFigures("poblado", 0, 0, 4);
-                            player4->insertFigures("ciudad", 0, 0, 5);
-                            player4->insertSpecialCard("mayor ruta", 0);
-                            player4->insertSpecialCard("mayor ejercito", 0);
-
+                            player4->loadList();
                             playerList->inserNode(player4);
                         }
                         name = "";
@@ -1472,11 +1437,8 @@ void StartWindow::victory()
         windowVictory.draw(title);
         windowVictory.draw(win);
         windowVictory.draw(rtsOk);
-
         windowVictory.display();
     }
-
-
 }
 void StartWindow::generateResources(int sumaDados) {
     if (sumaDados == 7) {

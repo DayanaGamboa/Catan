@@ -43,6 +43,7 @@ public:
 	void insertSpecialCard(string, int);
 	void insertFigures(string, int, int, int);
 	int countDevelopmentCard();
+	void loadList();
 
 	
 	void buildTown(RenderWindow*, int, int);
