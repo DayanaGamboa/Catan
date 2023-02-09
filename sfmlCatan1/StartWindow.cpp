@@ -429,7 +429,7 @@ void StartWindow::exitButton(RenderWindow* Go) {
     backExit.setSize(Vector2f(400, 300));
     backExit.setFillColor(Color(220, 245, 255));
 
-    Text text("¿Seguro que deseas salir?", font, 35);
+    Text text("Seguro que deseas salir?", font, 35);
     text.setFillColor(Color::Black);
     text.setPosition(Vector2f(40, 20));
 
@@ -457,8 +457,7 @@ void StartWindow::exitButton(RenderWindow* Go) {
 
                 if (rtsBtnYes.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     windowExit.close();
-                    Go->close();
-                    mainWindow();
+                    exit(0);
                 }
                 if (rtsBtnNo.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     windowExit.close();
