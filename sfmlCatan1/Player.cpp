@@ -10,7 +10,6 @@ Player::Player(int id, string name, int age, int victoryPoint, Color color)
     this->age = age;
     this->victoryPoint = victoryPoint;
     this->color = color;
-    /*playerList = new CircularList<Player>;*/
   
     resourceCardsList = new CircularList<ResourceCard>;
     developmentCardList = new CircularList<DevelopmentCard>;
@@ -70,34 +69,9 @@ void Player::setColor(Color color) {
     this->color = color;
 }
 
-void Player::throwsDice()
-{
-}
-
-void Player::build()
-{
-}
-
-void Player::trade()
-{
-}
-
-void Player::victoryPoints()
-{
-}
-
-void Player::useDevelopmentCards()
-{
-}
-
-void Player::endTurn()
-{
-}
-
 string Player::toString() {
     stringstream s;
-    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " "
-        /*<< getColor()*/ << endl;
+    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " " << endl;
 
     nodeResource = resourceCardsList->first;
     do {
@@ -171,10 +145,6 @@ void Player::insertFigures(string cardNameP, int positionXP, int positionYP, int
         figureList->inserNode(info);
     }
 }
-//
-//void Player::showInformationPlayerInTurn() {
-//
-//}
 void Player::buildTown(RenderWindow* Go, int verticeIndexX, int verticeIndexY)
 {
     CircleShape town(8);

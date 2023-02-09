@@ -23,12 +23,6 @@ public:
 	Node<ResourceCard>* nodeResource;
 	Node<Figure>* nodeFigure;
 	Node<SpecialCard>* nodeSpecial;
-	void throwsDice();
-	void build();
-	void trade();
-	void victoryPoints();
-	void useDevelopmentCards();
-	void endTurn(); // EL MISMO QUE EXIT GAME EN PARTIDA??
 	string toString();
 	int getId();
 	void setId(int);
