@@ -80,6 +80,8 @@ public:
 	void paintCounterSpecials(RenderWindow*);
 	void restarFigura(string, int);
 	void subtractResources(string, int);
+	void victory();
+	void generateResources(int);
 
 	int StartWindowPressed() {
 		return StartWindowSelected;
@@ -119,7 +121,9 @@ public:
 	int streetF = 0, townF = 0, cityF = 0;
 	int specialLargestArmy = 0, specialMajorRoute = 0;
 	int puntosVictoria = 0;
-
+	int numeroTerreno[19];
+	int numeroFicha[18];
+	bool generateVector = true;
 private:	
 	Font font;
 	Event event;
