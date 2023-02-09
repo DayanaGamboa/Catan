@@ -35,11 +35,6 @@ void Bank::updateResourceCard(string name, int quantity)
 
 }
 
-int Bank::putCards(int, int)
-{
-	return 0;
-}
-
 int Bank::countDevelopmentCard() {
 	int count = 0;
 	nodeDevelopment = developmentCardList->first;
