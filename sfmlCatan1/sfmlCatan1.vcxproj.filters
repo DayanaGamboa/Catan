@@ -78,9 +78,6 @@
     <ClCompile Include="Node.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="EdgeGraph.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Graph.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -96,12 +93,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Card.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="City.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Deck.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="DevelopmentCard.h">
@@ -134,22 +125,13 @@
     <ClInclude Include="SpecialCard.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Street.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Thief.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Town.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="CircularList.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="EdgeGraph.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Graph.h">
