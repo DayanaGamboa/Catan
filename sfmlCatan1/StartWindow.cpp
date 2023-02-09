@@ -896,65 +896,65 @@ void StartWindow::playerRegister(RenderWindow*) {
                         id++;                     
                         if (playerCounter == 0) {
                             Player* player1 = new Player(id, name, age, 5, Color::Blue);
-                            player1->insertResourceCard("madera", 0, 0, 0, 5);
-                            player1->insertResourceCard("arcilla", 0, 0, 0, 5);
-                            player1->insertResourceCard("lana", 0, 0, 0, 5);
-                            player1->insertResourceCard("mineral", 0, 0, 0, 5);
-                            player1->insertResourceCard("cereal", 0, 0, 0, 5);
-                            player1->insertDevelopmentCard("caballero", 0, 0, 0, 2);
+                            player1->insertResourceCard("madera", 5);
+                            player1->insertResourceCard("arcilla", 5);
+                            player1->insertResourceCard("lana", 5);
+                            player1->insertResourceCard("mineral", 5);
+                            player1->insertResourceCard("cereal", 5);
+                            player1->insertDevelopmentCard("caballero",2);
                             player1->insertFigures("carretera", 0, 0, 15);
                             player1->insertFigures("poblado", 0, 0, 4);
                             player1->insertFigures("ciudad", 0, 0, 5);
-                            player1->insertSpecialCard("mayor ruta", 0, 0, 0, 1);
-                            player1->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
+                            player1->insertSpecialCard("mayor ruta", 1);
+                            player1->insertSpecialCard("mayor ejercito", 0);
                             playerList->inserNode(player1);
                         }
                         if (playerCounter == 1) {
                             Player* player2 = new Player(id, name, age, 5, Color::Yellow);
-                            player2->insertResourceCard("madera", 0, 0, 0, 5);
-                            player2->insertResourceCard("arcilla", 0, 0, 0, 5);
-                            player2->insertResourceCard("lana", 0, 0, 0, 5);
-                            player2->insertResourceCard("mineral", 0, 0, 0, 5);
-                            player2->insertResourceCard("cereal", 0, 0, 0, 5);
-                            player2->insertDevelopmentCard("caballero", 0, 0, 0, 1);
+                            player2->insertResourceCard("madera", 5);
+                            player2->insertResourceCard("arcilla", 5);
+                            player2->insertResourceCard("lana", 5);
+                            player2->insertResourceCard("mineral", 5);
+                            player2->insertResourceCard("cereal", 5);
+                            player2->insertDevelopmentCard("caballero", 1);
                             player2->insertFigures("carretera", 0, 0, 15);
                             player2->insertFigures("poblado", 0, 0, 4);
                             player2->insertFigures("ciudad", 0, 0, 5);
-                            player2->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
-                            player2->insertSpecialCard("mayor ejercito", 0, 0, 0, 1);
+                            player2->insertSpecialCard("mayor ruta", 0);
+                            player2->insertSpecialCard("mayor ejercito", 1);
 
                             playerList->inserNode(player2);
                         }
                         if (playerCounter == 2) {
                             Player* player3 = new Player(id, name, age, 5, Color::Green);
-                            player3->insertResourceCard("madera", 0, 0, 0, 5);
-                            player3->insertResourceCard("arcilla", 0, 0, 0, 5);
-                            player3->insertResourceCard("lana", 0, 0, 0, 5);
-                            player3->insertResourceCard("mineral", 0, 0, 0, 5);
-                            player3->insertResourceCard("cereal", 0, 0, 0, 5);
-                            player3->insertDevelopmentCard("caballero", 0, 0, 0, 4);
+                            player3->insertResourceCard("madera", 5);
+                            player3->insertResourceCard("arcilla", 5);
+                            player3->insertResourceCard("lana", 5);
+                            player3->insertResourceCard("mineral", 5);
+                            player3->insertResourceCard("cereal", 5);
+                            player3->insertDevelopmentCard("caballero", 4);
                             player3->insertFigures("carretera", 0, 0, 15);
                             player3->insertFigures("poblado", 0, 0, 4);
                             player3->insertFigures("ciudad", 0, 0, 5);
-                            player3->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
-                            player3->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
+                            player3->insertSpecialCard("mayor ruta", 0);
+                            player3->insertSpecialCard("mayor ejercito", 0);
 
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
                         if (playerCounter == 3) {
                             Player* player4 = new Player(id, name, age, 5, Color::Red);
-                            player4->insertResourceCard("madera", 0, 0, 0, 5);
-                            player4->insertResourceCard("arcilla", 0, 0, 0, 5);
-                            player4->insertResourceCard("lana", 0, 0, 0, 5);
-                            player4->insertResourceCard("mineral", 0, 0, 0, 5);
-                            player4->insertResourceCard("cereal", 0, 0, 0, 5);
-                            player4->insertDevelopmentCard("caballero", 0, 0, 0, 5);
+                            player4->insertResourceCard("madera", 5);
+                            player4->insertResourceCard("arcilla", 5);
+                            player4->insertResourceCard("lana", 5);
+                            player4->insertResourceCard("mineral", 5);
+                            player4->insertResourceCard("cereal", 5);
+                            player4->insertDevelopmentCard("caballero", 5);
                             player4->insertFigures("carretera", 0, 0, 15);
                             player4->insertFigures("poblado", 0, 0, 4);
                             player4->insertFigures("ciudad", 0, 0, 5);
-                            player4->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
-                            player4->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
+                            player4->insertSpecialCard("mayor ruta", 0);
+                            player4->insertSpecialCard("mayor ejercito", 0);
 
                             playerList->inserNode(player4);
                         }

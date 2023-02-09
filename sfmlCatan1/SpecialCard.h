@@ -6,7 +6,7 @@
 class SpecialCard : public Card
 {
 public:
-	SpecialCard(string, int, int, int,int);
+	SpecialCard(string, int);
 	~SpecialCard();
 	int getQuantity();
 	void setQuantity(int);

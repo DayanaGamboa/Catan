@@ -1,7 +1,7 @@
 #include "SpecialCard.h"
 #include<sstream>
 
-SpecialCard::SpecialCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantity) : Card(cardNameP, powerCardP, positionXP, positionYP)
+SpecialCard::SpecialCard(string cardNameP,int quantity) : Card(cardNameP)
 {
 	this->quantity = quantity;
 }
@@ -25,7 +25,6 @@ int SpecialCard::power() {
 
 string SpecialCard::toString() {
 	stringstream s;
-	s << "Infromacion Carta: " << getCardName() << " " << getPowerCard() << " " << getPositionX()
-		<< " " << getPositionY() << endl;
+	s << "Infromacion Carta: " << getCardName() << " " << getQuantity() << endl;
 	return s.str();
 }
