@@ -14,14 +14,10 @@ public:
 	Node<ResourceCard>* nodeResource;
 	void updateDevelopmentCard(string, int);
 	void updateResourceCard(string, int);
-	int putCards(int, int);
 	int countDevelopmentCard();
 	void loadLists();
 
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;
-
-private:
-	/*list<Card> bankCards;*/ //TEMPLATE
 };
 
