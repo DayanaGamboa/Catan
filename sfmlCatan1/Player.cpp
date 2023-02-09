@@ -170,11 +170,11 @@ int Player::countDevelopmentCard() {
 }
 
 void Player::loadList() {
-    insertResourceCard("madera", 0);
-    insertResourceCard("arcilla", 0);
-    insertResourceCard("lana", 0);
+    insertResourceCard("madera", 2);
+    insertResourceCard("arcilla", 2);
+    insertResourceCard("lana", 2);
     insertResourceCard("mineral", 0);
-    insertResourceCard("cereal", 0);
+    insertResourceCard("cereal", 2);
     insertDevelopmentCard("caballero", 0);
     insertDevelopmentCard("progreso", 0);
     insertDevelopmentCard("PuntosVictoria", 0);

@@ -13,15 +13,11 @@ StartWindow::StartWindow(float widht, float height) {
         startMenu[i].setPosition(800, num);
         num += 100;
     }
-
     startMenu[0].setString("Jugar");
     startMenu[0].setFillColor(Color::Cyan);
-
-
     startMenu[1].setString("Cargar partida");
     startMenu[2].setString("Acerca de");
     startMenu[3].setString("Salir");
-
     StartWindowSelected = 0;
 }
 
@@ -40,17 +36,13 @@ void StartWindow::drawWindow(RenderWindow& window) {
 void StartWindow::moveUp() {
 
     if (StartWindowSelected >= 0) {
-
         startMenu[StartWindowSelected].setFillColor(Color::White);
-
         if (StartWindowSelected == 0) {
             StartWindowSelected = 4;
         }
         StartWindowSelected--;
-
         startMenu[StartWindowSelected].setFillColor(Color::Cyan);
     }
-
 }
 
 void StartWindow::moveDown() {
@@ -103,7 +95,6 @@ void StartWindow::mainWindow()
                     }
                     if (pos == 1) {
 
-
                     }
                     if (pos == 2) {
                         windowMENU.close();
@@ -127,9 +118,12 @@ void StartWindow::goWindow() {
     Graph graph;
     Dice dice;
     dice.paintDices = false;
-   /* bool townBtnPressed = false;
-    bool cityBtnPressed = false;*/
     bool firstPlay = true;
+    generateGameArea(&Go);
+    paintLands(&Go);
+    paintNumberPieces(&Go);
+    int LandPosX = posXLadron;
+    int LandPosY = posYLadron;
     while (Go.isOpen()) {
 
         while (Go.pollEvent(event)) {
@@ -144,45 +138,32 @@ void StartWindow::goWindow() {
             if (event.type == Event::MouseButtonPressed) {
                 Vector2i coordinatesMouse = mouse.getPosition(Go);
                 
-
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     if (firstPlay == true) {
-                        dice.paintDices = true;
-                        generateResources(dice.diceFinalAmount(&Go));
-                        firstPlay = false;
-                    }
-                    else {
-                        cout << "Solo tiene un turno" << endl;
-                    }
+                    dice.paintDices = true;
+                    generateResources(dice.diceFinalAmount(&Go));
+                    firstPlay = false;
+                     }
                 }
                 if (rtsBtnExit.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     exitButton(&Go);
                 }
                 if (rtsBtnSave.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    cout << "Guardar" << endl;
                 }
                 if (rtsBtnStreet.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    cout << "Carretera" << endl;
+                   streetBtnPressed = true;
                 }
                 if (rtsBtnCity.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     if (cityF > 0 && cerealR >= 2 && mineralR >= 3) {
                         cityBtnPressed = true;
                     }
-                    else {
-                        cout << "Ya no tiene poblados para construir" << endl;
-                    }
                 }
                 if (rtsBtnTown.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     if (townF > 0 && woodR >= 1 && clayR >= 1 && cerealR >= 1 && sheepR >= 1) {
                         townBtnPressed = true;                                               
-                    }
-                    else {
-                        cout << "Ya no tiene poblados para construir" << endl;
-                    }
-                    
+                    }                 
                 }
-                if (rtsBtnDevelopment.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    cout << "Desarrollo" << endl;
+                if (rtsBtnDevelopment.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {                   
                     if (bank.countDevelopmentCard() >= 1 && cerealR >= 1 && sheepR >= 1 && mineralR >= 1) {
                         string name = bank.generateDevelopmentCard();
                         buyDevelopmentCard(name);
@@ -196,25 +177,21 @@ void StartWindow::goWindow() {
                         bank.updateResourceCard("cereal", 1);
                         bank.updateResourceCard("lana", 1);
                         bank.updateResourceCard("mineral", 1);
-                    }
-                    else {
-                        cout << "No tiene recursos necesarios" << endl;
-                    }
+                    }                   
                     
                 }
                 if (rtsBtnTrade.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
-                    cout << "Comerciar" << endl;
+                   
                 }
                 if (rtsBtnEndTurn.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     if (firstPlay == false) {
-                        cout << "Terminar turno" << endl;
+                       
                         actualNode = actualNode->getNextNode();
                         saveResourcePlayer();
                         saveFigfurePlayer();
                         existenceSpecialCard();
                         firstPlay = true;
-                    }
-                    else { cout << "tira los dados"; }
+                    }                    
                 }
                 if (townBtnPressed == true) {
                     cityBtnPressed = false;
@@ -225,14 +202,11 @@ void StartWindow::goWindow() {
                         {
                             builtTown(&Go, i);
 
-                            if (puntosVictoria >= 10) {
-                                cout << "GANOOOOOOOOOO" << endl;
+                            if (puntosVictoria >= 10) {                                
                                 victory();
                             }
-
                             break;
                         }
-
                     }
                 }
                 if (cityBtnPressed == true) {
@@ -246,10 +220,22 @@ void StartWindow::goWindow() {
 
                             if (puntosVictoria >= 10) {
                                 victory();
-
                             }
                             break;
+                        }
+                    }
+                }
+                if (streetBtnPressed == true) {
+                    for (int i = 0; i < 19; i++) {
 
+                        if (vectorLandsRTS[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse)))
+                        {
+                            LandPosX = LandsPosX[i];
+                            LandPosY = LandsPosY[i];
+                            landActuaThief = i;
+                            paintthief(&Go, LandsPosX[i], LandsPosY[i]);
+                            streetBtnPressed = false;
+                            break;
                         }
                     }
                 }
@@ -273,6 +259,7 @@ void StartWindow::goWindow() {
         paintPlayerCountersInTurn(&Go);
         paintCountersFigures(&Go);
         paintCounterSpecials(&Go);
+        paintthief(&Go, LandPosX, LandPosY);
         Go.display();
     }
 }
@@ -283,9 +270,7 @@ void StartWindow::aboutWindow()
     aBackground.setSize(Vector2f(X, Y));
     Texture aboutWindowImage;
     aboutWindowImage.loadFromFile("resouceImages/About.png");
-    aBackground.setTexture(&aboutWindowImage);
-
-    //Boton de atras    
+    aBackground.setTexture(&aboutWindowImage); 
     
     rtsBtnBack.setPosition(Vector2f(100, 720));
     rtsBtnBack.setSize(Vector2f(150, 80));
@@ -339,15 +324,12 @@ void StartWindow::paintResource(RenderWindow* Go, int x, int y)
         rectangleShape.setTexture(&texture1);
         Go->draw(rectangleShape);
         x += 90;
-
     }
 }
 
 
 void StartWindow::paintOpponentDeck(RenderWindow* Go, int quantityDecks)
 {
-    
-
     string pathImagePlayer[4] = { "resouceImages/jugadorAzul.png", "resouceImages/jugadorRojo.png", "resouceImages/jugadorAmarillo.png", "resouceImages/jugadorVerde.png" };
     RectangleShape rtsResource, rtsDevelopment;
     Texture txtrResource, txtrDevelopment;
@@ -356,28 +338,25 @@ void StartWindow::paintOpponentDeck(RenderWindow* Go, int quantityDecks)
     Text txtPVPlayers[4] = {}, txtPVPlayer1, txtPVPlayer2, txtPVPlayer3, txtPVPlayer4;
 
     for (int i = 0; i < quantityDecks; i++) {
-        //cartas de recursos
+        
         rtsResource.setPosition(Vector2f(posXResource, posYCards));
         rtsResource.setSize(Vector2f(70, 100));
         txtrResource.loadFromFile(routeResource);
         rtsResource.setTexture(&txtrResource);
         Go->draw(rtsResource);
 
-        //cartas de desarrollo
         rtsDevelopment.setPosition(Vector2f(posXDevelopment, posYCards));
         rtsDevelopment.setSize(Vector2f(70, 100));
         txtrDevelopment.loadFromFile(routeDevelopment);
         rtsDevelopment.setTexture(&txtrDevelopment);
         Go->draw(rtsDevelopment);
 
-        //cuadrado color
         RectangleShape rtsColor2;
         rtsColor2.setPosition(Vector2f(posXImage, posYImage));
         rtsColor2.setSize(Vector2f(50, 50));
         rtsColor2.setFillColor(playersColor[i]);
         Go->draw(rtsColor2);
 
-        //imagen jugador-Negro
         rtsImgPlayer.setPosition(Vector2f(posXImage, posYImage));
         rtsImgPlayer.setSize(Vector2f(50, 50));
         txtrImgPlayer.loadFromFile("resouceImages/jugadorNegro.png");
@@ -412,11 +391,9 @@ void StartWindow::paintOpponentDeck(RenderWindow* Go, int quantityDecks)
         Go->draw(txtPVPlayer4);
     }
    
-
     Go->draw(txtPVPlayer1);
     Go->draw(txtPVPlayer2);
-    Go->draw(txtPVPlayer3);
-  
+    Go->draw(txtPVPlayer3);  
 }
 
 void StartWindow::paintSpecialCards(RenderWindow* Go)
@@ -442,8 +419,8 @@ void StartWindow::paintSpecialCards(RenderWindow* Go)
 void StartWindow::exitButton(RenderWindow* Go) {
 
     RenderWindow windowExit(VideoMode(400, 300), "Salir");
-    //set background
-    RectangleShape backExit;
+    RectangleShape backExit, rtsBtnYes, rtsBtnNo;
+    Texture textureRtsBtnYes, textureRtsBtnNo;
     backExit.setSize(Vector2f(400, 300));
     backExit.setFillColor(Color(220, 245, 255));
 
@@ -451,18 +428,14 @@ void StartWindow::exitButton(RenderWindow* Go) {
     text.setFillColor(Color::Black);
     text.setPosition(Vector2f(40, 20));
 
-    //Si
-    RectangleShape rtsBtnYes;
     rtsBtnYes.setSize(Vector2f(150, 50));
     rtsBtnYes.setPosition(Vector2f(50, 200));
-    Texture textureRtsBtnYes;
+    
     textureRtsBtnYes.loadFromFile("resouceImages/btnSi.png");
     rtsBtnYes.setTexture(&textureRtsBtnYes);
-    //No
-    RectangleShape rtsBtnNo;
+
     rtsBtnNo.setSize(Vector2f(150, 50));
     rtsBtnNo.setPosition(Vector2f(200, 200));
-    Texture textureRtsBtnNo;
     textureRtsBtnNo.loadFromFile("resouceImages/btnNo.png");
     rtsBtnNo.setTexture(&textureRtsBtnNo);
 
@@ -470,9 +443,7 @@ void StartWindow::exitButton(RenderWindow* Go) {
 
         while (windowExit.pollEvent(event)) {
             if (event.type == Event::MouseButtonPressed) {
-
                 Vector2i coordinatesMouse = mouse.getPosition(windowExit);
-
                 if (rtsBtnYes.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     windowExit.close();
                     exit(0);
@@ -487,7 +458,6 @@ void StartWindow::exitButton(RenderWindow* Go) {
         windowExit.draw(rtsBtnYes);
         windowExit.draw(rtsBtnNo);
         windowExit.draw(text);
-
         windowExit.display();
     }
 }
@@ -502,7 +472,6 @@ void StartWindow::loadGameButton(RenderWindow*)
 }
 
 void StartWindow::generateGameArea(RenderWindow* Go) {
-    //MAR
     RectangleShape rtsSea, rtsLand, rtsBank;
     Texture textureRtsSea, textureRtsLand, textureRtsBank, textureRtsBtnDice, textureRtsBtnSave, textureRtsBtnExit, txtrBtnStreet;
     Texture txtrBtnCity, txtrBtnTown, txtrBtnDevelopment, txtrBtnTrade, txtrBtnEndTurn;
@@ -510,78 +479,67 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     textureRtsSea.loadFromFile("resouceImages/goGame.jpg");
     rtsSea.setTexture(&textureRtsSea);
     Go->draw(rtsSea);
-
-    //Hexagono para los terrenos   
+  
     rtsLand.setPosition(Vector2f(450, 120));
     rtsLand.setSize(Vector2f(510, 510));
     textureRtsLand.loadFromFile("resouceImages/AreaJuego.png");
     rtsLand.setTexture(&textureRtsLand);
     Go->draw(rtsLand);
 
-    //Bank
     rtsBank.setPosition(Vector2f(550, 30));
     rtsBank.setSize(Vector2f(64, 64));
     textureRtsBank.loadFromFile("resouceImages/banco.png");
     rtsBank.setTexture(&textureRtsBank);
     Go->draw(rtsBank);
 
-    //btnDice
     rtsBtnDice.setPosition(Vector2f(700, 10));
     rtsBtnDice.setSize(Vector2f(180, 100));
     textureRtsBtnDice.loadFromFile("resouceImages/btnTirarDados.png");  
     rtsBtnDice.setTexture(&textureRtsBtnDice);
     Go->draw(rtsBtnDice);
 
-    //btnGuardar
     rtsBtnSave.setPosition(Vector2f(1170, 10));
     rtsBtnSave.setSize(Vector2f(150, 50));
     textureRtsBtnSave.loadFromFile("resouceImages/btnGuardar.png");
     rtsBtnSave.setTexture(&textureRtsBtnSave);
     Go->draw(rtsBtnSave);
 
-    //btnSalir
     rtsBtnExit.setPosition(Vector2f(1170, 70));
     rtsBtnExit.setSize(Vector2f(150, 50));
     textureRtsBtnExit.loadFromFile("resouceImages/btnSalir.png");
     rtsBtnExit.setTexture(&textureRtsBtnExit);
     Go->draw(rtsBtnExit);
 
-    //btnCarretera
     rtsBtnStreet.setPosition(Vector2f(1170, 200));
     rtsBtnStreet.setSize(Vector2f(150, 50));
-    txtrBtnStreet.loadFromFile("resouceImages/btnCarretera.png");
+    txtrBtnStreet.loadFromFile("resouceImages/btnMoverLadron.png");
     rtsBtnStreet.setTexture(&txtrBtnStreet);
     Go->draw(rtsBtnStreet);
 
-    //btnCiudad
     rtsBtnCity.setPosition(Vector2f(1170, 260));
     rtsBtnCity.setSize(Vector2f(150, 50));
     txtrBtnCity.loadFromFile("resouceImages/btnCiudad.png");
     rtsBtnCity.setTexture(&txtrBtnCity);
     Go->draw(rtsBtnCity);
 
-    //btnPoblado
     rtsBtnTown.setPosition(Vector2f(1170, 320));
     rtsBtnTown.setSize(Vector2f(150, 50));
     txtrBtnTown.loadFromFile("resouceImages/btnPoblado.png");
     rtsBtnTown.setTexture(&txtrBtnTown);
     Go->draw(rtsBtnTown);
 
-    //btnDesarrollo
     rtsBtnDevelopment.setPosition(Vector2f(1170, 380));
     rtsBtnDevelopment.setSize(Vector2f(150, 50));
     txtrBtnDevelopment.loadFromFile("resouceImages/btnDesarrollo.png");
     rtsBtnDevelopment.setTexture(&txtrBtnDevelopment);
     Go->draw(rtsBtnDevelopment);
 
-    //btnComerciar
     rtsBtnTrade.setPosition(Vector2f(1170, 440));
     rtsBtnTrade.setSize(Vector2f(150, 50));
     txtrBtnTrade.loadFromFile("resouceImages/btnComerciar.png");
     rtsBtnTrade.setTexture(&txtrBtnTrade);
     Go->draw(rtsBtnTrade);
 
-    //btnTerminarTurno
     rtsBtnEndTurn.setPosition(Vector2f(1170, 500));
     rtsBtnEndTurn.setSize(Vector2f(150, 50));
     txtrBtnEndTurn.loadFromFile("resouceImages/btnTerminarTurno.png");
@@ -592,7 +550,6 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
 void StartWindow::paintLands(RenderWindow* Go) {
 
     string path = "";
-    //Thief thief;
     if (lands == false) {
 
         RectangleShape rts;
@@ -619,7 +576,6 @@ void StartWindow::paintLands(RenderWindow* Go) {
                 vectorLandsRTS[contLands].setPosition(Vector2f(LandsPosX[contLands], LandsPosY[contLands]));
                 vectorLandsRTS[contLands].setSize(Vector2f(68.5, 68.5));
 
-
                 path = "resouceImages/T";
                 path += to_string(number);
                 path += ".png";
@@ -635,12 +591,10 @@ void StartWindow::paintLands(RenderWindow* Go) {
         }
         lands = true;
 
-
     }
-    //----------------generamos las posiciones de terrenos y fichas de cada terreno
+ 
     int numberedPieceNumber[18] = { 5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11 };
     int posLadron = 0;
-
 
     for (int i = 0; i < 18; i++) {
         numeroFicha[i] = numberedPieceNumber[i];
@@ -656,19 +610,14 @@ void StartWindow::paintLands(RenderWindow* Go) {
             }
         }
         generateVector = false;
-        for (int i = 0; i < 18; i++) {
-            cout << "Terreno " << numeroTerreno[i] << " ficha " << numeroFicha[i] << endl;
-        }
-    }
 
+    }
     for (int i = 0; i < 19; i++) {
         Go->draw(vectorLandsRTS[i]);
     }
 }
 void StartWindow::paintNumberPieces(RenderWindow* Go) {
 
-    RectangleShape numberPiecesRts[19], numberPieceRts;
-    Texture numberPiecesTxtr[19], numberPieceTxtr;
     Texture* txt;
     string path = "";
 
@@ -681,13 +630,11 @@ void StartWindow::paintNumberPieces(RenderWindow* Go) {
     int numberedPieceNumber[18] = { 5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11 };
     int posNumberedPieceNumber = 0;
     for (int i = 0; i < 19; i++) {
-        if ((LandsPosX[i] == posXDesertLand) && (LandsPosY[i] == posYDesertLand)) { //poner las del ladron
-            numberPiecesRts[i].setPosition(Vector2f(posXDesertLand, posYDesertLand));  //poner las del ladron
-            numberPiecesRts[i].setSize(Vector2f(70, 70));
-            numberPiecesTxtr[i].loadFromFile("resouceImages/Ladron.png");
-            txt = &numberPiecesTxtr[i];
-            numberPiecesRts[i].setTexture(txt);
-            Go->draw(numberPiecesRts[i]);
+        if ((LandsPosX[i] == posXDesertLand) && (LandsPosY[i] == posYDesertLand)) {
+
+            posXLadron = LandsPosX[i];
+            posYLadron = LandsPosY[i];
+
             i++;
         }
         numberPiecesRts[i].setPosition(Vector2f(LandsPosX[i], LandsPosY[i]));
@@ -703,9 +650,7 @@ void StartWindow::paintNumberPieces(RenderWindow* Go) {
         numberPiecesRts[i].setTexture(txt);
         Go->draw(numberPiecesRts[i]);
         posNumberedPieceNumber++;
-
     }
-
     for (int i = 0; i < 19; i++) {
         Go->draw(numberPiecesRts[i]);
     }
@@ -763,89 +708,73 @@ void StartWindow::PlayerInTurn(RenderWindow* Go) {
     Go->draw(rtsPlayerColor);
 }
 void StartWindow::paintPlayerRegister(RenderWindow* playerData) {
-    //MENU
     background.setSize(Vector2f(700, 700));
     background.setFillColor(Color(220, 245, 255));
-
 
     txtTitle.setFont(font);
     txtTitle.setString("Registro de jugadores: (3-4)");
     txtTitle.setFillColor(Color::Black);
     txtTitle.setPosition(200, 10);
     txtTitle.setCharacterSize(50);
-
-    //Boton de aceptar    
+  
     rtsBtnSave.setPosition(Vector2f(150, 580));
     rtsBtnSave.setSize(Vector2f(150, 50));
     txtrBtnSave.loadFromFile("resouceImages/btnGuardar.png");
     rtsBtnSave.setTexture(&txtrBtnSave);
-
-    //JUGADOR 1    
+   
     titlePlayer.setString("Datos del jugador");
     titlePlayer.setFont(font);
     titlePlayer.setFillColor(Color::Black);
     titlePlayer.setPosition(280, 160);
-
-    //titulo ID    
+  
     txtTitleID.setFont(font);
     txtTitleID.setString("ID ");
     txtTitleID.setFillColor(Color::Black);
     txtTitleID.setPosition(180, 230 + 10);
-
-    // Caja de texto ID   
+  
     rtsID.setSize(Vector2f(200, 50));
     rtsID.setFillColor(Color(187, 208, 216));
     rtsID.setPosition(270, 230);
-
-    //Texto para la caja ID    
+  
     txtID.setFont(font);
     txtID.setString(to_string(playerCounter + 1));
     txtID.setFillColor(Color::Black);
     txtID.setPosition(270, 230);
 
-    //titulo nombre   
     txtTitleName.setFont(font);
     txtTitleName.setString("Nombre ");
     txtTitleName.setFillColor(Color::Black);
     txtTitleName.setPosition(180, 310);
 
-    //Caja de texto nombre  
     rtsName.setSize(Vector2f(200, 50));
     rtsName.setFillColor(Color(187, 208, 216));
     rtsName.setPosition(270, 300);
-
-    //Texto para la caja nombre    
+ 
     txtName.setFont(font);
     txtName.setFillColor(Color::Black);
     txtName.setPosition(270, 300);
-
-    //titulo edad    
+ 
     txtTitleAge.setFont(font);
     txtTitleAge.setString("Edad ");
     txtTitleAge.setFillColor(Color::Black);
     txtTitleAge.setPosition(180, 380);
-
-    //Caja de texto Edad    
+  
     rtsAge.setSize(Vector2f(200, 50));
     rtsAge.setFillColor(Color(187, 208, 216));
     rtsAge.setPosition(270, 370);
 
-    //Texto para la caja Edad  
     txtAge.setFont(font);
     txtAge.setFillColor(Color::Black);
     txtAge.setPosition(270, 370);
 
-    //titulo color  
     titleColor.setFont(font);
     titleColor.setString("Color");
     titleColor.setFillColor(Color::Black);
     titleColor.setPosition(180, 460);
-
-    //Caja de texto Color  
+ 
     rtsColor.setSize(Vector2f(200, 50));
     rtsColor.setPosition(270, 450);
-
-    //Text para campos requeridos   
+   
     txtRequiredFields.setFont(font);
     txtRequiredFields.setFillColor(Color::Black);
     txtRequiredFields.setPosition(250, 500);
@@ -1074,9 +1003,7 @@ void StartWindow::builtTown(RenderWindow* Go, int i)
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 1);
         puntosVictoria++;
     }
-    else {
-        cout << "No se puede pintar el poblado";
-    }
+
 }
 void StartWindow::builtCity(RenderWindow* Go, int i)
 {
@@ -1101,9 +1028,7 @@ void StartWindow::builtCity(RenderWindow* Go, int i)
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 2);
         puntosVictoria += 2;
     }
-    else {
-        cout << "No se puede pintar la ciudad" << endl;;
-    }
+
 }
 void StartWindow::accommodateColors() {
 
@@ -1214,7 +1139,6 @@ void StartWindow::paintPlayerCountersInTurn(RenderWindow* Go) {
     int y = 670;
 
     for (int i = 0; i < 6; i++) {
-        //cuadrado color blanco
         RectangleShape rtsBlanco;
         rtsBlanco.setPosition(Vector2f(x, y));
         rtsBlanco.setSize(Vector2f(20, 25));
@@ -1354,13 +1278,11 @@ void StartWindow::paintCounterSpecials(RenderWindow* Go) {
     int x = 550;
     int y = 640;
     for (int i = 0; i < 2; i++) {
-        //cuadrado color blanco
         RectangleShape rtsBlanco;
         rtsBlanco.setPosition(Vector2f(x, y));
         rtsBlanco.setSize(Vector2f(20, 25));
         rtsBlanco.setFillColor(Color::White);
         Go->draw(rtsBlanco);
-
         x += 130;
     }
     y -= 7;
@@ -1383,7 +1305,6 @@ void StartWindow::restarFigura(string figura, int numero) {
     nodeFigure = actualNode->getData()->figureList->first;   
     do {
         if (nodeFigure->getData()->getCardName() == figura) {
-            cout << "seteado" << endl;
             nodeFigure->getData()->setQuantity(numero);
         }
         nodeFigure = nodeFigure->getNextNode();
@@ -1394,7 +1315,6 @@ void StartWindow::subtractResources(string resource, int numero) {
     nodeResource = actualNode->getData()->resourceCardsList->first;
     do {
         if (nodeResource->getData()->getCardName() == resource) {
-            cout << "seteado" << endl;
             nodeResource->getData()->setQuantity(numero);
         }
         nodeResource = nodeResource->getNextNode();
@@ -1402,12 +1322,9 @@ void StartWindow::subtractResources(string resource, int numero) {
 }
 void StartWindow::victory()
 {
-
     RenderWindow windowVictory(VideoMode(600, 400), "VICTORY");
-
     RectangleShape rtsOk, backVictory;
     Texture textureRtsBtnOk;
-
     Text win, title;
 
     title.setString("********GANADOR********");
@@ -1416,7 +1333,6 @@ void StartWindow::victory()
     title.setCharacterSize(45);
     title.setFillColor(Color::Black);
 
-    //text.setString(text.getString() + winningPlayer);
     backVictory.setSize(Vector2f(600, 400));
     backVictory.setFillColor(Color(220, 245, 255));
 
@@ -1452,63 +1368,47 @@ void StartWindow::victory()
 }
 void StartWindow::generateResources(int sumaDados) {
     if (sumaDados == 7) {
-        cout << "Mover el ladron" << endl;
+      
     }
     else {
         for (int i = 0; i < 18; i++) {
-
             if (numeroFicha[i] == sumaDados) {
-                if (numeroTerreno[i] == 0) { // terreno bosques - genera madera
+                if (numeroTerreno[i] == 0) { 
 
                     if (nodeResourceBankWood->getData()->getQuantity() > 0) {
                         nodeResourceBankWood->getData()->setQuantity(nodeResourceBankWood->getData()->getQuantity() - 1);
                         woodR++;
                         subtractResources("madera", woodR);
                     }
-                    else {
-                        cout << "No hay recursos en la banca de madera" << endl;
-                    }
                 }
-                if (numeroTerreno[i] == 1) { // terreno pastos - genera ovejas
+                if (numeroTerreno[i] == 1) { 
 
                     if (nodeResourceBankSheep->getData()->getQuantity() > 0) {
                         nodeResourceBankSheep->getData()->setQuantity(nodeResourceBankSheep->getData()->getQuantity() - 1);
                         sheepR++;
                         subtractResources("lana", sheepR);
                     }
-                    else {
-                        cout << "No hay recursos en la banca de ovejas" << endl;
-                    }
                 }
-                if (numeroTerreno[i] == 2) { // terreno sembrados - genera cereales
+                if (numeroTerreno[i] == 2) { 
                     if (nodeResourceBankCereal->getData()->getQuantity() > 0) {
                         nodeResourceBankCereal->getData()->setQuantity(nodeResourceBankCereal->getData()->getQuantity() - 1);
                         cerealR++;
                         subtractResources("cereal", cerealR);
                     }
-                    else {
-                        cout << "No hay recursos en la banca de cereales" << endl;
-                    }
                 }
-                if (numeroTerreno[i] == 3) { // terreno cerros - genera arcilla
+                if (numeroTerreno[i] == 3) { 
                     if (nodeResourceBankClay->getData()->getQuantity() > 0) {
                         nodeResourceBankClay->getData()->setQuantity(nodeResourceBankClay->getData()->getQuantity() - 1);
                         clayR++;
                         subtractResources("arcilla", clayR);
                     }
-                    else {
-                        cout << "No hay recursos en la banca de arcilla" << endl;
-                    }
                 }
-                if (numeroTerreno[i] == 4) { // terreno montañña - genera mmineral
+                if (numeroTerreno[i] == 4) { 
                     if (nodeResourceBankMineral->getData()->getQuantity() > 0) {
                         nodeResourceBankMineral->getData()->setQuantity(nodeResourceBankMineral->getData()->getQuantity() - 1);
                         mineralR++;
                         subtractResources("mineral", mineralR);
-                    }
-                    else {
-                        cout << "No hay recursos en la banca de mineral" << endl;
-                    }
+                    }                   
                 }
             }
         }
@@ -1518,7 +1418,6 @@ void StartWindow::buyDevelopmentCard(string resource) {
     nodeDevelopmentBank = bank.developmentCardList->first;
     do {
         if (nodeDevelopmentBank->getData()->getCardName() == resource) {
-            cout << "seteado" << endl;
             int numero = nodeDevelopmentBank->getData()->getQuantity();
             nodeDevelopmentBank->getData()->setQuantity(numero - 1);
         }
@@ -1526,4 +1425,15 @@ void StartWindow::buyDevelopmentCard(string resource) {
     } while (nodeDevelopmentBank != bank.developmentCardList->first);
 
     actualNode->getData()->resourceCardsList->dropDownList();
+}
+
+void StartWindow::paintthief(RenderWindow* Go, int x, int y) {
+
+    RectangleShape Rs;
+    Texture txtr;
+    Rs.setPosition(Vector2f(x - 5, y - 5));
+    Rs.setSize(Vector2f(80, 80));
+    txtr.loadFromFile("resouceImages/Ladron.png");
+    Rs.setTexture(&txtr);
+    Go->draw(Rs);
 }

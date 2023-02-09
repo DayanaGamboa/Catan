@@ -83,6 +83,7 @@ public:
 	void victory();
 	void generateResources(int);
 	void buyDevelopmentCard(string);
+	void paintthief(RenderWindow*, int, int);
 
 	int StartWindowPressed() {
 		return StartWindowSelected;
@@ -125,6 +126,14 @@ public:
 	int numeroTerreno[19];
 	int numeroFicha[18];
 	bool generateVector = true;
+	bool streetBtnPressed = false;
+	bool moveThief = false;
+	int posLadron = 0;
+	int landActuaThief = 0;
+	RectangleShape numberPiecesRts[19], numberPieceRts;
+	Texture numberPiecesTxtr[19], numberPieceTxtr;
+	int posXLadron = 0;
+	int posYLadron = 0;
 private:	
 	Font font;
 	Event event;

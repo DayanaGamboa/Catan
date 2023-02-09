@@ -147,8 +147,6 @@
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Number.cpp" />
-    <ClCompile Include="Partida.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceCard.cpp" />
     <ClCompile Include="sfmlCatan1.cpp" />
@@ -165,8 +163,6 @@
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Number.h" />
-    <ClInclude Include="Partida.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceCard.h" />
     <ClInclude Include="SpecialCard.h" />

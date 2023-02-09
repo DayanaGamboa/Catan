@@ -35,7 +35,6 @@ int Dice::diceFinalAmount(RenderWindow * Go) {
             txtrRtsDice2.loadFromFile(path);
             rtsDice2.setTexture(&txtrRtsDice2);
             diceSum += numRandom;
-            cout << "SUMA: " << diceSum << endl;
             paintDices = false;
         }
         Go->draw(rtsDice1);
