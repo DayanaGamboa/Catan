@@ -142,8 +142,6 @@
     <ClCompile Include="Bank.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CircularList.cpp" />
-    <ClCompile Include="City.cpp" />
-    <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DevelopmentCard.cpp" />
     <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Figure.cpp" />
@@ -158,9 +156,7 @@
     <ClCompile Include="sfmlCatan1.cpp" />
     <ClCompile Include="SpecialCard.cpp" />
     <ClCompile Include="StartWindow.cpp" />
-    <ClCompile Include="Street.cpp" />
     <ClCompile Include="Thief.cpp" />
-    <ClCompile Include="Town.cpp" />
     <ClCompile Include="VertexGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
