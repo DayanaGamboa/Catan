@@ -138,7 +138,6 @@ void StartWindow::goWindow() {
             }
             if (event.type == Event::KeyPressed) {
                 if (event.key.code == Keyboard::Escape) {
-
                     exitButton(&Go);
                 }
             }
@@ -149,7 +148,7 @@ void StartWindow::goWindow() {
                 if (rtsBtnDice.getGlobalBounds().contains(Vector2<float>(coordinatesMouse))) {
                     if (firstPlay == true) {
                         dice.paintDices = true;
-                        dice.diceFinalAmount(&Go);
+                        generateResources(dice.diceFinalAmount(&Go));
                         firstPlay = false;
                     }
                     else {
@@ -197,35 +196,40 @@ void StartWindow::goWindow() {
                     firstPlay = true;
                 }
                 if (townBtnPressed == true) {
+                    cityBtnPressed = false;
+
                     for (int i = 0; i < graph.circlesV.size(); i++) {
 
                         if (graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse)))
                         {
                             builtTown(&Go, i);
-                            
-                            if (puntosVictoria == 10) {
+
+                            if (puntosVictoria >= 10) {
                                 cout << "GANOOOOOOOOOO" << endl;
                                 victory();
                             }
+
                             break;
                         }
 
                     }
                 }
                 if (cityBtnPressed == true) {
+
+                    townBtnPressed = false;
                     for (int i = 0; i < graph.circlesV.size(); i++) {
 
                         if (graph.circlesV[i].getGlobalBounds().contains(Vector2<float>(coordinatesMouse)))
                         {
                             builtCity(&Go, i);
-                            
-                            if (puntosVictoria == 10) {
+
+                            if (puntosVictoria >= 10) {
                                 victory();
-                                
+
                             }
                             break;
-                        }
 
+                        }
                     }
                 }
 
@@ -566,7 +570,7 @@ void StartWindow::generateGameArea(RenderWindow* Go) {
     
 }
 void StartWindow::paintLands(RenderWindow* Go) {
-   
+
     string path = "";
     Thief thief;
     if (lands == false) {
@@ -595,6 +599,7 @@ void StartWindow::paintLands(RenderWindow* Go) {
                 vectorLandsRTS[contLands].setPosition(Vector2f(LandsPosX[contLands], LandsPosY[contLands]));
                 vectorLandsRTS[contLands].setSize(Vector2f(68.5, 68.5));
 
+
                 path = "resouceImages/T";
                 path += to_string(number);
                 path += ".png";
@@ -604,10 +609,36 @@ void StartWindow::paintLands(RenderWindow* Go) {
                 txt = &vectorLandsTXT[contLands];
                 vectorLandsRTS[contLands].setTexture(txt);
                 vectorLands[number] = vectorLands[number] - 1;
+                numeroTerreno[contLands] = number;
                 contLands++;
             }
         }
         lands = true;
+
+
+    }
+    //----------------generamos las posiciones de terrenos y fichas de cada terreno
+    int numberedPieceNumber[18] = { 5, 2, 6, 3, 8, 10, 9, 12, 11, 4, 8, 10, 9, 4, 5, 6, 3, 11 };
+    int posLadron = 0;
+
+
+    for (int i = 0; i < 18; i++) {
+        numeroFicha[i] = numberedPieceNumber[i];
+    }
+    int aux = 0;
+
+    if (generateVector == true) {
+        for (int i = 0; i < 19; i++) {
+            if (numeroTerreno[i] == 5) {
+                aux = numeroTerreno[i + 1];
+                numeroTerreno[i + 1] = numeroTerreno[i];
+                numeroTerreno[i] = aux;
+            }
+        }
+        generateVector = false;
+        for (int i = 0; i < 18; i++) {
+            cout << "Terreno " << numeroTerreno[i] << " ficha " << numeroFicha[i] << endl;
+        }
     }
 
     for (int i = 0; i < 19; i++) {
@@ -864,8 +895,8 @@ void StartWindow::playerRegister(RenderWindow*) {
                         age = stoi(ageString);
                         id++;                     
                         if (playerCounter == 0) {
-                            Player* player1 = new Player(id, name, age, 8, Color::Blue);
-                            player1->insertResourceCard("madera",0,0,0,5);
+                            Player* player1 = new Player(id, name, age, 5, Color::Blue);
+                            player1->insertResourceCard("madera", 0, 0, 0, 5);
                             player1->insertResourceCard("arcilla", 0, 0, 0, 5);
                             player1->insertResourceCard("lana", 0, 0, 0, 5);
                             player1->insertResourceCard("mineral", 0, 0, 0, 5);
@@ -876,10 +907,10 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player1->insertFigures("ciudad", 0, 0, 5);
                             player1->insertSpecialCard("mayor ruta", 0, 0, 0, 1);
                             player1->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
-                            playerList->inserNode(player1); 
+                            playerList->inserNode(player1);
                         }
                         if (playerCounter == 1) {
-                            Player* player2 = new Player(id, name, age, 7, Color::Yellow);
+                            Player* player2 = new Player(id, name, age, 5, Color::Yellow);
                             player2->insertResourceCard("madera", 0, 0, 0, 5);
                             player2->insertResourceCard("arcilla", 0, 0, 0, 5);
                             player2->insertResourceCard("lana", 0, 0, 0, 5);
@@ -892,7 +923,7 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player2->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
                             player2->insertSpecialCard("mayor ejercito", 0, 0, 0, 1);
 
-                            playerList->inserNode(player2);                                                                           
+                            playerList->inserNode(player2);
                         }
                         if (playerCounter == 2) {
                             Player* player3 = new Player(id, name, age, 5, Color::Green);
@@ -925,8 +956,8 @@ void StartWindow::playerRegister(RenderWindow*) {
                             player4->insertSpecialCard("mayor ruta", 0, 0, 0, 0);
                             player4->insertSpecialCard("mayor ejercito", 0, 0, 0, 0);
 
-                            playerList->inserNode(player4);                          
-                        }                                           
+                            playerList->inserNode(player4);
+                        }
                         name = "";
                         ageString = "";
                         victoryPoints = 0, color = 0;
@@ -1047,15 +1078,7 @@ void StartWindow::builtTown(RenderWindow* Go, int i)
         Go->draw(vectorBlackHouse[i]);
         townBtnPressed = false;
         townF--;
-        woodR--;
-        clayR--;
-        cerealR--;
-        sheepR--;
         restarFigura("poblado", townF);
-        subtractResources("madera", woodR);
-        subtractResources("arcilla", clayR);
-        subtractResources("cereal", cerealR);
-        subtractResources("lana", sheepR);
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 1);
         puntosVictoria++;
     }
@@ -1065,7 +1088,7 @@ void StartWindow::builtTown(RenderWindow* Go, int i)
 }
 void StartWindow::builtCity(RenderWindow* Go, int i)
 {
-    if (vectorTown[i].getFillColor() != Color::Transparent) {
+    if (vectorTown[i].getFillColor() == actualNode->getData()->getColor()) {
 
         vectorCity[i].setFillColor(actualNode->getData()->getColor());
         vectorBlackCity[i].setFillColor(actualNode->getData()->getColor());
@@ -1076,11 +1099,7 @@ void StartWindow::builtCity(RenderWindow* Go, int i)
 
         cityBtnPressed = false;
         cityF--;
-        cerealR -= 2;
-        mineralR -= 3;
         restarFigura("ciudad", cityF);
-        subtractResources("cereal", cerealR);
-        subtractResources("mineral", mineralR);
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 2);
         puntosVictoria += 2;
     }
@@ -1432,6 +1451,45 @@ void StartWindow::victory()
         windowVictory.draw(rtsOk);
 
         windowVictory.display();
+    }
+
+
+}
+void StartWindow::generateResources(int sumaDados) {
+
+
+    if (sumaDados == 7) {
+        cout << "Mover el ladron" << endl;
+    }
+    else {
+        for (int i = 0; i < 18; i++) {
+
+            if (numeroFicha[i] == sumaDados) {
+                if (numeroTerreno[i] == 0) { // terreno bosques - genera madera
+                    woodR++;
+                    subtractResources("madera", woodR);
+
+                }
+                if (numeroTerreno[i] == 1) { // terreno pastos - genera ovejas
+                    sheepR++;
+                    subtractResources("lana", sheepR);
+                }
+                if (numeroTerreno[i] == 2) { // terreno sembrados - genera cereales
+                    cerealR++;
+                    subtractResources("cereal", cerealR);
+                }
+                if (numeroTerreno[i] == 3) { // terreno cerros - genera arcilla
+                    clayR++;
+                    subtractResources("arcilla", clayR);
+                }
+                if (numeroTerreno[i] == 4) { // terreno montañña - genera mmineral
+                    mineralR++;
+                    subtractResources("mineral", mineralR);
+                }
+
+            }
+
+        }
     }
 
 
