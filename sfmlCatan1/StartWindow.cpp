@@ -1078,6 +1078,14 @@ void StartWindow::builtTown(RenderWindow* Go, int i)
         Go->draw(vectorBlackHouse[i]);
         townBtnPressed = false;
         townF--;
+        woodR--;
+        clayR--;
+        cerealR--;
+        sheepR--;
+        subtractResources("madera", woodR);
+        subtractResources("arcilla", clayR);
+        subtractResources("cereal", cerealR);
+        subtractResources("lana", sheepR);
         restarFigura("poblado", townF);
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 1);
         puntosVictoria++;
@@ -1099,7 +1107,11 @@ void StartWindow::builtCity(RenderWindow* Go, int i)
 
         cityBtnPressed = false;
         cityF--;
+        cerealR -= 2;
+        mineralR -= 3;
         restarFigura("ciudad", cityF);
+        subtractResources("cereal", cerealR);
+        subtractResources("mineral", mineralR);
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 2);
         puntosVictoria += 2;
     }
