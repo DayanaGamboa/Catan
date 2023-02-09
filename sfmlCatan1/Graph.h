@@ -1,5 +1,7 @@
 #pragma once
 #include <climits>
+#include <fstream>
+#include <sstream>
 #include <iostream>
 #include <vector>
 #include <list>
@@ -17,17 +19,17 @@ public:
     vector<VertexGraph> vertices;
     bool verticesConstructed[54];
     int numVertices = 54;
-    int positions[54][2] = { {819,241},{783,226},{742,245}, {701,225},{659,242},{620,226},{587,243},{585,276},{ 550,302},{ 550,338},{512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},{821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},
-        {780,300},{737,275},{703,301},{660,282},{625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},{822,361},{780,333},
-        {740, 359} ,{700,335},{663,361},{660,390},{703,413},{740, 390} };
-
-
+    int positions[54][2] = { {819,241},{783,226},{742,245},{701,225},{659,242},{620,226},{587,243},{585,276},{550,302},{550,338},
+        {512,357},{509,396},{545,414},{548,452},{585,470},{586,508},{619,524},{660,507},{701,524},{740,508},{781,525},{819,508},
+        {821,472},{858,452},{862,416},{898,395},{900,358},{860,336},{857,298},{821,279},{780,300},{737,275},{703,301},{660,282},
+        {625,303},{623,335},{585,358},{587,395},{623,415},{622,449},{663,473},{703,450},{742,472},{783,451},{783,415},{820,397},
+        {822,361},{780,333},{740,359},{700,335},{663,361},{660,390},{703,413},{740, 390}};
 
     Graph() {
         adjacencyMatrix.resize(numVertices);
         vertices.resize(numVertices);
 
-        includeEdge();
+        loadEdgeFromFile();
 
         for (int i = 0; i < numVertices; i++) {
             vertices[i].setData(i);
@@ -35,79 +37,24 @@ public:
             vertices[i].y = positions[i][1];
         }
     }
-    void includeEdge() {
-        addEdge(0, 1);
-        addEdge(0, 29);
-        addEdge(1, 2);
-        addEdge(2, 3);
-        addEdge(3, 4);
-        addEdge(4, 5);
-        addEdge(5, 6);
-        addEdge(6, 7);
-        addEdge(7, 8);
-        addEdge(8, 9);
-        addEdge(9, 10);
-        addEdge(10, 11);
-        addEdge(11, 12);
-        addEdge(12, 13);
-        addEdge(13, 14);
-        addEdge(14, 15);
-        addEdge(15, 16);
-        addEdge(16, 17);
-        addEdge(17, 18);
-        addEdge(18, 19);
-        addEdge(19, 20);
-        addEdge(20, 21);
-        addEdge(21, 22);
-        addEdge(22, 23);
-        addEdge(23, 24);
-        addEdge(24, 25);
-        addEdge(25, 26);
-        addEdge(26, 27);
-        addEdge(27, 28);
-        addEdge(28, 29);
-        addEdge(29, 30);
-        addEdge(30, 31);
-        addEdge(31, 2);
-        addEdge(31, 32);
-        addEdge(32, 33);
-        addEdge(33, 4);
-        addEdge(33, 34);
-        addEdge(34, 7);
-        addEdge(34, 35);
-        addEdge(35, 36);
-        addEdge(36, 9);
-        addEdge(36, 37);
-        addEdge(37, 12);
-        addEdge(37, 38);
-        addEdge(38, 39);
-        addEdge(39, 14);
-        addEdge(39, 40);
-        addEdge(40, 17);
-        addEdge(40, 41);
-        addEdge(41, 42);
-        addEdge(42, 19);
-        addEdge(42, 43);
-        addEdge(43, 22);
-        addEdge(43, 44);
-        addEdge(44, 45);
-        addEdge(45, 24);
-        addEdge(45, 46);
-        addEdge(46, 27);
-        addEdge(46, 47);
-        addEdge(47, 30);
-        addEdge(47, 48);
-        addEdge(48, 49);
-        addEdge(49, 32);
-        addEdge(49, 50);
-        addEdge(50, 35);
-        addEdge(50, 51);
-        addEdge(51, 38);
-        addEdge(51, 52);
-        addEdge(52, 41);
-        addEdge(52, 53);
-        addEdge(53, 44);
-        addEdge(53, 48);
+    void loadEdgeFromFile() {
+        ifstream file("edges.txt");
+
+
+        if (file.is_open()) {
+            string line;
+            while (getline(file, line)) {
+                istringstream iss(line);
+                string ori, dest;
+                getline(iss, ori, ',');
+                getline(iss, dest, ',');
+                int origin = stoi(ori);
+                int destin = stoi(dest);
+                addEdge(origin, destin);
+            }
+            file.close();
+        }
+
     }
     void addEdge(int origen, int destino) {
         adjacencyMatrix[origen].push_back(destino);
