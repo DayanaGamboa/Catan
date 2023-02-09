@@ -20,6 +20,7 @@ public:
 	~Player();
 
 	Node<DevelopmentCard>* nodeDevelopment;
+	Node<ResourceCard>* nodeResource;
 
 	void throwsDice();
 	void build();

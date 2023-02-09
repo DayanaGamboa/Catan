@@ -14,7 +14,6 @@ public:
 	~Bank();
 	Node<DevelopmentCard>* nodeDevelopment;
 	Node<ResourceCard>* nodeResource;
-	void updateDevelopmentCard(string, int);
 	void updateResourceCard(string, int);
 	int countDevelopmentCard();
 	void loadLists();

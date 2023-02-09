@@ -96,14 +96,7 @@ void Player::endTurn()
 
 string Player::toString() {
     stringstream s;
-    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " "
-        /*<< getColor()*/ << endl;
-    cout << "Informaccion de cartas de recursos que posee el jugador: " << endl;
-    resourceCardsList->dropDownList();
-    cout << "Informaccion de cartas de desarrollo que posee el jugador: " << endl << endl;
-    developmentCardList->dropDownList();
-    cout << "Informaccion de cartas especiales que posee el jugador: " << endl << endl;
-    specialCardList->dropDownList();
+    s << getId() << " " << getName() << " " << getAge() << " " << getVictoryPoint() << " " << endl;
 
     return s.str();
 }

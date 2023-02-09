@@ -10,7 +10,6 @@
 #include "Player.h"
 #include "Node.h"
 #include "Dice.h"
-#include "Thief.h"
 #include "Graph.h"
 #include "Bank.h"
 

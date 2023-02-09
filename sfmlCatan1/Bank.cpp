@@ -10,18 +10,6 @@ Bank::~Bank()
 {
 }
 
-void Bank::updateDevelopmentCard(string name, int quantity)
-{
-	nodeDevelopment = developmentCardList->first;
-	do {
-		if (nodeDevelopment->getData()->getCardName() == name) {
-			cout << "seteado" << endl;
-			nodeDevelopment->getData()->setQuantity(quantity);
-		}
-		nodeDevelopment = nodeDevelopment->getNextNode();
-	} while (nodeDevelopment != developmentCardList->first);
-}
-
 void Bank::updateResourceCard(string name, int quantity)
 {
 	nodeResource = resourceCardsList->first;
