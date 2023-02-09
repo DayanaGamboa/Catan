@@ -11,16 +11,13 @@ public:
 	Bank();
 	~Bank();
 	Node<DevelopmentCard>* nodeDevelopment;
-	void addUpCards(string, int);
-	void substtractCards(string, int, int);
-	int putCards(int, int);
+	Node<ResourceCard>* nodeResource;
+	void updateDevelopmentCard(string, int);
+	void updateResourceCard(string, int);
 	int countDevelopmentCard();
 	void loadLists();
 
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;
-
-private:
-	/*list<Card> bankCards;*/ //TEMPLATE
 };
 
