@@ -25,10 +25,11 @@ void Bank::updateDevelopmentCard(string name, int quantity)
 void Bank::updateResourceCard(string name, int quantity)
 {
 	nodeResource = resourceCardsList->first;
+	int count = 0;
 	do {
 		if (nodeResource->getData()->getCardName() == name) {
-			cout << "seteado" << endl;
-			nodeResource->getData()->setQuantity(quantity);
+			count = nodeResource->getData()->getQuantity();
+			nodeResource->getData()->setQuantity(count + quantity);
 		}
 		nodeResource = nodeResource->getNextNode();
 	} while (nodeResource != resourceCardsList->first);

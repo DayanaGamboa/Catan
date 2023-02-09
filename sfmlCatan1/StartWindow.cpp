@@ -193,6 +193,9 @@ void StartWindow::goWindow() {
                         subtractResources("cereal", cerealR);
                         subtractResources("lana", sheepR);
                         subtractResources("mineral", mineralR);
+                        bank.updateResourceCard("cereal", 1);
+                        bank.updateResourceCard("lana", 1);
+                        bank.updateResourceCard("mineral", 1);
                     }
                     else {
                         cout << "No tiene recursos necesarios" << endl;
@@ -912,25 +915,25 @@ void StartWindow::playerRegister(RenderWindow*) {
                         age = stoi(ageString);
                         id++;                     
                         if (playerCounter == 0) {
-                            Player* player1 = new Player(id, name, age, 5, Color::Blue);
+                            Player* player1 = new Player(id, name, age, 7, Color::Blue);
                             player1->loadList();
                             player1->insertSpecialCard("mayor ruta", 1);
                             playerList->inserNode(player1);
                         }
                         if (playerCounter == 1) {
-                            Player* player2 = new Player(id, name, age, 5, Color::Yellow);
+                            Player* player2 = new Player(id, name, age, 7, Color::Yellow);
                             player2->loadList();
                             player2->insertSpecialCard("mayor ejercito", 1);
                             playerList->inserNode(player2);
                         }
                         if (playerCounter == 2) {
-                            Player* player3 = new Player(id, name, age, 5, Color::Green);
+                            Player* player3 = new Player(id, name, age, 7, Color::Green);
                             player3->loadList();
                             playerList->inserNode(player3);
                             playersRegister = true;
                         }
                         if (playerCounter == 3) {
-                            Player* player4 = new Player(id, name, age, 5, Color::Red);
+                            Player* player4 = new Player(id, name, age, 7, Color::Red);
                             player4->loadList();
                             playerList->inserNode(player4);
                         }
@@ -1063,6 +1066,11 @@ void StartWindow::builtTown(RenderWindow* Go, int i)
         subtractResources("cereal", cerealR);
         subtractResources("lana", sheepR);
         restarFigura("poblado", townF);
+        bank.updateResourceCard("madera", 1);
+        bank.updateResourceCard("arcilla", 1);
+        bank.updateResourceCard("cereal", 1);
+        bank.updateResourceCard("lana", 1);
+        
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 1);
         puntosVictoria++;
     }
@@ -1088,6 +1096,8 @@ void StartWindow::builtCity(RenderWindow* Go, int i)
         restarFigura("ciudad", cityF);
         subtractResources("cereal", cerealR);
         subtractResources("mineral", mineralR);
+        bank.updateResourceCard("cereal", 2);
+        bank.updateResourceCard("mineral", 3);
         actualNode->getData()->setVictoryPoint(actualNode->getData()->getVictoryPoint() + 2);
         puntosVictoria += 2;
     }
@@ -1514,4 +1524,6 @@ void StartWindow::buyDevelopmentCard(string resource) {
         }
         nodeDevelopmentBank = nodeDevelopmentBank->getNextNode();
     } while (nodeDevelopmentBank != bank.developmentCardList->first);
+
+    actualNode->getData()->resourceCardsList->dropDownList();
 }
