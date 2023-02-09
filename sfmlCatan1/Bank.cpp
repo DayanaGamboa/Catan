@@ -48,21 +48,26 @@ int Bank::countDevelopmentCard() {
 }
 
 void Bank::loadLists() {
-	ResourceCard* wood = new ResourceCard("madera", 0, 0, 0, 19);
-	ResourceCard* wool = new ResourceCard("lana", 0, 0, 0, 19);
-	ResourceCard* cereal = new ResourceCard("cereal", 0, 0, 0, 19);
-	ResourceCard* clay = new ResourceCard("arcilla", 0, 0, 0, 19);
-	ResourceCard* mineral = new ResourceCard("mineral", 0, 0, 0, 19);
+	ResourceCard* wood = new ResourceCard("madera", 19);
+	ResourceCard* wool = new ResourceCard("lana", 19);
+	ResourceCard* cereal = new ResourceCard("cereal", 19);
+	ResourceCard* clay = new ResourceCard("arcilla", 19);
+	ResourceCard* mineral = new ResourceCard("mineral", 19);
 	resourceCardsList->inserNode(wood);
 	resourceCardsList->inserNode(wool);
 	resourceCardsList->inserNode(cereal);
 	resourceCardsList->inserNode(clay);
 	resourceCardsList->inserNode(mineral);
 
-	DevelopmentCard* knight = new DevelopmentCard("caballero", 0, 0, 0, 14, false);
-	DevelopmentCard* progress = new DevelopmentCard("progreso", 0, 0, 0, 6, false);
-	DevelopmentCard* victoryPoints = new DevelopmentCard("PuntosVictoria", 1, 0, 0, 5, false);
+	DevelopmentCard* knight = new DevelopmentCard("caballero", 14);
+	DevelopmentCard* progress = new DevelopmentCard("progreso", 6);
+	DevelopmentCard* victoryPoints = new DevelopmentCard("PuntosVictoria", 5);
 	developmentCardList->inserNode(knight);
 	developmentCardList->inserNode(progress);
 	developmentCardList->inserNode(victoryPoints);
+}
+
+string Bank::generateDevelopmentCard() {
+	string name = " ";
+	return name;
 }

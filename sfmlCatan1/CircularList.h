@@ -20,18 +20,13 @@ public:
 	void inserNode(T*);
 	int getSize();
 	int getCantResources(string);
-	void findNode(string);
 	void dropDownList();
-	/*void showCards();*/
 	void saveFile(string);
 	void loadFromFile(const string&);
 	bool existenceOfCard(string);
 	void increaseQuantity(string, int);
 	void decrementQuantity(string, int);
 	void sortPlayerListDescending();
-
-	/*void playerInformationInTurn();*/
-	/*void PlayerInformation();*/
 };
 template<class T>
 CircularList<T> ::CircularList() {
@@ -74,12 +69,7 @@ void CircularList<T>::inserNode(T* obj) {
 	}
 
 }
-template<class T>
-void CircularList<T>::findNode(string ide) {
 
-
-
-}
 template<class T>
 void CircularList<T>::dropDownList() {
 

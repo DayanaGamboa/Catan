@@ -16,6 +16,8 @@ public:
 	void updateResourceCard(string, int);
 	int countDevelopmentCard();
 	void loadLists();
+	string generateDevelopmentCard();
+	string vect[3] = { "caballero","progreso","PuntosVictoria" };
 
 	CircularList<ResourceCard>* resourceCardsList;
 	CircularList<DevelopmentCard>* developmentCardList;

@@ -108,31 +108,31 @@ string Player::toString() {
     return s.str();
 }
 
-void Player::insertResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
+void Player::insertResourceCard(string cardNameP, int quantityP)
 {
     if (resourceCardsList->existenceOfCard(cardNameP) == true) {
         resourceCardsList->increaseQuantity(cardNameP, quantityP);
     }
     else {
-        ResourceCard* info = new ResourceCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
+        ResourceCard* info = new ResourceCard(cardNameP, quantityP);
         resourceCardsList->inserNode(info);
     }
 }
 
-void Player::insertDevelopmentCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
+void Player::insertDevelopmentCard(string cardNameP, int quantityP)
 {
     if (developmentCardList->existenceOfCard(cardNameP) == true) {
         developmentCardList->increaseQuantity(cardNameP, quantityP);
     }
     else {
-        DevelopmentCard* info = new DevelopmentCard(cardNameP, powerCardP, positionXP, positionYP, quantityP, false);
+        DevelopmentCard* info = new DevelopmentCard(cardNameP, quantityP);
         developmentCardList->inserNode(info);
     }
 }
 
-void Player::insertSpecialCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantityP)
+void Player::insertSpecialCard(string cardNameP, int quantityP)
 {
-    SpecialCard* info = new SpecialCard(cardNameP, powerCardP, positionXP, positionYP, quantityP);
+    SpecialCard* info = new SpecialCard(cardNameP, quantityP);
     specialCardList->inserNode(info);
 }
 

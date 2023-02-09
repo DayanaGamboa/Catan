@@ -1,7 +1,7 @@
 #include "ResourceCard.h"
 #include<sstream>
 
-ResourceCard::ResourceCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantity) : Card(cardNameP, powerCardP, positionXP, positionYP)
+ResourceCard::ResourceCard(string cardNameP, int quantity) : Card(cardNameP)
 {
     this->quantity = quantity;
 }
@@ -24,7 +24,6 @@ int ResourceCard::power() {
 
 string ResourceCard::toString() {
 	stringstream s;
-	s << "Infromacion Carta: " << getCardName()<< " " << getPowerCard() << " " << getPositionX() 
-		<< " " << getPositionY() << " " << getQuantity() << endl;
+	s << "Infromacion Carta: " << getCardName()<< " " << getQuantity() << endl;
 	return s.str();
 }
