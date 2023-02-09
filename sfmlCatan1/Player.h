@@ -1,14 +1,10 @@
 #pragma once
 #include "Figure.h"
-#include "Deck.h"
 #include "CircularList.h"
 #include "Node.h"
 #include "ResourceCard.h"
 #include "SpecialCard.h"
 #include "DevelopmentCard.h"
-#include "City.h"
-#include "Street.h"
-#include "Town.h"
 #include "StartWindow.h"
 #include "SFML/Graphics.hpp"
 #include<sstream>
@@ -42,9 +38,9 @@ public:
 	void setVictoryPoint(int);
 	Color getColor();
 	void setColor(Color);
-	void insertResourceCard(string, int, int, int, int);
-	void insertDevelopmentCard(string, int, int, int, int);
-	void insertSpecialCard(string, int, int, int, int);
+	void insertResourceCard(string, int);
+	void insertDevelopmentCard(string, int);
+	void insertSpecialCard(string, int);
 	void insertFigures(string, int, int, int);
 	int countDevelopmentCard();
 

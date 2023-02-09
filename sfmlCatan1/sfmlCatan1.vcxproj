@@ -142,8 +142,6 @@
     <ClCompile Include="Bank.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CircularList.cpp" />
-    <ClCompile Include="City.cpp" />
-    <ClCompile Include="Deck.cpp" />
     <ClCompile Include="DevelopmentCard.cpp" />
     <ClCompile Include="Dice.cpp" />
     <ClCompile Include="Figure.cpp" />
@@ -158,17 +156,13 @@
     <ClCompile Include="sfmlCatan1.cpp" />
     <ClCompile Include="SpecialCard.cpp" />
     <ClCompile Include="StartWindow.cpp" />
-    <ClCompile Include="Street.cpp" />
     <ClCompile Include="Thief.cpp" />
-    <ClCompile Include="Town.cpp" />
     <ClCompile Include="VertexGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bank.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CircularList.h" />
-    <ClInclude Include="City.h" />
-    <ClInclude Include="Deck.h" />
     <ClInclude Include="DevelopmentCard.h" />
     <ClInclude Include="Dice.h" />
     <ClInclude Include="Figure.h" />
@@ -182,9 +176,7 @@
     <ClInclude Include="ResourceCard.h" />
     <ClInclude Include="SpecialCard.h" />
     <ClInclude Include="StartWindow.h" />
-    <ClInclude Include="Street.h" />
     <ClInclude Include="Thief.h" />
-    <ClInclude Include="Town.h" />
     <ClInclude Include="VertexGraph.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

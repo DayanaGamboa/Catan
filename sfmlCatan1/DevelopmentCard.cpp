@@ -2,10 +2,9 @@
 #include<sstream>
 
 
-DevelopmentCard::DevelopmentCard(string cardNameP, int powerCardP, int positionXP, int positionYP, int quantity, bool faceCard) : Card(cardNameP, powerCardP, positionXP, positionYP)
+DevelopmentCard::DevelopmentCard(string cardNameP, int quantity) : Card(cardNameP)
 {
 	this->quantity = quantity;
-	this->faceCard = faceCard;
 }
 
 DevelopmentCard::~DevelopmentCard()
@@ -20,21 +19,12 @@ void DevelopmentCard::setQuantity(int quantity) {
 	this->quantity = quantity;
 }
 
-bool DevelopmentCard::getFaceCrad() {
-	return faceCard;
-}
-
-void DevelopmentCard::setFaceCard(bool faceCard) {
-	this->faceCard = faceCard;
-}
-
 int DevelopmentCard::power() {
 	return 0;
 }
 
 string DevelopmentCard::toString() {
 	stringstream s;
-	s << "Informacion Carta: " << getCardName() << " " << getPowerCard() << " " << getPositionX()
-		<< " " << getPositionY() << " " << getQuantity() << endl;
+	s << "Informacion Carta: " << getCardName() << " " << getQuantity() << endl;
 	return s.str();
 }
