@@ -1158,8 +1158,8 @@ void StartWindow::saveResourcePlayer() {
 void StartWindow::saveResourceBank() {
     nodeResourceBankWood = bank.resourceCardsList->first;
     nodeResourceBankSheep = nodeResourceBankWood->getNextNode();
-    nodeResourceCereal = nodeResourceBankSheep->getNextNode();
-    nodeResourceBankClay = nodeResourceCereal->getNextNode();
+    nodeResourceBankCereal = nodeResourceBankSheep->getNextNode();
+    nodeResourceBankClay = nodeResourceBankCereal->getNextNode();
     nodeResourceBankMineral = nodeResourceBankClay->getNextNode();
 }
 void StartWindow::paintBankCounters(RenderWindow* Go) {
@@ -1200,7 +1200,7 @@ void StartWindow::paintBankCounters(RenderWindow* Go) {
     cereals.setFont(font);
     cereals.setFillColor(Color::Black);
     cereals.setPosition(posXTxt, 2.5);
-    cereals.setString(to_string(nodeResourceCereal->getData()->getQuantity()));
+    cereals.setString(to_string(nodeResourceBankCereal->getData()->getQuantity()));
     posXTxt += 90;
 
     clay.setFont(font);
@@ -1470,8 +1470,6 @@ void StartWindow::victory()
 
 }
 void StartWindow::generateResources(int sumaDados) {
-
-
     if (sumaDados == 7) {
         cout << "Mover el ladron" << endl;
     }
@@ -1480,31 +1478,58 @@ void StartWindow::generateResources(int sumaDados) {
 
             if (numeroFicha[i] == sumaDados) {
                 if (numeroTerreno[i] == 0) { // terreno bosques - genera madera
-                    woodR++;
-                    subtractResources("madera", woodR);
 
+                    if (nodeResourceBankWood->getData()->getQuantity() > 0) {
+                        nodeResourceBankWood->getData()->setQuantity(nodeResourceBankWood->getData()->getQuantity() - 1);
+                        woodR++;
+                        subtractResources("madera", woodR);
+                    }
+                    else {
+                        cout << "No hay recursos en la banca de madera" << endl;
+                    }
                 }
                 if (numeroTerreno[i] == 1) { // terreno pastos - genera ovejas
-                    sheepR++;
-                    subtractResources("lana", sheepR);
+
+                    if (nodeResourceBankSheep->getData()->getQuantity() > 0) {
+                        nodeResourceBankSheep->getData()->setQuantity(nodeResourceBankSheep->getData()->getQuantity() - 1);
+                        sheepR++;
+                        subtractResources("lana", sheepR);
+                    }
+                    else {
+                        cout << "No hay recursos en la banca de ovejas" << endl;
+                    }
                 }
                 if (numeroTerreno[i] == 2) { // terreno sembrados - genera cereales
-                    cerealR++;
-                    subtractResources("cereal", cerealR);
+                    if (nodeResourceBankCereal->getData()->getQuantity() > 0) {
+                        nodeResourceBankCereal->getData()->setQuantity(nodeResourceBankCereal->getData()->getQuantity() - 1);
+                        cerealR++;
+                        subtractResources("cereal", cerealR);
+                    }
+                    else {
+                        cout << "No hay recursos en la banca de cereales" << endl;
+                    }
                 }
                 if (numeroTerreno[i] == 3) { // terreno cerros - genera arcilla
-                    clayR++;
-                    subtractResources("arcilla", clayR);
+                    if (nodeResourceBankClay->getData()->getQuantity() > 0) {
+                        nodeResourceBankClay->getData()->setQuantity(nodeResourceBankClay->getData()->getQuantity() - 1);
+                        clayR++;
+                        subtractResources("arcilla", clayR);
+                    }
+                    else {
+                        cout << "No hay recursos en la banca de arcilla" << endl;
+                    }
                 }
                 if (numeroTerreno[i] == 4) { // terreno montañña - genera mmineral
-                    mineralR++;
-                    subtractResources("mineral", mineralR);
+                    if (nodeResourceBankMineral->getData()->getQuantity() > 0) {
+                        nodeResourceBankMineral->getData()->setQuantity(nodeResourceBankMineral->getData()->getQuantity() - 1);
+                        mineralR++;
+                        subtractResources("mineral", mineralR);
+                    }
+                    else {
+                        cout << "No hay recursos en la banca de mineral" << endl;
+                    }
                 }
-
             }
-
         }
     }
-
-
 }

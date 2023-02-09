@@ -39,7 +39,7 @@ public:
 	Node<ResourceCard>* nodeResourceBankSheep;
 	Node<ResourceCard>* nodeResourceBankMineral;
 	Node<ResourceCard>* nodeResourceBankClay;
-	Node<ResourceCard>* nodeResourceCereal;
+	Node<ResourceCard>* nodeResourceBankCereal;
 
 
 
